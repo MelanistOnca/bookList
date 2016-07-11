@@ -1,0 +1,25 @@
+{
+  "name": "book_list",
+  "version": "1.0.0",
+  "description": "app to track books you've read and books you'd like to read",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelanistOnca/bookList.git"
+  },
+  "keywords": [
+    "books",
+    "read",
+    "reading",
+    "TBR"
+  ],
+  "author": "Patrick M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MelanistOnca/bookList/issues"
+  },
+  "homepage": "https://github.com/MelanistOnca/bookList#readme"
+}
