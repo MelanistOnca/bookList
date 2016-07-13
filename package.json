@@ -4,7 +4,10 @@
   "description": "app to track books you've read and books you'd like to read",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o ./public/js/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "watchify -t [ babelify --presets [react es2015 ] ] public/js/app.js -o public/js/bundle.js -d",
+    
   },
   "repository": {
     "type": "git",
