@@ -26,10 +26,12 @@ import ToBeRead from './components/toBeRead';
 render(
   (
   <Router history={hashHistory}>
-    <Route path="/" component={Site}/>
-    <Route path="/finished" component={Finished}/>
-    <Route path="/reading" component={Reading}/>
-    <Route path="/toberead" component={ToBeRead}/>
+    <Route path="/" component={Site}>
+      <Route path="/reading" component={Reading}/>
+      <Route path="/toberead" component={ToBeRead}/>
+      <Route path="/finished" component={Finished}/>
+    </Route>
+
   </Router>
   ),
   document.getElementById('container')
