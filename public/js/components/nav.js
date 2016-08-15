@@ -27,6 +27,10 @@ export default class Nav extends React.Component{
             to="/finished"
             >
             Finished</NavLink></li>
+          <li><NavLink
+            to="/updateLists"
+            >
+            UpdateLists</NavLink></li>
         </ul>
       </div>
     )

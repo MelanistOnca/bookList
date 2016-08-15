@@ -7,6 +7,7 @@ import currentlyReadingList from './currentlyReadingList';
 // import currentlyReadingList from './currentlyReadingList';
 import haveReadList from './haveReadList';
 import toBeReadList from './toBeReadList';
+import selectedList from './selectedList';
 
 
 const rootReducer = combineReducers(
@@ -14,7 +15,8 @@ const rootReducer = combineReducers(
     currentlyReadingList,
     haveReadList,
     toBeReadList,
-   routing: routerReducer
+    selectedList,
+    routing: routerReducer
   }
 )
 

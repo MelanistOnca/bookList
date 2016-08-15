@@ -1,4 +1,4 @@
-console.log('currentlyReadingList reducer file');
+// console.log('currentlyReadingList reducer file');
 
 function currentlyReadingList(state=[], action) {
   switch(action.type){

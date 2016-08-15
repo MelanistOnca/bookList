@@ -1,4 +1,4 @@
-console.log('toBeReadList reducer file');
+// console.log('toBeReadList reducer file');
 
 function toBeReadList(state=[], action) {
   switch(action.type){

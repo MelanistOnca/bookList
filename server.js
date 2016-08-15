@@ -16,6 +16,11 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
+
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
+})
+
 const port = process.env.PORT || 3003;
 app.listen(port, () => {
   console.log(`Your bookList server is running on port ${port}`);

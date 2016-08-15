@@ -1,4 +1,4 @@
-console.log('haveReadList reducer file');
+// console.log('haveReadList reducer file');
 
 function haveReadList(state=[], action) {
   switch(action.type){

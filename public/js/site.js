@@ -10,9 +10,20 @@ import Nav from './components/nav';
 
 // import  from '';
 
+
+
 export default class Site extends React.Component{
 
-
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     loggedIn: false,
+  //     user: {},//this will maybe include location data to help determine nearby libraries/stores?
+  //     haveReadList: [],
+  //     readingNowList: [],
+  //     toBeReadList: []
+  //   } //does redux completely replace the state, or do i need state for it to use?
+  // }
 
   render(){
 
@@ -20,7 +31,8 @@ export default class Site extends React.Component{
       <div id="siteContainer">
         <Nav
           />
-        {this.props.children}
+        {/* {this.props.children} */}
+        {React.cloneElement(this.props.children,this.props)}
 
       </div>
     )
