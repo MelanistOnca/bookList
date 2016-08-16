@@ -11,6 +11,7 @@ function mapStateToProps(state){
     haveReadList: state.haveReadList,
     toBeReadList: state.toBeReadList,
     selectedList: state.selectedList,
+    arrayedLists: state.arrayedLists
   }
 }
 

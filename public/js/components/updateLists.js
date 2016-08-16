@@ -21,10 +21,14 @@ export default class UpdateList extends React.Component {
     console.log('selection was changed');
     // console.log(this.props, 'this.props');
     // // this.props.selectList
-    console.log(e,' was e');
+    // console.log(e,' was e');
     // console.log(e.target, 'was e.target');
-    console.log(e.target.value, 'was e.target.value in components/updateLists.js');
-    console.log(selectList, 'selectList passed to changed() in components/updateLists.js');
+    // console.log(e.target.value, 'was e.target.value in components/updateLists.js');
+    // console.log(selectList, 'selectList passed to changed() in components/updateLists.js');
+    let chosen = e.target.value;
+
+    e.preventDefault();
+    selectList(chosen);
   }
 
   render(){
@@ -33,7 +37,7 @@ export default class UpdateList extends React.Component {
 
     // console.log(this.props.selectedList, 'this.props.selectedList in components/updateLists.js'); //returns the expected (default) value from the store, at least before i got the update selection working
 
-    console.log(this.props.selectedList,'this.props.selectedList in components/updateLists.js');
+    // console.log(this.props.selectedList,'this.props.selectedList in components/updateLists.js');
     // console.log(this.props.selectList,'this.props.selectList in components/updateLists.js');
     // const liveSelect = $('select').value
     // console.log(liveSelect, 'liveSelect in components/updateLists.js');
@@ -57,7 +61,7 @@ export default class UpdateList extends React.Component {
             >
             <option value="null">Select</option>
             <option value="To Be Read">
-              To Be Ready List</option>
+              To Be Read List</option>
             <option value="Have Read">
               Have Read List</option>
             <option value="Currently Reading">
@@ -66,8 +70,8 @@ export default class UpdateList extends React.Component {
         </form>
 
         <Selected
-          selectedList={this.props.selectedList}
-
+          selectedListName={this.props.selectedList}
+          selectedListArray={this.props.arrayedLists}
           />
 
       </div>

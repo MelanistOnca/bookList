@@ -1,16 +1,20 @@
 // console.log('selectList loaded');
-// import { update } from 'react'; //this is supposedly from react-addons-update
+
 function selectedList(state=[], action) {
   console.log('selectedList called');
-  // console.log(action, 'action in selectedList reducer');
+  console.log(action, 'action in selectedList reducer'); //this is giving me "gibberish" when i should be expecting the return from the actionCreators for "SELECT_LIST"
+  console.log(action.type, 'action.type in same');
   // console.log(state, 'state before switch');
+  // console.log(state.choice, 'was state.choice in reducers/selectedList.js');
+
+  // console.log(action.choice, 'was action.choice in reducers/selectedList.js');
 
   switch(action.type){
     case 'SELECT_LIST' :
       console.log('Choosing List');
 
       //CHANGE THIS IN STORE FROM ARRAY TO STRING?!?!?!?!?!?!?
-      console.log(state,'state in selectedList'); //returns ["PLACEHOLDER SELECTED LIST"]
+      // console.log(state,'state in selectedList'); //returns ["PLACEHOLDER SELECTED LIST"]
       // console.log(state[0],'state[0] in same');
 
       // console.log(state.selectedList, 'state.selectedList in selectedList');
@@ -21,7 +25,7 @@ function selectedList(state=[], action) {
       //may be an overcomplication
       return [
         ...state.slice(0,0), //slice(0,0) gets rid of the 0 element
-         "SELECTION MADE" //this is then added to the array, which is now empty, which makes this entry [0]
+         action.choice //this is then added to the array, which is now empty, which makes this entry [0]
 
 
         // ...state,
@@ -32,7 +36,7 @@ function selectedList(state=[], action) {
     default:
       return state;
   }
-  console.log(state, 'state after return, probably never reached');
+
 }
 
 export default selectedList;

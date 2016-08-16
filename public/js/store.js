@@ -10,13 +10,15 @@ import currentlyReadingList from './data/currentlyReadingList';
 import haveReadList from './data/haveReadList';
 import toBeReadList from './data/toBeReadList';
 import selectedList from './data/selectedList';
+import arrayedLists from './data/arrayedLists';
 
 //default state
 const defaultState = {
   currentlyReadingList,
   haveReadList,
   toBeReadList,
-  selectedList
+  selectedList,
+  arrayedLists
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING

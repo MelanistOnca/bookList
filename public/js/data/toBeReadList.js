@@ -3,7 +3,9 @@
 // }
 
 const toBeReadList = {
-  "amazing":"ninefox Gambit"
+  "amazing":"ninefox Gambit",
+  "second":"entry",
+  "third":"book"
 }
 
 export default toBeReadList;
