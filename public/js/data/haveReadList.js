@@ -2,8 +2,12 @@
 //   "history list":"old man's WARRRRR"
 // }
 const haveReadList = {
-  "history list":"old man's WARRRRR",
-  "belrg":"blarg"
+  "book1IdNumberHere":{
+    "title":"old man's WARRRRR",
+    "author":"J Scalzi",
+    "genre":"mil sci fi"
+  },
+  "book2IdNumberHEre":"blarg"
 }
 
 export default haveReadList;

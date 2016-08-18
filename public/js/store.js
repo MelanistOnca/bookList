@@ -6,17 +6,19 @@ import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 
 //state categories
-import currentlyReadingList from './data/currentlyReadingList';
-import haveReadList from './data/haveReadList';
-import toBeReadList from './data/toBeReadList';
+
+//commented out list here because i think i want to restructure them to be accessible only from arrayedLists
+// import currentlyReadingList from './data/currentlyReadingList';
+// import haveReadList from './data/haveReadList';
+// import toBeReadList from './data/toBeReadList';
 import selectedList from './data/selectedList';
 import arrayedLists from './data/arrayedLists';
 
 //default state
 const defaultState = {
-  currentlyReadingList,
-  haveReadList,
-  toBeReadList,
+  // currentlyReadingList,
+  // haveReadList,
+  // toBeReadList,
   selectedList,
   arrayedLists
 }

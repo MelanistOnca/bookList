@@ -31,6 +31,7 @@ import store, { history } from './store';
 
 // <Route path="" component={}/>
 render(
+  // console.log(this.props.children,'this.props.children in app.js');
   (
     <Provider store={store}>
       <Router history={history}>

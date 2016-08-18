@@ -25,8 +25,10 @@ export default class Site extends React.Component{
   //   } //does redux completely replace the state, or do i need state for it to use?
   // }
 
-  render(){
 
+  render(){
+    console.log(this.props,'this.props in site.js');
+    console.log(this.props.children,'this.props.children in site.js');
     return(
       <div id="siteContainer">
         <Nav

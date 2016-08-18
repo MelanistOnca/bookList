@@ -37,7 +37,8 @@ export default class UpdateList extends React.Component {
 
     // console.log(this.props.selectedList, 'this.props.selectedList in components/updateLists.js'); //returns the expected (default) value from the store, at least before i got the update selection working
 
-    // console.log(this.props.selectedList,'this.props.selectedList in components/updateLists.js');
+    console.log(this.props.selectedList,'this.props.selectedList in components/updateLists.js');
+    console.log(this.props.arrayedLists, 'this.props.arrayedLists in components/updateLists.js');
     // console.log(this.props.selectList,'this.props.selectList in components/updateLists.js');
     // const liveSelect = $('select').value
     // console.log(liveSelect, 'liveSelect in components/updateLists.js');

@@ -12,6 +12,7 @@ export default class SingleBook extends React.Component {
 
     console.log(keyArray, 'keyArray in same, should be same');
     console.log(keyArray[0],'keyArray[0] in same');
+    console.log(keyArray[1],'keyArray[1] in same');
 
 
     //map the key array to get a list of names, then use that to list the values of those keys too. probably in same map function
