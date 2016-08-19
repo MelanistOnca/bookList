@@ -5,6 +5,7 @@ export default class SingleBook extends React.Component {
 
 
   render(){
+    console.log(this.props, 'this.props in singleBook.js');
     console.log(this.props.pickedList,'this.props.pickedList in singleBook.js');
     console.log(this.props.pickedList[0],'this.props.pickedList[0] in singleBook.js');
     console.log(Object.keys(this.props.pickedList[0]),'Object.keys(this.props.pickedList[0]) in singleBook.js');

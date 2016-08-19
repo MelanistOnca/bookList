@@ -3,21 +3,18 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 //reducers
-import currentlyReadingList from './currentlyReadingList';
 // import currentlyReadingList from './currentlyReadingList';
-import haveReadList from './haveReadList';
-import toBeReadList from './toBeReadList';
+// // import currentlyReadingList from './currentlyReadingList';
+// import haveReadList from './haveReadList';
+// import toBeReadList from './toBeReadList';
 import selectedList from './selectedList';
-import arrayedLists from './arrayedLists';
+import listCollection from './listCollection';
 
 
 const rootReducer = combineReducers(
   {
-    currentlyReadingList,
-    haveReadList,
-    toBeReadList,
     selectedList,
-    arrayedLists,
+    listCollection,
     routing: routerReducer
   }
 )
