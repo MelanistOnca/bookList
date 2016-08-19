@@ -13,6 +13,8 @@ import Reading from './components/reading';
 import ToBeRead from './components/toBeRead';
 import UpdateLists from './components/updateLists';
 import Mapper from './components/mapper';
+import Nav from './components/nav';
+import Placeholder from './components/placeholder';
 
 
 //redux stuff
@@ -35,12 +37,30 @@ render(
     <Provider store={store}>
       <Router history={history}>
         <Route path="/" component={Mapper}>
+          {/*
+            when going to :3003 (no slash)
+            index route of {Site} or {Mapper} seems to loop infinitely, nav creates 2 nav elements, no index route means this.props.children is null in site.js
+            wtf is going on?
+            {Placeholder} is an empty div but gets the site to not shoot errors and has this.props.children acting "correctly"
+          */}
+          <IndexRoute component={Placeholder}/>
           <Route path="/reading" component={Reading}/>
           <Route path="/toberead" component={ToBeRead}/>
           <Route path="/finished" component={Finished}/>
           <Route path="/updateLists" component={UpdateLists}/>
+
+          {/*
+            catch-all route
+          */}
+          {/*
+            <Route path="*" component={Site}></Route>
+          */}
+
         </Route>
-        <Route path="*" component={Site}></Route>
+
+        {/*
+
+          */}
 
       </Router>
 
