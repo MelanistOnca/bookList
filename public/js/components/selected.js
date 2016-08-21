@@ -11,10 +11,10 @@ export default class Selector extends React.Component{
     console.log(this.props, 'this.props in components/selected.js');
     // console.log(this.props.selected, 'this.props.selected in components/selected.js');
     // console.log(this.props.selectList,'this.props.selectList in components/selected.js');
-    console.log(this.props.selectedListName,'this.props.selectedListName in components/selected.js');
+    console.log(this.props.selectedList,'this.props.selectedList in components/selected.js');
     let listDisplay = [];
     listDisplay = <SingleBook
-                    pickedList={this.props.selectedListArray}
+                    selectedList={this.props.selectedList}
                               />; //since using person-readable string, does not easily correspond to store-understandable call.
 
     return(

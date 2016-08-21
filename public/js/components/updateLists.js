@@ -26,6 +26,7 @@ export default class UpdateList extends React.Component {
     // console.log(e.target.value, 'was e.target.value in components/updateLists.js');
     // console.log(selectList, 'selectList passed to changed() in components/updateLists.js');
     let chosen = e.target.value;
+    console.log(chosen, 'was chosen in changed() in updateLists');
 
     e.preventDefault();
     selectList(chosen);
@@ -39,12 +40,13 @@ export default class UpdateList extends React.Component {
 
     // console.log(this.props.selectedList,'this.props.selectedList in components/updateLists.js');
     // console.log(this.props.selectList,'this.props.selectList in components/updateLists.js');
-    // const liveSelect = $('select').value
-    // console.log(liveSelect, 'liveSelect in components/updateLists.js');
+
 
     // PUT THE FUNCTION ON THE BUTTON TO SEE IF YOU CAN GET IT TO CALL THERE
 
     // possibly use radio rather than dropdown?
+
+    //option names copied from listCollection keys. there's gotta be a programmatic way to do this, but this is the band-aid/duct-tape/wd-40 for now.
     const event = window.event;
     return(
       <div id="updateListsContainer">
@@ -60,17 +62,17 @@ export default class UpdateList extends React.Component {
             onChange={this.changed.bind(event, this.props.selectList)}
             >
             <option value="null">Select</option>
-            <option value="To Be Read">
+            <option value="toBeReadList">
               To Be Read List</option>
-            <option value="Have Read">
+            <option value="haveReadList">
               Have Read List</option>
-            <option value="Currently Reading">
+            <option value="currentlyReadingList">
               Currently Reading List</option>
           </select>
         </form>
 
         <Selected
-          selectedListName={this.props.selectedList}
+          selectedList={this.props.selectedList}
           listCollection={this.props.listCollection}
           />
 
