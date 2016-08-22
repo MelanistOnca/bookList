@@ -14,7 +14,7 @@ function selectedList(state=[], action) {
       // console.log('Choosing List');
 
       //CHANGE THIS IN STORE FROM ARRAY TO STRING?!?!?!?!?!?!?
-      // console.log(state,'state in selectedList'); //returns ["PLACEHOLDER SELECTED LIST"]
+      console.log(state,'state in reducers/selectedList'); //returns ["PLACEHOLDER SELECTED LIST"]
       // console.log(state[0],'state[0] in same');
 
       // console.log(state.selectedList, 'state.selectedList in selectedList');
