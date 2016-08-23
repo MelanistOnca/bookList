@@ -7,11 +7,9 @@ import Site from '../site.js';
 
 function mapStateToProps(state){
   return{
-    currentlyReadingList: state.currentlyReadingList,
-    haveReadList: state.haveReadList,
-    toBeReadList: state.toBeReadList,
-    selectedList: state.selectedList,
-    arrayedLists: state.arrayedLists
+    selectedListKey: state.selectedListKey,
+    listCollection: state.listCollection
+    // listTranslate: state.listTranslate
   }
 }
 

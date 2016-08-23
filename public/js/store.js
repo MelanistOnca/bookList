@@ -6,19 +6,18 @@ import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 
 //state categories
-import currentlyReadingList from './data/currentlyReadingList';
-import haveReadList from './data/haveReadList';
-import toBeReadList from './data/toBeReadList';
-import selectedList from './data/selectedList';
-import arrayedLists from './data/arrayedLists';
+// import currentlyReadingList from './data/currentlyReadingList';
+// import haveReadList from './data/haveReadList';
+// import toBeReadList from './data/toBeReadList';
+import selectedListKey from './data/selectedListKey';
+import listCollection from './data/listCollection';
+// import listTranslate from './data/listTranslate';
 
 //default state
 const defaultState = {
-  currentlyReadingList,
-  haveReadList,
-  toBeReadList,
-  selectedList,
-  arrayedLists
+  selectedListKey,
+  listCollection
+  // listTranslate
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING

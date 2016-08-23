@@ -1,6 +1,6 @@
-// console.log('arrayedLists reducer');
+// console.log('listCollection reducer');
 
-function arrayedLists(state=[], action) {
+function listCollection(state=[], action) {
   switch(action.type){
     case 'THERE_SHOULD_BE_NO_ACTIONS' :
       console.log('THIS IS JUST A COLLECTION OF OTHER STATE COMPONENTS, PROBABLY WANT TO CHANGE THOSE INTO A SINGLE FILE?!?!? ');
@@ -11,4 +11,4 @@ function arrayedLists(state=[], action) {
   }
 }
 
-export default arrayedLists;
+export default listCollection;
