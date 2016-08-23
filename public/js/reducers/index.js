@@ -7,16 +7,16 @@ import { routerReducer } from 'react-router-redux';
 // // import currentlyReadingList from './currentlyReadingList';
 // import haveReadList from './haveReadList';
 // import toBeReadList from './toBeReadList';
-import selectedList from './selectedList';
+import selectedListKey from './selectedListKey';
 import listCollection from './listCollection';
-import listTranslate from './listTranslate';
+// import listTranslate from './listTranslate';
 
 
 const rootReducer = combineReducers(
   {
-    selectedList,
+    selectedListKey,
     listCollection,
-    listTranslate,
+    // listTranslate,
     routing: routerReducer
   }
 )

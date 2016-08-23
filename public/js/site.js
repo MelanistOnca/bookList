@@ -26,7 +26,7 @@ export default class Site extends React.Component{
   // }
 
   render(){
-    console.log(this.props, 'this.props.in site.js');
+    // console.log(this.props, 'this.props.in site.js');
 
     return(
       <div id="siteContainer">

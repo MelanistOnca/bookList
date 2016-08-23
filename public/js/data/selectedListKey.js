@@ -1,4 +1,4 @@
-const selectedList = [
+const selectedListKey = [
   // 'PLACEHOLDER SELECTED LIST'
 ]
 
@@ -6,4 +6,4 @@ const selectedList = [
 //this may be able to removed since i changed list collection into an object?
 
 
-export default selectedList;
+export default selectedListKey;

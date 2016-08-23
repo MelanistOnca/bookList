@@ -9,26 +9,30 @@
 // }
 
 const currentlyReadingList = {
-  "CRLbookId1": {
-    "title":"obelisk gate",
-    "author":"NK Jemisin",
-    "genre":"science fantasy"
-  },
-  "CRLbookId2": {
-    "title":"fifth season",
-    "author":"NK Jemisin",
-    "genre":"science fantasy"
-  },
-  "CRLbookId3": {
-    "title":"shadow gate",
-    "author":"kate elliot",
-    "genre":"fantasy"
-  },
-  "CRLbookId4": {
-    "title":"game of thrones",
-    "author":"grrm",
-    "genre":"never to be finished"
+  "title":"Currently Reading List",
+  "list": {
+    "CRLbookId1": {
+      "title":"obelisk gate",
+      "author":"NK Jemisin",
+      "genre":"science fantasy"
+    },
+    "CRLbookId2": {
+      "title":"fifth season",
+      "author":"NK Jemisin",
+      "genre":"science fantasy"
+    },
+    "CRLbookId3": {
+      "title":"shadow gate",
+      "author":"kate elliot",
+      "genre":"fantasy"
+    },
+    "CRLbookId4": {
+      "title":"game of thrones",
+      "author":"grrm",
+      "genre":"never to be finished"
+    }
   }
+
 }
 
 

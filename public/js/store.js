@@ -9,15 +9,15 @@ import rootReducer from './reducers/index';
 // import currentlyReadingList from './data/currentlyReadingList';
 // import haveReadList from './data/haveReadList';
 // import toBeReadList from './data/toBeReadList';
-import selectedList from './data/selectedList';
+import selectedListKey from './data/selectedListKey';
 import listCollection from './data/listCollection';
-import listTranslate from './data/listTranslate';
+// import listTranslate from './data/listTranslate';
 
 //default state
 const defaultState = {
-  selectedList,
-  listCollection,
-  listTranslate
+  selectedListKey,
+  listCollection
+  // listTranslate
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING

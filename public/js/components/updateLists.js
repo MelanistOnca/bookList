@@ -26,7 +26,7 @@ export default class UpdateList extends React.Component {
     // console.log(e.target.value, 'was e.target.value in components/updateLists.js');
     // console.log(selectList, 'selectList passed to changed() in components/updateLists.js');
     let chosen = e.target.value;
-    console.log(chosen, 'was chosen in changed() in updateLists');
+    // console.log(chosen, 'was chosen in changed() in updateLists');
 
     e.preventDefault();
     selectList(chosen);
@@ -34,11 +34,11 @@ export default class UpdateList extends React.Component {
 
   render(){
     //on selection, change subcomponents to appropriate UI elements
-    console.log(this.props,'this.props in components/updateLists.js');
+    // console.log(this.props,'this.props in components/updateLists.js');
 
-    console.log(this.props.selectedList, 'this.props.selectedList in components/updateLists.js'); //returns the expected (default) value from the store, at least before i got the update selection working
+    // console.log(this.props.selectedListKey, 'this.props.selectedListKey in components/updateLists.js'); //returns the expected (default) value from the store, at least before i got the update selection working
 
-    // console.log(this.props.selectedList,'this.props.selectedList in components/updateLists.js');
+    // console.log(this.props.selectedListKey,'this.props.selectedListKey in components/updateLists.js');
     // console.log(this.props.selectList,'this.props.selectList in components/updateLists.js');
 
 
@@ -69,7 +69,7 @@ export default class UpdateList extends React.Component {
         </form>
 
         <Selected
-          selectedList={this.props.selectedList}
+          selectedListKey={this.props.selectedListKey}
           listCollection={this.props.listCollection}
           />
 

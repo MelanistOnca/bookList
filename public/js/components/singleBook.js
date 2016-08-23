@@ -37,8 +37,9 @@ export default class SingleBook extends React.Component {
         <p>{book1InList.author}</p>
         <p>{book1InList.genre}</p>
         */}
-        <p>placeholder while restructuring (Object.keys(this.props))</p>
-        <p>{Object.keys(this.props)}</p>
+        <p>placeholder while restructuring (Object.keys(this.props.selectedListKey))</p>
+        <p>{this.props.selectedListKey}</p>
+        <p>{this.props.listCollection}</p>
         <p>end of placeholder</p>
 
 

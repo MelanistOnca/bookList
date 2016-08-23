@@ -7,9 +7,9 @@ import Site from '../site.js';
 
 function mapStateToProps(state){
   return{
-    selectedList: state.selectedList,
-    listCollection: state.listCollection,
-    listTranslate: state.listTranslate
+    selectedListKey: state.selectedListKey,
+    listCollection: state.listCollection
+    // listTranslate: state.listTranslate
   }
 }
 

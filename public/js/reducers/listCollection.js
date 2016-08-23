@@ -1,4 +1,4 @@
-console.log('listCollection reducer');
+// console.log('listCollection reducer');
 
 function listCollection(state=[], action) {
   switch(action.type){
