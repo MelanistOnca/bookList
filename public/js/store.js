@@ -11,11 +11,13 @@ import rootReducer from './reducers/index';
 // import toBeReadList from './data/toBeReadList';
 import selectedList from './data/selectedList';
 import listCollection from './data/listCollection';
+import listTranslate from './data/listTranslate';
 
 //default state
 const defaultState = {
   selectedList,
-  listCollection
+  listCollection,
+  listTranslate
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING

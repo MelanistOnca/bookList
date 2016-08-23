@@ -9,12 +9,14 @@ import { routerReducer } from 'react-router-redux';
 // import toBeReadList from './toBeReadList';
 import selectedList from './selectedList';
 import listCollection from './listCollection';
+import listTranslate from './listTranslate';
 
 
 const rootReducer = combineReducers(
   {
     selectedList,
     listCollection,
+    listTranslate,
     routing: routerReducer
   }
 )

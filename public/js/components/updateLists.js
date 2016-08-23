@@ -50,10 +50,7 @@ export default class UpdateList extends React.Component {
     const event = window.event;
     return(
       <div id="updateListsContainer">
-        {/*<Selector
-          />*/}
-          {/* this goes after select, but before option below*/}
-            {/*onChange={this.props.selectedList.bind(null)}>   {/*not sure what to pass/bind here*/}
+
 
 
         <form>
