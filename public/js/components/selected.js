@@ -16,18 +16,71 @@ export default class Selected extends React.Component{
     // console.log(this.props.listCollection, 'this.props.listCollection in components/selected.js');
 
     let key = this.props.selectedListKey;
-    let listTitle= this.props.listCollection[key] ? this.props.listCollection[key].title : "A list has not yet been selected";
 
+
+
+
+    let listTitle= this.props.listCollection[key] ? this.props.listCollection[key].title : undefined;
+    // console.log(listTitle,'listTitle');
+
+    // listTitle ? console.log('listTitle is truthy') : console.log('listTitle is falsey');
+
+    let listShow = this.props.listCollection[key] ? this.props.listCollection[key].list : "no key, therefore no list"
+    console.log(listShow, 'listShow in components/selected.js');
+    // let listShowList = listShow.list;
+    // console.log(listShowList, 'listShowList in components/selected.js');
+    let listShowKeys = listShow ? Object.keys(listShow) : "no listShow yet";
+    // console.log(listShowKeys, 'listShowKeys in components/selected.js');
+    // console.log(listShowKeys[0],'listShowKeys[0] in components/selected.js');
+
+    // let gettingComplicated = listShowKeys[0] ? listShowKeys[0] : "why's everything gotta be so complicatedddd"
+    // console.log(gettingComplicated, 'gettingComplicated');
+
+    // let firstBook = listShow.listShowKeys ? listShow.`${listShowKeys[0]}` : "no listShow.`${listShowKeys[0]}`"; console.log(firstBook, 'firstBook');
+    console.log(listShow, 'listShow before listShowKeys');
+    console.log(listShowKeys, 'listShowKeys before listShowKeysTitleList');
+    console.log(listShowKeys.length, 'listShowKeys.length before listShowKeysTitleList');
+    let listLength = listShowKeys.length;
+
+    //NOTE: LOOP STARTS HERE, NEED TO LOOP THROUGH listShowKeys INDICIES
+    console.log(listShowKeys[0], 'listShowKeys[0] before listShowKeysTitleList');//returns book id number
     let listDisplay = [];
+
+    if(listTitle){
+      for(let i = 0; i < listLength; i++){
+        let thisBook = listShow[listShowKeys[i]]
+        let stamp = new Date().getTime();
+        let uniqueStamp = `${i}${stamp}`;
+        listDisplay.push(
+          <SingleBook
+            key = {uniqueStamp}
+            id = {uniqueStamp}
+            title={thisBook.title}
+            author={thisBook.author}
+            genre={thisBook.genre}
+            />
+        )
+
+      }
+    }
+
+    let firstBook = listShow[listShowKeys[0]];
+    console.log(firstBook, 'firstBook === listShow[listShowKeys[0]] in components/selected.js'); //returns book object
+
+    let firstBookTitle = firstBook.title;
+    console.log(firstBookTitle, 'firstBookTitle in components/selected.js'); //returns title of book
+
+    console.log();
+
 
     //this needs to turn into a loop going through the selected list
 
     // listDisplay = <SingleBook selectedListKey={this.props.selectedListKey} listCollection={this.props.listCollection}/>; //this is before restructuring, don't think i need the selectedListKey prop here
 
-    listDisplay = //need loop to start here
-
-    //with "SingleBook" called in each part of the loop
-    <SingleBook selectedListKey={this.props.selectedListKey} listCollection={this.props.listCollection}/>;//this is shit, and probably the wrong props to pass.
+    // listDisplay = //need loop to start here
+    //
+    // //with "SingleBook" called in each part of the loop
+    // <SingleBook selectedListKey={this.props.selectedListKey} listCollection={this.props.listCollection}/>;//this is shit, and probably the wrong props to pass.
 
     //
 
@@ -42,8 +95,10 @@ export default class Selected extends React.Component{
 
 
         <p>{listTitle}</p>
+        <div id="selectedListBooksContainer">
+          {listDisplay}
+        </div>
 
-        <p>here is listDisplay:</p> {listDisplay}
 
 
       </div>

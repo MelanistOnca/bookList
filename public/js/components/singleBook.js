@@ -31,17 +31,18 @@ export default class SingleBook extends React.Component {
 
 
         >
+
+        
+        <p>{this.props.title}</p>
+        <p>{this.props.author}</p>
+        <p>{this.props.genre}</p>
+
         {/*
-        <p>{keyArray[0]}</p>
-        <p>{book1InList.title}</p>
-        <p>{book1InList.author}</p>
-        <p>{book1InList.genre}</p>
-        */}
         <p>placeholder while restructuring (Object.keys(this.props.selectedListKey))</p>
         <p>{this.props.selectedListKey}</p>
-        <p>{this.props.listCollection}</p>
+        <p>{}</p>
         <p>end of placeholder</p>
-
+        */}
 
       </div>
     )
