@@ -8,9 +8,13 @@ import $ from 'jquery';
 import Site from './site';
 
 // subcomponents
+
 import Finished from './components/finished';
 import Reading from './components/reading';
 import ToBeRead from './components/toBeRead';
+//if i could figure out how to pass props in the <Route/> component, Finished,Reading,ToBeRead seem to be replacable with (new) ListView component with the right props. Look in to trying that.
+// import ListView from './components/listView';
+
 import UpdateLists from './components/updateLists';
 import Mapper from './components/mapper';
 import Nav from './components/nav';
@@ -44,7 +48,8 @@ render(
             {Placeholder} is an empty div but gets the site to not shoot errors and has this.props.children acting "correctly"
           */}
           <IndexRoute component={Placeholder}/>
-          <Route path="/reading" component={Reading}/>
+          <Route path="/reading" component={Reading}
+            />
           <Route path="/toberead" component={ToBeRead}/>
           <Route path="/finished" component={Finished}/>
           <Route path="/updateLists" component={UpdateLists}/>

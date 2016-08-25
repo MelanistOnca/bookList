@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import $ from 'jquery';
 
-// import Selector from './selector';
-import Selected from './selected'
+import Selector from './selector';
+import Selected from './selected';
 
 export default class UpdateList extends React.Component {
   // //need to address this using state(store)
@@ -47,12 +47,17 @@ export default class UpdateList extends React.Component {
     // possibly use radio rather than dropdown?
 
     //option names copied from listCollection keys. there's gotta be a programmatic way to do this, but this is the band-aid/duct-tape/wd-40 for now.
+    console.log(this.props, 'this.props in components/updateLists');
+    console.log(this.props.selectedListKey[0], 'this.props.selectedListKey[0] in components/updateLists');//returns toBeReadList
     const event = window.event;
     return(
       <div id="updateListsContainer">
 
+        <Selector
+          selectList={this.props.selectList}
+          />
 
-
+        {/*
         <form>
           <label>Edit List: </label>
           <select id="listSelector"
@@ -67,6 +72,7 @@ export default class UpdateList extends React.Component {
               Currently Reading List</option>
           </select>
         </form>
+        */}
 
         <Selected
           selectedListKey={this.props.selectedListKey}
