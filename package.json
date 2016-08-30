@@ -48,6 +48,8 @@
     "react-router": "^2.5.2",
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
+    "request": "^2.74.0",
+    "request-promise": "^4.1.1",
     "watchify": "^3.7.0"
   },
   "devDependencies": {
