@@ -1,8 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import SingleBook from './singleBook';
+// import SingleBook from './singleBook';
 import ListView from './listView';
+import SearchFor from './searchFor';
 
 export default class Selected extends React.Component{
 
@@ -98,6 +99,8 @@ export default class Selected extends React.Component{
 
     return(
       <div id="selectedListKeyContainer">
+        <SearchFor
+          />
         <p>{listTitle}</p>
         <ListView
           listKey={this.props.selectedListKey}
