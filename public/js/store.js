@@ -12,12 +12,14 @@ import rootReducer from './reducers/index';
 import selectedListKey from './data/selectedListKey';
 import listCollection from './data/listCollection';
 // import listTranslate from './data/listTranslate';
+import searchTerm from './data/searchTerm';
 
 //default state
 const defaultState = {
   selectedListKey,
-  listCollection
+  listCollection,
   // listTranslate
+  searchTerm
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING
