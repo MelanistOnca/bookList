@@ -7,31 +7,7 @@ import Selected from './selected';
 
 
 export default class UpdateList extends React.Component {
-  // //need to address this using state(store)
-  // updateSelected(event){
-  //   event.preventDefault();
-  //   let selected = event.target.value
-  //   console.log(selected, "selected in updateSelected");
-  //
-  // }
-  // clicked(){
-  //   console.log('button was clicked');
-  // }
-  changed(selectList,e){
-    //props don't live here by default
-    console.log('selection was changed');
-    // console.log(this.props, 'this.props');
-    // // this.props.selectList
-    // console.log(e,' was e');
-    // console.log(e.target, 'was e.target');
-    // console.log(e.target.value, 'was e.target.value in components/updateLists.js');
-    // console.log(selectList, 'selectList passed to changed() in components/updateLists.js');
-    let chosen = e.target.value;
-    // console.log(chosen, 'was chosen in changed() in updateLists');
 
-    e.preventDefault();
-    selectList(chosen);
-  }
 
   render(){
     //on selection, change subcomponents to appropriate UI elements
@@ -48,8 +24,8 @@ export default class UpdateList extends React.Component {
     // possibly use radio rather than dropdown?
 
     //option names copied from listCollection keys. there's gotta be a programmatic way to do this, but this is the band-aid/duct-tape/wd-40 for now.
-    console.log(this.props, 'this.props in components/updateLists');
-    console.log(this.props.selectedListKey[0], 'this.props.selectedListKey[0] in components/updateLists');//returns toBeReadList
+    // console.log(this.props, 'this.props in components/updateLists');
+    // console.log(this.props.selectedListKey[0], 'this.props.selectedListKey[0] in components/updateLists');//returns toBeReadList
     const event = window.event;
     return(
       <div id="updateListsContainer">
@@ -78,6 +54,8 @@ export default class UpdateList extends React.Component {
         <Selected
           selectedListKey={this.props.selectedListKey}
           listCollection={this.props.listCollection}
+          searchTerm={this.props.searchTerm}
+          updateSearchTerm={this.props.updateSearchTerm}
           />
 
       </div>

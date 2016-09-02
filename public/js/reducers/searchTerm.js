@@ -1,5 +1,6 @@
 
 function searchTerm(state=[], action) {
+  // console.log(action, 'was action in reducers/searchTerm.js');
   switch(action.type){
     case 'UPDATE_TERM':
       return [

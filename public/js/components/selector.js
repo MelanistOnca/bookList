@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 export default class Selector extends React.Component{
 
-  changed(selectList,e){
+  selectedListChanged(selectList,e){
     //props don't live here by default
     console.log('selection was changed');
     // console.log(this.props, 'this.props');
@@ -29,7 +29,7 @@ export default class Selector extends React.Component{
         <form>
           <label>Edit List: </label>
           <select id="listSelector"
-            onChange={this.changed.bind(event, this.props.selectList)}
+            onChange={this.selectedListChanged.bind(event, this.props.selectList)}
             >
             <option value="null">Select</option>
             <option value="toBeReadList">

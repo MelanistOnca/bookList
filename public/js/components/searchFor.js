@@ -5,6 +5,16 @@ import $ from 'jquery';
 import Results from './results';
 
 export default class SearchFor extends React.Component {
+  searchTermChanged(updateSearchTerm,e){
+    // console.log('search term was changed');
+    // console.log(e, 'was e');
+    // console.log(e.target, 'was e.target');
+    // console.log(e.target.value, 'was e.target.value');
+    let searchTermField = e.target.value
+    e.preventDefault();
+    updateSearchTerm(searchTermField);
+
+  }
   testCall(e){
     e.preventDefault();
     console.log(e, 'was e');
@@ -78,7 +88,7 @@ export default class SearchFor extends React.Component {
 //    ]
 // }
 // SHOULD be res.data.isbn13 to get the isbn, here "9780849303159"
-
+    // console.log(this.props, 'was this.props in components/searchFor');
     return(
       <div id="searchContainer">
         <p>Add to list</p>
@@ -99,9 +109,9 @@ export default class SearchFor extends React.Component {
           </label>
           <input id="searchTextInput"
             type="text"
-            value=""
+            value={this.props.searchTerm}
             placeholder="update via store"
-            onChange={this.textChange}
+            onChange={this.searchTermChanged.bind(event, this.props.updateSearchTerm)}
 
             />
           <input type="submit"

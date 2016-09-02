@@ -100,6 +100,8 @@ export default class Selected extends React.Component{
     return(
       <div id="selectedListKeyContainer">
         <SearchFor
+          updateSearchTerm={this.props.updateSearchTerm}
+          searchTerm={this.props.searchTerm}
           />
         <p>{listTitle}</p>
         <ListView
