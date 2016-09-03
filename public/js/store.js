@@ -13,13 +13,15 @@ import selectedListKey from './data/selectedListKey';
 import listCollection from './data/listCollection';
 // import listTranslate from './data/listTranslate';
 import searchTerm from './data/searchTerm';
+import searchType from './data/searchType';
 
 //default state
 const defaultState = {
   selectedListKey,
   listCollection,
   // listTranslate
-  searchTerm
+  searchTerm,
+  searchType
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING

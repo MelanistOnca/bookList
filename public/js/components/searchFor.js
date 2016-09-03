@@ -15,7 +15,7 @@ export default class SearchFor extends React.Component {
     updateSearchTerm(searchTermField);
 
   }
-  testCall(e){
+  searchTypeChanged(e){
     e.preventDefault();
     console.log(e, 'was e');
     console.log(e.target, 'was e.target');
@@ -88,6 +88,29 @@ export default class SearchFor extends React.Component {
 //    ]
 // }
 // SHOULD be res.data.isbn13 to get the isbn, here "9780849303159"
+    let searchTypeLength = this.props.searchType.length;
+
+    let selectOptions = [];
+    //use foreach instead?
+    for (let i=0; i < searchTypeLength; i++ ) {
+      let stamp = new Date().getTime();
+      let uniqueStamp = `${i}${stamp}`;
+
+      selectOptions.push(
+        <option
+          key = {uniqueStamp}
+          id = {uniqueStamp}
+          value={this.props.searchType[i]} >
+          {this.props.searchType[i]}
+        </option>
+      )
+    }
+    console.log(selectOptions, 'selectOption in componenets/searchFor.js');
+    // <option value="Author">Author</option>
+    // <option value="Authors">Authors  (plural)</option>
+    // <option value="Title">Title</option>
+    // <option value="ISBN">ISBN</option>
+
     // console.log(this.props, 'was this.props in components/searchFor');
     return(
       <div id="searchContainer">
@@ -96,13 +119,10 @@ export default class SearchFor extends React.Component {
           <label>Search By:
             <select
 
-              onChange={this.testCall}
+              onChange={this.searchTypeChanged}
               >
+              {selectOptions}
 
-              <option value="Author">Author</option>
-              <option value="Authors">Authors  (plural)</option>
-              <option value="Title">Title</option>
-              <option value="ISBN">ISBN</option>
 
             </select>
 

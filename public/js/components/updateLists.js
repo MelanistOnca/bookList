@@ -56,6 +56,8 @@ export default class UpdateList extends React.Component {
           listCollection={this.props.listCollection}
           searchTerm={this.props.searchTerm}
           updateSearchTerm={this.props.updateSearchTerm}
+          searchType={this.props.searchType}
+          updateSearchType={'to be implemented'}
           />
 
       </div>

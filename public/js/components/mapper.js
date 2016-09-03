@@ -10,7 +10,8 @@ function mapStateToProps(state){
     selectedListKey: state.selectedListKey,
     listCollection: state.listCollection,
     // listTranslate: state.listTranslate
-    searchTerm: state.searchTerm
+    searchTerm: state.searchTerm,
+    searchType: state.searchType
   }
 }
 
