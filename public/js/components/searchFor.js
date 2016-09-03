@@ -10,17 +10,20 @@ export default class SearchFor extends React.Component {
     // console.log(e, 'was e');
     // console.log(e.target, 'was e.target');
     // console.log(e.target.value, 'was e.target.value');
-    let searchTermField = e.target.value
+    let searchTermField = e.target.value;
     e.preventDefault();
     updateSearchTerm(searchTermField);
 
   }
-  searchTypeChanged(e){
+  searchTypeChanged(updateSearchType,e){
+    console.log('searchTypeChanged called');
     e.preventDefault();
     console.log(e, 'was e');
     console.log(e.target, 'was e.target');
     console.log(e.target.value, 'was e.target.value');
+    let searchTypeSelected = e.target.value;
     //update via store/state here
+    updateSearchType(searchTypeSelected)
 
     // console.log($('#searchTextInput'));
   }
@@ -95,12 +98,17 @@ export default class SearchFor extends React.Component {
     for (let i=0; i < searchTypeLength; i++ ) {
       let stamp = new Date().getTime();
       let uniqueStamp = `${i}${stamp}`;
+      let isSelected = "false";
+      if (this.props.searchType[i]===this.props.selectedSearchType) {
+        isSelected = "true";
+      }//there is probably a more elegant way to write this
 
       selectOptions.push(
         <option
           key = {uniqueStamp}
           id = {uniqueStamp}
-          value={this.props.searchType[i]} >
+          value={this.props.searchType[i]}
+          >
           {this.props.searchType[i]}
         </option>
       )
@@ -110,8 +118,14 @@ export default class SearchFor extends React.Component {
     // <option value="Authors">Authors  (plural)</option>
     // <option value="Title">Title</option>
     // <option value="ISBN">ISBN</option>
+    let defValue = this.props.selectedSearchType[0];
 
+
+    // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/searchFor');
+    console.log(defValue, 'was defValue in same');
     // console.log(this.props, 'was this.props in components/searchFor');
+
+    // select value below spawns warning.js:44 Warning: The `value` prop supplied to <select> must be a scalar value if `multiple` is false. Check the render method of `SearchFor`
     return(
       <div id="searchContainer">
         <p>Add to list</p>
@@ -119,8 +133,10 @@ export default class SearchFor extends React.Component {
           <label>Search By:
             <select
 
-              onChange={this.searchTypeChanged}
+              onChange={this.searchTypeChanged.bind(event, this.props.updateSearchType)}
+              value={defValue}
               >
+              <option value={undefined}>Select</option>
               {selectOptions}
 
 

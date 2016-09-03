@@ -11,7 +11,7 @@ export default class UpdateList extends React.Component {
 
   render(){
     //on selection, change subcomponents to appropriate UI elements
-    // console.log(this.props,'this.props in components/updateLists.js');
+    console.log(this.props,'this.props in components/updateLists.js');
 
     // console.log(this.props.selectedListKey, 'this.props.selectedListKey in components/updateLists.js'); //returns the expected (default) value from the store, at least before i got the update selection working
 
@@ -25,6 +25,7 @@ export default class UpdateList extends React.Component {
 
     //option names copied from listCollection keys. there's gotta be a programmatic way to do this, but this is the band-aid/duct-tape/wd-40 for now.
     // console.log(this.props, 'this.props in components/updateLists');
+    console.log(this.props.selectedSearchType, 'this.props.selectedSearchType in components/updateLists');
     // console.log(this.props.selectedListKey[0], 'this.props.selectedListKey[0] in components/updateLists');//returns toBeReadList
     const event = window.event;
     return(
@@ -57,7 +58,8 @@ export default class UpdateList extends React.Component {
           searchTerm={this.props.searchTerm}
           updateSearchTerm={this.props.updateSearchTerm}
           searchType={this.props.searchType}
-          updateSearchType={'to be implemented'}
+          updateSearchType={this.props.updateSearchType}
+          selectedSearchType={this.props.selectedSearchType}
           />
 
       </div>

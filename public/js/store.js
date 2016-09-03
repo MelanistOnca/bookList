@@ -14,6 +14,7 @@ import listCollection from './data/listCollection';
 // import listTranslate from './data/listTranslate';
 import searchTerm from './data/searchTerm';
 import searchType from './data/searchType';
+import selectedSearchType from './data/selectedSearchType';
 
 //default state
 const defaultState = {
@@ -21,7 +22,8 @@ const defaultState = {
   listCollection,
   // listTranslate
   searchTerm,
-  searchType
+  searchType,
+  selectedSearchType
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING
