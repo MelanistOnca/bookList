@@ -1,7 +1,8 @@
 const searchType = [
   "Author",
   "Title",
-  "ISBN"
+  "ISBN",
+  "Authors"
 ]
 
 export default searchType;

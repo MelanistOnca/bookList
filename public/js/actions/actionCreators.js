@@ -20,7 +20,7 @@ export function updateSearchTerm(searchTerm) {
 }
 
 export function updateSearchType(searchType) {
-  console.log(searchType, 'was searchType in actions/actionCreators');
+  // console.log(searchType, 'was searchType in actions/actionCreators');
   return {
     type: 'UPDATE_TYPE',
     searchType

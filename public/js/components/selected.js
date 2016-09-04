@@ -14,7 +14,7 @@ export default class Selected extends React.Component {
 
     let listTitle = (this.props.listCollection[key] ? this.props.listCollection[key].title : undefined);
 
-    console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in componenets/selected.js');
+    // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in componenets/selected.js');
     return(
       <div id = "selectedListKeyContainer">
         <SearchFor

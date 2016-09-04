@@ -13,6 +13,7 @@ import listCollection from './listCollection';
 import searchTerm from './searchTerm';
 import searchType from './searchType';
 import selectedSearchType from './selectedSearchType';
+import searchResults from './searchResults';
 
 
 const rootReducer = combineReducers(
@@ -23,6 +24,7 @@ const rootReducer = combineReducers(
     searchTerm,
     searchType,
     selectedSearchType,
+    searchResults,
     routing: routerReducer
   }
 )
