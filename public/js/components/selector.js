@@ -31,6 +31,7 @@ export default class Selector extends React.Component{
     //COUNTER NOTE:repurposing to general selector list
 
     //additional NOTE: need to have select's value based on store //this is done via the selectedList ternary above
+    let event = window.event; //needed for firefox
     return(
       <div id="listSelectorContainer">
         <form>

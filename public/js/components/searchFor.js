@@ -137,6 +137,7 @@ export default class SearchFor extends React.Component {
     // console.log(this.props, 'was this.props in components/searchFor');
 
     // select value below spawns warning.js:44 Warning: The `value` prop supplied to <select> must be a scalar value if `multiple` is false. Check the render method of `SearchFor`
+    let event = window.event; //needed for firefox
     return(
       <div id="searchContainer">
         <p>Add to list</p>
