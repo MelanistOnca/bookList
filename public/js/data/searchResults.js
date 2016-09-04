@@ -1,5 +1,5 @@
-const searchResults = {
-
-}
+const searchResults = [
+  ''
+]
 
 export default searchResults;

@@ -26,3 +26,11 @@ export function updateSearchType(searchType) {
     searchType
   }
 }
+
+export function receiveResults(results) {
+
+  return {
+    type: 'RECEIVE_RESULTS',
+    results
+  }
+}

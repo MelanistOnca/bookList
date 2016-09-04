@@ -65,6 +65,7 @@ export default class SearchFor extends React.Component {
         console.log(res,'was res in components/searchFor.js');
         //this seems to be working? it was not working, then it was. will try again tomorrow to see if it works after ISBNdb db has presumably ticked over for the day and reset anything that expires at midnight
         console.log(options, 'was options in .then in componenets/searchFor.js ');
+        props.receiveResults(res);
       })
       .catch( (err) => {
         console.log(err, 'was err in components/searchFor.js');//my impression is this will usually be a low-info response. may be confusing this err with CORS errors.
@@ -167,6 +168,7 @@ export default class SearchFor extends React.Component {
 
 
         <Results
+          searchResults={this.props.searchResults}
           />
       </div>
     )

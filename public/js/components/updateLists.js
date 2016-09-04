@@ -12,6 +12,7 @@ export default class UpdateList extends React.Component {
   render(){
     //on selection, change subcomponents to appropriate UI elements
     // console.log(this.props,'this.props in components/updateLists.js');
+    // console.log(this.props.receiveResults,'this.props.receiveResults in components/updateLists.js');
 
     // console.log(this.props.selectedListKey, 'this.props.selectedListKey in components/updateLists.js'); //returns the expected (default) value from the store, at least before i got the update selection working
 
@@ -33,6 +34,7 @@ export default class UpdateList extends React.Component {
 
         <Selector
           selectList={this.props.selectList}
+          selectedListKey={this.props.selectedListKey}
           />
 
         {/*
@@ -60,6 +62,8 @@ export default class UpdateList extends React.Component {
           searchType={this.props.searchType}
           updateSearchType={this.props.updateSearchType}
           selectedSearchType={this.props.selectedSearchType}
+          searchResults={this.props.searchResults}
+          receiveResults={this.props.receiveResults}
           />
 
       </div>
