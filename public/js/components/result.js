@@ -9,7 +9,7 @@ export default class Result extends React.Component {
 
   render(){
 
-    console.log(this.props, 'this.props in components/result.js');
+    // console.log(this.props, 'this.props in components/result.js');
         let resultsView=[];
         let startingPoint = this.props.searchResults ? this.props.searchResults[0].data : 0 ; //is an array of objects when searching for "scalzi" as "authors"
         // console.log(startingPoint.length, 'was startingPoint.length');
@@ -38,7 +38,7 @@ export default class Result extends React.Component {
           let stamp = new Date().getTime();
           let uniqueStamp = `${i}${stamp}`;
           let authorsBookTitleArray = startingPoint[i] ? startingPoint[i].book_ids : [] ; // ehhhhh
-          console.log(spLength, 'spLength in for loop in components/result.js');
+          // console.log(spLength, 'spLength in for loop in components/result.js');
 
           resultsView.push(
 
