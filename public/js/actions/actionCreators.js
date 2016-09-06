@@ -34,3 +34,11 @@ export function receiveResults(results) {
     results
   }
 }
+
+export function addToList(list, bookId) {
+  return {
+    type: 'ADD_TO_LIST',
+    list
+    //don't think i need to return bookId since this should be added to the list
+  }
+}

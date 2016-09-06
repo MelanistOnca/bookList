@@ -10,34 +10,30 @@ export default class Result extends React.Component {
   render(){
 
     // console.log(this.props, 'this.props in components/result.js');
-        let resultsView=[];
-        let startingPoint = this.props.searchResults ? this.props.searchResults[0].data : 0 ; //is an array of objects when searching for "scalzi" as "authors"
+        let resultsView = [];
+        let startingPoint = this.props.searchResults ? this.props.searchResults[0].data : [{"":""}] ; //is an array of objects when searching for "scalzi" as "authors"
+        // console.log(startingPoint, 'was startingPoint in components/result.js'); //returns array of objects. each object is an author who in some way matched the search critera
+
+        // this.props.searchResults[0] ?
+        // console.log(Object.keys(startingPoint[0]), 'was Object.keys(startingPoint[0]) in components/result.js') : console.log('bullshit text');  //when results present, returns ["author_id", "name", "book_count", "dates", "book_ids", "category_ids", "last_name", "first_name", "subject_ids", "name_latin"] //these are the keys for the author object
+
+        // startingPoint[i].book_ids returns an array of book titles with underscores for spaces
+        // .first_name returns author's first name, .last_name returns author's last name
+
         // console.log(startingPoint.length, 'was startingPoint.length');
 
-        // let startingPointLength =
-        // startingPoint.length ?  startingPoint.length : 0 // i was able to get rid of this ternary by putting in dummy initial data so that startingPoint starts off as 0, but i don't like it.
-        // console.log(startingPointLength, 'was startingPointLength');
-        // let spLength = startingPoint.length || 0;
+
 
 
         let spLength = startingPoint ? startingPoint.length : 0;
-        // console.log(test,'was test after turnary');
 
-        // resultsView.forEach( () => {
-          // resultsView.push(
-          //   <div>
-          //
-          //   </div>
-          // )
-        // })
-
-        //
-        // for (let o = 0; o < startingPoint[i].book_ids.length)
 
         for(let i = 0; i < spLength ; i++){
           let stamp = new Date().getTime();
           let uniqueStamp = `${i}${stamp}`;
           let authorsBookTitleArray = startingPoint[i] ? startingPoint[i].book_ids : [] ; // ehhhhh
+          let authorsFirstName = startingPoint[i] ? startingPoint[i].first_name : '' ; // ehhhhh
+          let authorsLastName = startingPoint[i] ? startingPoint[i].last_name : '' ; // ehhhhh
           // console.log(spLength, 'spLength in for loop in components/result.js');
 
           resultsView.push(
@@ -47,11 +43,11 @@ export default class Result extends React.Component {
               id={uniqueStamp}
               className="searchResultSingle"
               style={{"border":"solid 1px"}}>
-              <p>{startingPoint[i].first_name} {startingPoint[i].last_name}</p>
-              <p>text</p>
+              <p>{authorsFirstName} {authorsLastName}</p>
+
               <InnerResultList
-                i={i}
-                startingPoint={startingPoint}
+
+                matchedAuthor={startingPoint[i]}
                 searchResult={this.props.searchResult}
                 />
 
