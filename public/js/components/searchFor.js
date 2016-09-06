@@ -41,39 +41,96 @@ export default class SearchFor extends React.Component {
   searchClicked(props, e){
     e.preventDefault();
     // console.log(this.props, 'this.props in searchClicked() in components/searchFor'); //as expected, this returns null since "this.props" hasn't been passed in as a param
-    console.log(props, 'props in searchClicked() in components/searchFor');
+    // console.log(props, 'props in searchClicked() in components/searchFor');
     let apiKey = '0SBOHNU4'; //this switch in naming convention is going to fuck you.
     // let apiKey = process.env.API_KEY; //this switch in naming convention is going to fuck you.
     let searchType = props.selectedSearchType[0].toLowerCase();
     let searchTerm = props.searchTerm[0];
+    // console.log(searchType, 'was searchType in searchClicked() before switch in same');
+    switch(searchType) {
+      case 'isbn' :
+        searchType = 'book';
+        // console.log(searchType, 'was searchType in searchClicked() in same');
+        break;
+      //may need a case to re-define for 'title'
+      default:
+        return
+    }
+    // console.log(searchType, 'was searchType in searchClicked() after switch in same');
+
     let options = {
-      uri: `http://isbndb.com/api/v2/json/${apiKey}/${searchType}`,
-      qs: {
-        'q': `${searchTerm}`
-        //if this were a well constructed API, the following note would apply.
-        //searchType will probably be 'searchType' instead of whatever value assigned above? ==> USE BRACKET NOTATION. (this is correct now, theoretically)
-      },//this seems like a badly contructed API as far as interacting with a qs object? but maybe i'm too green to see why it's not bad.
-      headers: {
-        'User-Agent': 'Request-Promise'
+      "authors" : {
+        uri: `http://isbndb.com/api/v2/json/${apiKey}/${searchType}`,
+        qs: {
+          'q': `${searchTerm}`
+          //if this were a well constructed API, the following note would apply.
+          //searchType will probably be 'searchType' instead of whatever value assigned above? ==> USE BRACKET NOTATION. (this is correct now, theoretically)
+        },//this seems like a badly contructed API as far as interacting with a qs object? but maybe i'm too green to see why it's not bad.
+        headers: {
+          'User-Agent': 'Request-Promise'
+        },
+        json: true
       },
-      json: true
+      "book": {
+        uri : `http://isbndb.com/api/v2/json/${apiKey}/book/${searchTerm}`,
+        headers: {
+          'User-Agent': 'Request-Promise'
+        },
+        json: true
+      }
     }
 
+
+    // console.log(options.searchType, 'was options.searchType in same'); //returns undefined
+    // console.log(options[searchType], 'was options[searchType] in same'); //returns the options object that works for the searchType chosen
+//to whit, for .../book/"9780849303159":
+    // {
+    //   data: [
+    //     author_data : [{
+    //       id:"richards_rowland",
+    //       name:"Richards, Rowland"
+    //     }],
+    //     awards_text:"",
+    //     book_id:"principles_of_solid_mechanics",
+    //     dewey_decimal:"620/.1/05",
+    //     dewey_normal:"620.105",
+    //     edition_info:"(alk. paper)",
+    //     isbn10:"084930315X",
+    //     isbn13:"9780849303159",
+    //     language:"eng",
+    //     lcc_number:"TA350",
+    //     marc_enc_level:"",
+    //     notes:"TEXT BLOB",
+    //     publisher_text:"Boca Raton, FL : CRC Press, 2000.",
+    //     subject_ids:[
+    //       "mechanics_applied"
+    //     ],
+    //     summary:"BLOB OF TEXT",
+    //     title:"Principles of solid mechanics",
+    //     title_latin:"Principles of solid mechanics",
+    //     title_long:"",
+    //     urls_text:""
+    //   ],
+    //   index_searched: "isbn"
+    // }
+
+
     //need to see if i can add in a .something so that if a search fails (author?q=scalzi) it tries a more general search, i.e. authorS?q=scalzi
-    rp(options)
+    rp(options[searchType])
       .then( (res) => {
-        console.log(res,'was res in components/searchFor.js');
+        // console.log(res,'was res in components/searchFor.js');
         //this seems to be working? it was not working, then it was. will try again tomorrow to see if it works after ISBNdb db has presumably ticked over for the day and reset anything that expires at midnight
-        console.log(options, 'was options in .then in componenets/searchFor.js ');
+        // console.log(options[searchType], 'was options[searchType] in .then in componenets/searchFor.js ');
         props.receiveResults(res);
       })
       .catch( (err) => {
         console.log(err, 'was err in components/searchFor.js');//my impression is this will usually be a low-info response. may be confusing this err with CORS errors.
-        console.log(options, 'was options in .catch in componenets/searchFor.js');
+        // console.log(options[searchType], 'was options[searchType] in .catch in componenets/searchFor.js');
       })
       //NOTE
       //i think i then need to generate a results window. presumably done through putting the appropriate res info into the store, then letting the display update based on the store change.
       //NOTE the above note is correct. will need a "searchResults" object in the store. parsing it could be tricky since there will be a variety of potential returns. will probably need switch/case statements to parse "neatly".
+      // console.log('searchClicked reached end of function');
   }
   render(){
     // http://isbndb.com/api/v2/json/[your-api-key]/book/9780849303159
@@ -169,6 +226,7 @@ export default class SearchFor extends React.Component {
 
 
         <Results
+          selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
           />
       </div>

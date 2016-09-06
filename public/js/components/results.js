@@ -47,6 +47,7 @@ export default class Results extends React.Component {
           />*/}
 
           <Result
+            selectedSearchType={this.props.selectedSearchType}
             searchResults={this.props.searchResults}
             />
       </div>

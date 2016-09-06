@@ -13,7 +13,8 @@ function mapStateToProps(state){
     searchTerm: state.searchTerm,
     searchType: state.searchType,
     selectedSearchType: state.selectedSearchType,
-    searchResults: state.searchResults
+    searchResults: state.searchResults,
+    currentISBN: state.currentISBN
   }
 }
 

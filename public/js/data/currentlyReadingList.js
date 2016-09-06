@@ -11,10 +11,15 @@
 const currentlyReadingList = {
   "title":"Currently Reading List",
   "list": {
+    //prototype on how i should order/arrange info from query
+    // "isbn13" : {
+    //
+    // },
+    //end of prototype structure
     "CRLbookId1": {
       "title":"obelisk gate",
       "author":"NK Jemisin",
-      "genre":"science fantasy"
+      "genre":"science fantasy"//no genre in ISBNdb, so this will be removed
     },
     "CRLbookId2": {
       "title":"fifth season",

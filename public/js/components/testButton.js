@@ -45,19 +45,19 @@ export default class TestButton extends React.Component {
       // let xhr = createCORSRequest('GET', corsURL);
 
 
-      rp(options)
-        .then( (res) => {
-          console.log(res,'was res');
-          // console.log($.parseJSON(res), 'was $.parseJSON(res)')
-          // console.log(options,'was options');
-          // console.log(res.data,'was res.data');
-          // console.log(res.data[0],'was res.data[0]');
-          console.log(res.data[0].book_ids,'was res.data.book_ids');
-        })
-        .catch( (err) => {
-          console.log(options,'was options');
-          console.log(err, 'was err');
-        })
+      // rp(options)
+      //   .then( (res) => {
+      //     console.log(res,'was res');
+      //     // console.log($.parseJSON(res), 'was $.parseJSON(res)')
+      //     // console.log(options,'was options');
+      //     // console.log(res.data,'was res.data');
+      //     // console.log(res.data[0],'was res.data[0]');
+      //     console.log(res.data[0].book_ids,'was res.data[0].book_ids');
+      //   })
+      //   .catch( (err) => {
+      //     console.log(options,'was options');
+      //     console.log(err, 'was err');
+      //   })
       // rp(xhr)
       //   .then( (res) => {
       //     console.log(res,'was res');
