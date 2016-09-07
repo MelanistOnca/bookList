@@ -70,6 +70,7 @@ export default class Result extends React.Component {
 
                   matchedAuthor={startingPoint[i]}
                   searchResult={this.props.searchResult}
+                  receiveResults={this.props.receiveResults}
                   />
 
               </div>
@@ -93,6 +94,7 @@ export default class Result extends React.Component {
                 <InnerResultList
                   matchedISBN={startingPoint[i]}
                   searchResults={this.props.searchResults}
+                  receiveResults={this.props.receiveResults}
                   />
 
               </div>

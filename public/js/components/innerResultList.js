@@ -7,6 +7,26 @@ import SearchButton from './searchButton';
 const rp = require('request-promise');
 
 //NOTE: this should probably be refactored to be substituted with a ListView
+//this shenanigans below seems to bring all the props here without me having to pass from the calling component. this seems super nice since everything is state (and therefore prop) dependent anyway. for some reason i think this is bad practice.
+import { connect } from 'react-redux';
+
+function mapStateToProps(state){
+  return {
+    selectedListKey: state.selectedListKey,
+    listCollection: state.listCollection,
+    searchTerm: state.searchTerm,
+    searchType: state.searchType,
+    selectedSearchType: state.selectedSearchType,
+    searchResults: state.searchResults,
+    currentISBN: state.currentISBN
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators(actionCreators,dispatch);
+}
+
+connect(mapStateToProps,mapDispatchToProps)
 
 
 
@@ -74,8 +94,11 @@ export default class InnerResultList extends React.Component {
             <ul>
               <li>Title: {humanReadableTitle}</li>
             </ul>
-            <button>this button should search for this book's info</button>
-            <div>and return that info here</div>
+            <SearchButton
+              selectedSearchType={["ISBN"]}
+              searchTerm={authorsBooksTitleArray[i]}
+              receiveResults={this.props.receiveResults}
+              />
             </div>
           )
 
@@ -116,11 +139,7 @@ export default class InnerResultList extends React.Component {
                 <li>Publisher: {this.props.matchedISBN.publisher_name}</li>
                 <li>ISBN: {this.props.matchedISBN.isbn13}</li>
               </ul>
-              <SearchButton
-                selectedSearchProps={}
-                searchTerm={}
-                receiveResults={}
-                />
+              <button>theoretical button to add to list. need to request selected list to make it work.</button>
 
             </div>
           )

@@ -223,7 +223,7 @@ export default class SearchFor extends React.Component {
           <input id="searchTextInput"
             type="text"
             value={this.props.searchTerm}
-            placeholder="update via store"
+            placeholder="search term here"
             onChange={this.searchTermChanged.bind(event, this.props.updateSearchTerm)}
 
             />
@@ -239,6 +239,7 @@ export default class SearchFor extends React.Component {
         <Results
           selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
+          receiveResults={this.props.receiveResults}
 
           />
       </div>
