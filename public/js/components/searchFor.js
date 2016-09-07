@@ -232,6 +232,7 @@ export default class SearchFor extends React.Component {
             selectedSearchType={this.props.selectedSearchType}
             searchTerm={this.props.searchTerm}
             receiveResults={this.props.receiveResults}
+            updateSearchType={this.props.updateSearchType}
             />
         </form>
 
@@ -240,6 +241,7 @@ export default class SearchFor extends React.Component {
           selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
           receiveResults={this.props.receiveResults}
+          updateSearchType={this.props.updateSearchType}
 
           />
       </div>
