@@ -38,16 +38,17 @@ export default class Result extends React.Component {
 
 
         let spLength = startingPoint ? startingPoint.length : 0;
+        console.log(spLength, 'was spLength just after declaration in components/result.js');
 
-
-        console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/result.js');
-        console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in components/result.js');
+        // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/result.js');
+        // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in components/result.js');
 
         let stamp = new Date().getTime();
 
 
         switch(this.props.selectedSearchType[0]) {
           case 'Authors':
+          console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
           for(let i = 0; i < spLength ; i++){
             let uniqueStamp = `${i}${stamp}`;
             let authorsBookTitleArray = startingPoint[i] ? startingPoint[i].book_ids : [] ; // ehhhhh
@@ -63,6 +64,7 @@ export default class Result extends React.Component {
                 style={{"border":"solid 1px"}}
                 >
                 <p>{authorsFirstName} {authorsLastName}</p>
+                <p>(use the Title selection to search for a book and add to your list)</p>
 
                 <InnerResultList
 
@@ -77,25 +79,28 @@ export default class Result extends React.Component {
 
           break;
           case 'ISBN':
-          // console.log(startingPoint[0], 'was startingPoint[0] in ISBN case in components/result.js');
           console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
           // let uniqueStamp = `${i}${stamp}`;
-          resultsView.push(
-            <div
-              key={stamp}
-              id={stamp}
-              className="searchResultSingle"
-              style={{"border":"solid 1px"}}
-              >
-              <InnerResultList
-                matchedISBN={startingPoint[0]}
-                searchResults={this.props.searchResults}
-                />
+          for(let i = 0; i < spLength ; i++){
+            resultsView.push(
+              <div
+                key={stamp}
+                id={stamp}
+                className="searchResultSingle"
+                style={{"border":"solid 1px"}}
+                >
+                <InnerResultList
+                  matchedISBN={startingPoint[i]}
+                  searchResults={this.props.searchResults}
+                  />
 
-            </div>
-          )
-          console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
+              </div>
+            )
+            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
+
+          }
+
 
           break;
           case '':

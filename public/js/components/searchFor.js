@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import $ from 'jquery';
 
 import Results from './results';
+import SearchButton  from './searchButton';
 
 const rp = require('request-promise');
 
@@ -39,9 +40,10 @@ export default class SearchFor extends React.Component {
   //
   // }
   searchClicked(props, e){
+    console.log('seachClicked ran in components/searchFor.js ');
     e.preventDefault();
     // console.log(this.props, 'this.props in searchClicked() in components/searchFor'); //as expected, this returns null since "this.props" hasn't been passed in as a param
-    // console.log(props, 'props in searchClicked() in components/searchFor');
+    console.log(props, 'props in searchClicked() in components/searchFor');
     let apiKey = '0SBOHNU4'; //this switch in naming convention is going to fuck you.
     // let apiKey = process.env.API_KEY; //this switch in naming convention is going to fuck you.
     let searchType = props.selectedSearchType[0].toLowerCase();
@@ -54,7 +56,8 @@ export default class SearchFor extends React.Component {
         break;
       //may need a case to re-define for 'title'
       default:
-        return
+        console.log(searchType, 'was searchType in default case of searchType switch');
+        console.log('if that showed, the return that was here probably fucked things up');
     }
     // console.log(searchType, 'was searchType in searchClicked() after switch in same');
 
@@ -114,7 +117,7 @@ export default class SearchFor extends React.Component {
     //   index_searched: "isbn"
     // }
 
-
+    console.log(options[searchType], 'was options[searchType] before rp() in components/searchFor.js');
     //need to see if i can add in a .something so that if a search fails (author?q=scalzi) it tries a more general search, i.e. authorS?q=scalzi
     rp(options[searchType])
       .then( (res) => {
@@ -195,6 +198,11 @@ export default class SearchFor extends React.Component {
 
     // select value below spawns warning.js:44 Warning: The `value` prop supplied to <select> must be a scalar value if `multiple` is false. Check the render method of `SearchFor`
     let event = window.event; //needed for firefox
+    //following was replaced by SearchButton
+    // <input type="submit"
+    //   value="Search"
+    //   onClick={this.searchClicked.bind(event, this.props)}/>
+    //end of what was replaced by SearchButton
     return(
       <div id="searchContainer">
         <p>Add to list</p>
@@ -219,15 +227,19 @@ export default class SearchFor extends React.Component {
             onChange={this.searchTermChanged.bind(event, this.props.updateSearchTerm)}
 
             />
-          <input type="submit"
-            value="Search"
-            onClick={this.searchClicked.bind(event, this.props)}/>
+
+          <SearchButton
+            selectedSearchType={this.props.selectedSearchType}
+            searchTerm={this.props.searchTerm}
+            receiveResults={this.props.receiveResults}
+            />
         </form>
 
 
         <Results
           selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
+
           />
       </div>
     )

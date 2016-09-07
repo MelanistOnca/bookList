@@ -1,5 +1,5 @@
 const searchResults = [
-  {"data":"placeholder"}
+  {"data":""}
 ]
 
 export default searchResults;
