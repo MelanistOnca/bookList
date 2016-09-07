@@ -11,6 +11,14 @@ export default class SearchButton extends React.Component {
     // console.log(this.props, 'this.props in searchClicked() in components/searchFor'); //as expected, this returns null since "this.props" hasn't been passed in as a param
     console.log(props, 'props in searchClicked() in components/searchButton');
     props.updateSearchType(props.selectedSearchType[0])
+    //  *************
+    console.log(props.searchTerm, 'was props.searchTerm in same');
+    console.log(props.searchTerm[0], 'was props.searchTerm[0] in same');
+    console.log(props.updateSearchTerm, 'was props.updateSearchTerm in same');
+    props.updateSearchTerm(props.searchTerm[0])
+    //NOTE: also need to update search term when coming from the author book list button
+    // **************
+    //end of NOTE
     let apiKey = '0SBOHNU4'; //this switch in naming convention is going to fuck you.
     // let apiKey = process.env.API_KEY; //this switch in naming convention is going to fuck you.
     let searchType = props.selectedSearchType[0].toLowerCase();
@@ -84,7 +92,9 @@ export default class SearchButton extends React.Component {
       "selectedSearchType" : this.props.selectedSearchType,
       "searchTerm" : [this.props.searchTerm],
       "receiveResults" : this.props.receiveResults,
-      "updateSearchType" : this.props.updateSearchType
+      "updateSearchType" : this.props.updateSearchType,
+      "updateSearchTerm" : this.props.updateSearchTerm
+
     }
 
     return(

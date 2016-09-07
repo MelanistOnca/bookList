@@ -25,6 +25,7 @@ export default class Selected extends React.Component {
           selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
           receiveResults={this.props.receiveResults}
+          selectedListKey={this.props.selectedListKey}
           />
         <p>{listTitle}</p>
         <ListView

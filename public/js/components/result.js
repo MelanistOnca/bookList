@@ -72,6 +72,8 @@ export default class Result extends React.Component {
                   searchResult={this.props.searchResult}
                   receiveResults={this.props.receiveResults}
                   updateSearchType={this.props.updateSearchType}
+                  selectedListKey={this.props.selectedListKey}
+                  updateSearchTerm={this.props.updateSearchTerm}
                   />
 
               </div>
@@ -97,6 +99,8 @@ export default class Result extends React.Component {
                   searchResults={this.props.searchResults}
                   receiveResults={this.props.receiveResults}
                   updateSearchType={this.props.updateSearchType}
+                  selectedListKey={this.props.selectedListKey}
+                  updateSearchTerm={this.props.updateSearchTerm}
                   />
 
               </div>

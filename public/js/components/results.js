@@ -51,6 +51,8 @@ export default class Results extends React.Component {
             searchResults={this.props.searchResults}
             receiveResults={this.props.receiveResults}
             updateSearchType={this.props.updateSearchType}
+            updateSearchTerm={this.props.updateSearchTerm}
+            selectedListKey={this.props.selectedListKey}
             />
       </div>
     )

@@ -7,26 +7,28 @@ import SearchButton from './searchButton';
 const rp = require('request-promise');
 
 //NOTE: this should probably be refactored to be substituted with a ListView
-//this shenanigans below seems to bring all the props here without me having to pass from the calling component. this seems super nice since everything is state (and therefore prop) dependent anyway. for some reason i think this is bad practice.
-import { connect } from 'react-redux';
+//this shenanigans below seems to bring all the props here without me having to pass from the calling component. this seems super nice since everything is state (and therefore prop) dependent anyway. for some reason i think this is bad practice.  //this actually didn't do anything? probably because state.____ doesn't exist for this component? maybe need a separate file like mapper ot make the connected component?
 
-function mapStateToProps(state){
-  return {
-    selectedListKey: state.selectedListKey,
-    listCollection: state.listCollection,
-    searchTerm: state.searchTerm,
-    searchType: state.searchType,
-    selectedSearchType: state.selectedSearchType,
-    searchResults: state.searchResults,
-    currentISBN: state.currentISBN
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return bindActionCreators(actionCreators,dispatch);
-}
-
-connect(mapStateToProps,mapDispatchToProps)
+// import { connect } from 'react-redux';
+//
+// function mapStateToProps(state){
+//   return {
+//     selectedListKey: state.selectedListKey,
+//     listCollection: state.listCollection,
+//     searchTerm: state.searchTerm,
+//     searchType: state.searchType,
+//     selectedSearchType: state.selectedSearchType,
+//     searchResults: state.searchResults,
+//     currentISBN: state.currentISBN
+//   }
+// }
+//
+// function mapDispatchToProps(dispatch){
+//   return bindActionCreators(actionCreators,dispatch);
+// }
+//
+// // connect(mapStateToProps,mapDispatchToProps)
+// connect(mapStateToProps)
 
 
 
@@ -60,6 +62,8 @@ export default class InnerResultList extends React.Component {
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
     console.log(this.props, 'was this.props in components/innerResultList');
+    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
+    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');
     let readableArray = [];
     let stamp = new Date().getTime();
@@ -99,6 +103,7 @@ export default class InnerResultList extends React.Component {
               searchTerm={authorsBooksTitleArray[i]}
               receiveResults={this.props.receiveResults}
               updateSearchType={this.props.updateSearchType}
+              updateSearchTerm={this.props.updateSearchTerm}
               />
             </div>
           )
@@ -144,13 +149,24 @@ export default class InnerResultList extends React.Component {
                 <li>ISBN: {this.props.matchedISBN.isbn13}</li>
               </ul>
               <button>theoretical button to add to list. need to request selected list to make it work.</button>
+              <EditOptions
+                addOrRemoveButton={'add'}
+                isbn13={this.props.matchedISBN.isbn13}
+                selectedListKey={this.props.selectedListKey}
+                />
 
             </div>
           )
       // )
       // : console.log('matchedISBN did not exist');
     } //end of matchedISBN if statement
-
+    // <SearchButton
+    //   receiveResults={this.props.receiveResults}
+    //   searchTerm={this.props.searchTerm}
+    //   selectedSearchType={this.props.selectedSearchType}
+    //   updateSearchTerm={this.props.updateSearchTerm}
+    //   updateSearchType={this.props.updateSearchType}
+    //   />
 
 
     ////////end of matchedISBN stuff/////

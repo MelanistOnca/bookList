@@ -39,7 +39,7 @@ export default class EditOptions extends React.Component {
       case 'remove' :
           listButton =
           <button
-            onClick={this.removeFromList.bind(event,'placeholder list for remove', 'placeholder bookId to remove')}
+            onClick={this.removeFromList.bind(event, this.props.selectedListKey, this.props.isbn13)}
             >
             Remove from list
           </button>
