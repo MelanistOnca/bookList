@@ -65,11 +65,11 @@ export default class InnerResultList extends React.Component {
     let stamp = new Date().getTime();
 
     /////////matchedAuthor stuff/////////
-    console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor in components/innerResultList'); //NOTE: no isbn13 in this data
+    // console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor in components/innerResultList'); //NOTE: no isbn13 in this data
     if(this.props.matchedAuthor){
       //start of matchedAuthor if statement
       let booksPerAuthor = this.props.matchedAuthor.book_ids ? this.props.matchedAuthor.book_ids.length : 0 ;
-      console.log(booksPerAuthor, 'was booksPerAuthor in components/innerResultList');
+      // console.log(booksPerAuthor, 'was booksPerAuthor in components/innerResultList');
 
       let authorsBooksTitleArray = this.props.matchedAuthor ? this.props.matchedAuthor.book_ids : [''];
 
@@ -82,7 +82,7 @@ export default class InnerResultList extends React.Component {
           // let isbn13 = this.returnISBN(bookId)
           let humanReadableTitle =
           authorsBooksTitleArray[i].split('_').join(' ');
-          console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
+          // console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
           readableArray.push(
             <div
             className={"bookFromSearchedAuthor"}
@@ -98,6 +98,7 @@ export default class InnerResultList extends React.Component {
               selectedSearchType={["ISBN"]}
               searchTerm={authorsBooksTitleArray[i]}
               receiveResults={this.props.receiveResults}
+              updateSearchType={this.props.updateSearchType}
               />
             </div>
           )
@@ -126,6 +127,8 @@ export default class InnerResultList extends React.Component {
       //   (this.props.matchedISBN !== undefined)
       // )
       //   ? (
+      let authorName =
+      this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : this.props.matchedISBN.name;
           readableArray.push(
             <div
               className={"bookFromISBN_Result"}
@@ -135,7 +138,8 @@ export default class InnerResultList extends React.Component {
               >
               <ul>
                 <li>Title: {this.props.matchedISBN.title}</li>
-                <li>Author: {this.props.matchedISBN.author_data[0].name}</li>
+                <li>Author: { authorName
+                    }</li>
                 <li>Publisher: {this.props.matchedISBN.publisher_name}</li>
                 <li>ISBN: {this.props.matchedISBN.isbn13}</li>
               </ul>

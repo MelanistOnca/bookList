@@ -9,9 +9,9 @@ export default class Result extends React.Component {
 
   render(){
 
-    // console.log(this.props, 'this.props in components/result.js');
-    console.log(this.props.searchResults[0], 'was this.props.searchResults[0] in components/result.js');
-    console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
+    console.log(this.props, 'this.props in components/result.js');
+    // console.log(this.props.searchResults[0], 'was this.props.searchResults[0] in components/result.js');
+    // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
         let resultsView = [];
         let startingPoint = this.props.searchResults ? this.props.searchResults[0].data :
         'string'
@@ -71,6 +71,7 @@ export default class Result extends React.Component {
                   matchedAuthor={startingPoint[i]}
                   searchResult={this.props.searchResult}
                   receiveResults={this.props.receiveResults}
+                  updateSearchType={this.props.updateSearchType}
                   />
 
               </div>
@@ -95,6 +96,7 @@ export default class Result extends React.Component {
                   matchedISBN={startingPoint[i]}
                   searchResults={this.props.searchResults}
                   receiveResults={this.props.receiveResults}
+                  updateSearchType={this.props.updateSearchType}
                   />
 
               </div>
