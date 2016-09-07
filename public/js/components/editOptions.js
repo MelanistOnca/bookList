@@ -18,6 +18,7 @@ export default class EditOptions extends React.Component {
       //NOTE this doesn't seem to work if someone selects a list then changes back to the "select" dropdown.
       //NOTE the RE NOTE-ening: i had to make the list[0]=== check for a STRING of undefined. this seems shitty, but it works.
     }
+    console.log('log AFTER the winow.alert'); //this does fire, but not until after the alert is acknowledged.
 
   }
   removeFromList(list, bookId, e) {
