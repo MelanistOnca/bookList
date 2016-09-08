@@ -125,6 +125,7 @@ export default class InnerResultList extends React.Component {
     console.log(this.props.matchedISBN, 'was this.props.matchedISBN in components/innerResultList');
 
     if(this.props.matchedISBN){
+      console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISB) in components/innerResultList');
       //start of matchedISBN if statement
       // (
       //   (this.props.matchedISBN !== 'p' )

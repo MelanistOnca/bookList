@@ -1,5 +1,5 @@
 const searchType = [
-  "Author",
+  // "Author",
   "Title",
   "ISBN",
   "Authors"

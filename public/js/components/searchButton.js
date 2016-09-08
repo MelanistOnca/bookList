@@ -31,6 +31,9 @@ export default class SearchButton extends React.Component {
         // console.log(searchType, 'was searchType in searchClicked() in same');
         break;
       //may need a case to re-define for 'title'
+      case 'title' :
+        searchType = 'book';
+        break;
       default:
         console.log(searchType, 'was searchType in default case of searchType switch');
     }

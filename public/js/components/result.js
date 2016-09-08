@@ -45,7 +45,9 @@ export default class Result extends React.Component {
 
         let stamp = new Date().getTime();
 
-
+        console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
+        // let identicalURIforTitleOrISBN = 'ISBN' || 'Title';
+        //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
         switch(this.props.selectedSearchType[0]) {
           case 'Authors':
           console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
@@ -82,7 +84,33 @@ export default class Result extends React.Component {
           } //end of for-loop in 'Authors' case
 
           break;
-          case 'ISBN':
+          case 'Title' :
+          console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
+          // let i = 0;
+          // let uniqueStamp = `${i}${stamp}`;
+          for(let i = 0; i < spLength ; i++){
+            resultsView.push(
+              <div
+                key={stamp}
+                id={stamp}
+                className="searchResultSingle"
+                style={{"border":"solid 1px"}}
+                >
+                <InnerResultList
+                  matchedISBN={startingPoint[i]}
+                  searchResults={this.props.searchResults}
+                  receiveResults={this.props.receiveResults}
+                  updateSearchType={this.props.updateSearchType}
+                  selectedListKey={this.props.selectedListKey}
+                  updateSearchTerm={this.props.updateSearchTerm}
+                  />
+
+              </div>
+            )
+            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
+
+          }
+          case 'ISBN' :
           console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
           // let uniqueStamp = `${i}${stamp}`;
@@ -111,13 +139,15 @@ export default class Result extends React.Component {
 
 
           break;
-          case '':
-            console.log('empty string was this.props.selectedSearchType in switch in components/result.js');
+          case '' : //trying an or case above, which is ugly but effective here? hopefully. it did not work, only triggered on A when ( A || B ). duplicated code for 2 cases. SO BAAAAD
+          console.log(this.props.selectedSearchType, 'should be an empty string in "" case in components/result.js');
+
           break;
           default:
 
             console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
             console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in default case in components/result.js')
+            console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in default case in components/result.js');
 
         } //end of switch
 
