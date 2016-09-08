@@ -15,6 +15,7 @@ import searchType from './searchType';
 import selectedSearchType from './selectedSearchType';
 import searchResults from './searchResults';
 import currentISBN from './currentISBN';
+import newToList from './newToList';
 
 
 const rootReducer = combineReducers(
@@ -27,6 +28,7 @@ const rootReducer = combineReducers(
     selectedSearchType,
     searchResults,
     currentISBN,
+    newToList,
     routing: routerReducer
   }
 )

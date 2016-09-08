@@ -132,6 +132,8 @@ export default class SearchFor extends React.Component {
             receiveResults={this.props.receiveResults}
             updateSearchType={this.props.updateSearchType}
             updateSearchTerm={this.props.updateSearchTerm}
+            addToList={this.props.addToList}
+            removeFromList={this.props.removeFromList}
             />
         </form>
 
@@ -143,7 +145,8 @@ export default class SearchFor extends React.Component {
           updateSearchType={this.props.updateSearchType}
           selectedListKey={this.props.selectedListKey}
           updateSearchTerm={this.props.updateSearchTerm}
-
+          addToList={this.props.addToList}
+          removeFromList={this.props.removeFromList}
           />
       </div>
     )

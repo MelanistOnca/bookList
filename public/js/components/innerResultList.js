@@ -104,6 +104,8 @@ export default class InnerResultList extends React.Component {
               receiveResults={this.props.receiveResults}
               updateSearchType={this.props.updateSearchType}
               updateSearchTerm={this.props.updateSearchTerm}
+              addToList={this.props.addToList}
+              removeFromList={this.props.removeFromList}
               />
             </div>
           )
@@ -152,8 +154,10 @@ export default class InnerResultList extends React.Component {
               <button>theoretical button to add to list. need to request selected list to make it work.</button>
               <EditOptions
                 addOrRemoveButton={'add'}
-                isbn13={this.props.matchedISBN.isbn13}
+                matchedISBN={this.props.matchedISBN}
                 selectedListKey={this.props.selectedListKey}
+                addToList={this.props.addToList}
+                removeFromList={this.props.removeFromList}
                 />
 
             </div>

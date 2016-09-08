@@ -53,6 +53,8 @@ export default class Results extends React.Component {
             updateSearchType={this.props.updateSearchType}
             updateSearchTerm={this.props.updateSearchTerm}
             selectedListKey={this.props.selectedListKey}
+            addToList={this.props.addToList}
+            removeFromList={this.props.removeFromList}
             />
       </div>
     )

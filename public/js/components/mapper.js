@@ -15,7 +15,8 @@ function mapStateToProps(state){
     searchType: state.searchType,
     selectedSearchType: state.selectedSearchType,
     searchResults: state.searchResults,
-    currentISBN: state.currentISBN
+    currentISBN: state.currentISBN,
+    newToList: state.newToList
   }
 }
 

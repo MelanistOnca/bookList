@@ -66,6 +66,8 @@ export default class UpdateList extends React.Component {
           selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
           receiveResults={this.props.receiveResults}
+          addToList={this.props.addToList}
+          removeFromList={this.props.removeFromList}
           />
 
       </div>

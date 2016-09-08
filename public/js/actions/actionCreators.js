@@ -42,3 +42,10 @@ export function addToList(list, bookId) {
     //don't think i need to return bookId since this should be added to the list
   }
 }
+
+export function removeFromList(list, bookId) {
+  return {
+    type: 'REMOVE_FROM_LIST',
+    list
+  }
+}
