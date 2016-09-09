@@ -18,7 +18,7 @@ export default class Result extends React.Component {
         // [{}] ; //undefined
         // [{"":""}] ; //undefined
         //is an array of objects when searching for "scalzi" as "authors"
-        console.log(startingPoint, 'was startingPoint in components/result.js'); //returns array of objects.
+        // console.log(startingPoint, 'was startingPoint in components/result.js'); //returns array of objects.
           // when searching for authorS (plural!) each object is an author who in some way matched the search critera
           // when searching for ISBN, it returns an array with a single object, startingPoint[0]. this object has book data.
 
@@ -38,19 +38,19 @@ export default class Result extends React.Component {
 
 
         let spLength = startingPoint ? startingPoint.length : 0;
-        console.log(spLength, 'was spLength just after declaration in components/result.js');
+        // console.log(spLength, 'was spLength just after declaration in components/result.js');
 
         // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/result.js');
         // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in components/result.js');
 
         let stamp = new Date().getTime();
 
-        console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
+        // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
         // let identicalURIforTitleOrISBN = 'ISBN' || 'Title';
         //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
         switch(this.props.selectedSearchType[0]) {
           case 'Authors':
-          console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
+          // console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
           for(let i = 0; i < spLength ; i++){
             let uniqueStamp = `${i}${stamp}`;
             let authorsBookTitleArray = startingPoint[i] ? startingPoint[i].book_ids : [] ; // ehhhhh
@@ -82,12 +82,12 @@ export default class Result extends React.Component {
 
               </div>
             )
-            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Authors" case in  components/result.js');
+            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Authors" case in  components/result.js');
           } //end of for-loop in 'Authors' case
 
           break;
           case 'Title' :
-          console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
+          // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
           // let uniqueStamp = `${i}${stamp}`;
           for(let i = 0; i < spLength ; i++){
@@ -111,11 +111,11 @@ export default class Result extends React.Component {
 
               </div>
             )
-            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
+            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
 
           }
           case 'ISBN' :
-          console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
+          // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
           // let uniqueStamp = `${i}${stamp}`;
           for(let i = 0; i < spLength ; i++){
@@ -139,14 +139,14 @@ export default class Result extends React.Component {
 
               </div>
             )
-            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
+            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
 
           }
 
 
           break;
           case '' : //trying an or case above, which is ugly but effective here? hopefully. it did not work, only triggered on A when ( A || B ). duplicated code for 2 cases. SO BAAAAD
-          console.log(this.props.selectedSearchType, 'should be an empty string in "" case in components/result.js');
+          // console.log(this.props.selectedSearchType, 'should be an empty string in "" case in components/result.js');
 
           break;
           default:

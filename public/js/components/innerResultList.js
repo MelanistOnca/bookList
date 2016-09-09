@@ -61,9 +61,9 @@ export default class InnerResultList extends React.Component {
 
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
-    console.log(this.props, 'was this.props in components/innerResultList');
-    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
-    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
+    // console.log(this.props, 'was this.props in components/innerResultList');
+    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
+    // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');
     let readableArray = [];
     let stamp = new Date().getTime();
@@ -124,10 +124,10 @@ export default class InnerResultList extends React.Component {
     /////////////////////////////////////
 
     ////////matchedISBN stuff////////////
-    console.log(this.props.matchedISBN, 'was this.props.matchedISBN in components/innerResultList');
+    // console.log(this.props.matchedISBN, 'was this.props.matchedISBN in components/innerResultList');
 
     if(this.props.matchedISBN){
-      console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISB) in components/innerResultList');
+      // console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISBN) in components/innerResultList');
       //start of matchedISBN if statement
       // (
       //   (this.props.matchedISBN !== 'p' )
@@ -176,28 +176,6 @@ export default class InnerResultList extends React.Component {
 
     ////////end of matchedISBN stuff/////
 
-    // console.log(this.props.startingPoint[this.props.i], 'was this.props.startingPoint[this.props.i] in components/innerResultList');
-    // console.log(this.props.startingPoint[this.props.i].book_ids, 'was this.props.startingPoint[this.props.i].book_ids in components/innerResultList');
-    // let booksPerAuthor = this.props.startingPoint[this.props.i] ? this.props.startingPoint[this.props.i].length : 0 ; //this may be valid when i get this component stateful again
-    // let booksPerAuthor = this.props.startingPoint[this.props.i].book_ids ? this.props.startingPoint[this.props.i].book_ids.length : 0 ;
-    //NOTE: all code after this needs to be reviewed to make it compatible with a matchedISBN being passed.
-    //END NOTE //
-
-
-
-    // console.log(this.props.matchedISBN, 'was this.props.matchedISBN');
-
-    // let authorsBooksTitleArray = this.props.startingPoint[this.props.i] ? this.props.startingPoint[this.props.i].book_ids : [];
-
-
-
-    // console.log(readableArray, 'was readableArray before loop');
-
-
-
-
-
-    // console.log(readableArray, 'was readableArray after booksPerAuthor loop');
 
 
 
