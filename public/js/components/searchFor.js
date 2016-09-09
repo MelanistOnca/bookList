@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import $ from 'jquery';
 
-import Results from './results';
+// import Results from './results';
+import Result from './result';
 import SearchButton  from './searchButton';
 
 const rp = require('request-promise');
@@ -138,7 +139,7 @@ export default class SearchFor extends React.Component {
         </form>
 
 
-        <Results
+        <Result
           selectedSearchType={this.props.selectedSearchType}
           searchResults={this.props.searchResults}
           receiveResults={this.props.receiveResults}
