@@ -16,7 +16,7 @@ import searchTerm from './data/searchTerm';
 import searchType from './data/searchType';
 import selectedSearchType from './data/selectedSearchType';
 import searchResults from './data/searchResults';
-import currentISBN from './data/currentISBN';
+// import currentISBN from './data/currentISBN';
 import newToList from './data/newToList';
 
 
@@ -30,7 +30,7 @@ const defaultState = {
   selectedSearchType,
   searchResults,
   newToList,
-  currentISBN
+  // currentISBN
 }
 
 //store enhancer, REVIEW REDUX DOCS TO FIGURE WHAT THIS IS ACTUALLY DOING

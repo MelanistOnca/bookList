@@ -1,5 +1,5 @@
-const currentISBN = [
-  'placeholder isbn'
-]
-
-export default currentISBN;
+// const currentISBN = [
+//   'placeholder isbn'
+// ]
+//
+// export default currentISBN;

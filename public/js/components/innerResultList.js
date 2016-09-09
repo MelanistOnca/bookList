@@ -7,28 +7,7 @@ import SearchButton from './searchButton';
 const rp = require('request-promise');
 
 //NOTE: this should probably be refactored to be substituted with a ListView
-//this shenanigans below seems to bring all the props here without me having to pass from the calling component. this seems super nice since everything is state (and therefore prop) dependent anyway. for some reason i think this is bad practice.  //this actually didn't do anything? probably because state.____ doesn't exist for this component? maybe need a separate file like mapper ot make the connected component?
 
-// import { connect } from 'react-redux';
-//
-// function mapStateToProps(state){
-//   return {
-//     selectedListKey: state.selectedListKey,
-//     listCollection: state.listCollection,
-//     searchTerm: state.searchTerm,
-//     searchType: state.searchType,
-//     selectedSearchType: state.selectedSearchType,
-//     searchResults: state.searchResults,
-//     currentISBN: state.currentISBN
-//   }
-// }
-//
-// function mapDispatchToProps(dispatch){
-//   return bindActionCreators(actionCreators,dispatch);
-// }
-//
-// // connect(mapStateToProps,mapDispatchToProps)
-// connect(mapStateToProps)
 
 
 
