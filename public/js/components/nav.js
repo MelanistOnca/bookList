@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 //components
 import NavLink from './navLink';
 
-import TestButton from './testButton'
+import Login from './login/login';
 
 export default class Nav extends React.Component{
 
@@ -34,9 +34,9 @@ export default class Nav extends React.Component{
             >
             UpdateLists</NavLink></li>
         </ul>
-        <TestButton
+        <Login
           />
-        
+
       </div>
     )
   }
