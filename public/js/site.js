@@ -31,6 +31,7 @@ export default class Site extends React.Component{
     return(
       <div id="siteContainer">
         <Nav
+          {...this.props}
           />
         {/* {this.props.children} */}
         {React.cloneElement(this.props.children,this.props)}

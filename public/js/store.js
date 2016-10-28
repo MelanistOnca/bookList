@@ -18,6 +18,7 @@ import selectedSearchType from './data/selectedSearchType';
 import searchResults from './data/searchResults';
 // import currentISBN from './data/currentISBN';
 import newToList from './data/newToList';
+import user from './data/user';
 
 
 //default state
@@ -30,6 +31,7 @@ const defaultState = {
   selectedSearchType,
   searchResults,
   newToList,
+  user
   // currentISBN
 }
 

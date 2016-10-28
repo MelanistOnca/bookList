@@ -5,14 +5,14 @@ import { Link } from 'react-router';
 //components
 import NavLink from './navLink';
 
-import Login from './login/login';
+import UserSection from './user/userSection';
 
 export default class Nav extends React.Component{
 
 
   render(){
 
-
+    // console.log(this.props, 'was this.props in components/navs.js');
     return(
       <div id="navContainer">
         {/* may want a blank/default landing page */}
@@ -34,7 +34,8 @@ export default class Nav extends React.Component{
             >
             UpdateLists</NavLink></li>
         </ul>
-        <Login
+        <UserSection
+          {...this.props}
           />
 
       </div>

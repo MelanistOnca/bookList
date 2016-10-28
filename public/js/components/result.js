@@ -9,7 +9,7 @@ export default class Result extends React.Component {
 
   render(){
 
-    console.log(this.props, 'this.props in components/result.js');
+    // console.log(this.props, 'this.props in components/result.js');
     // console.log(this.props.searchResults[0], 'was this.props.searchResults[0] in components/result.js');
     // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
         let resultsView = [];
@@ -151,9 +151,9 @@ export default class Result extends React.Component {
           break;
           default:
 
-            console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
-            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in default case in components/result.js')
-            console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in default case in components/result.js');
+            // console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
+            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in default case in components/result.js')
+            // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in default case in components/result.js');
 
         } //end of switch
 

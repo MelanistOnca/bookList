@@ -61,7 +61,7 @@ export function signUpUserFailure(error) {
   console.log('signUpUserFailure in actions/user.js called');
   return {
     type: 'SIGN_UP_USER_FAILURE',
-    payload error
+    payload: error
   }
 }
 

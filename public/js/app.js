@@ -18,6 +18,8 @@ import ToBeRead from './components/toBeRead';
 import UpdateLists from './components/updateLists';
 import Mapper from './components/mapper';
 import Nav from './components/nav';
+import SignUp from './components/user/signUp';
+import LogIn from './components/user/logIn';
 import Placeholder from './components/placeholder';
 
 
@@ -53,6 +55,10 @@ render(
           <Route path="/toberead" component={ToBeRead}/>
           <Route path="/finished" component={Finished}/>
           <Route path="/updateLists" component={UpdateLists}/>
+          <Route path="/signUp"
+            component={SignUp}/>
+          <Route path="/logIn"
+            component={LogIn}/>
           {/*
             catch-all route
           */}

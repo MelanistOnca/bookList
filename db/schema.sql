@@ -8,14 +8,17 @@ DROP TABLE if EXISTS currentlyreading CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY UNIQUE,
+  admin boolean,
   f_name varchar(30),
   m_name varchar(30),
   l_name varchar(50),
   email varchar(80),
+  username varchar(30),
   password_digest text
 );
 CREATE TABLE books (
-  isbn13 SERIAL PRIMARY KEY UNIQUE,
+  id SERIAL PRIMARY KEY UNIQUE,
+  isbn13 varchar(13),
   title varchar(30),
   publisher varchar(80)
   -- author FORMAT_OF_REFERENCED_FIELD references authors(FIELD FROM authors TABLE)

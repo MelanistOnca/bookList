@@ -1,8 +1,28 @@
-//
+// import {
+//   currentUserFromToken,
+//   currentUserFromTokenSuccess,
+//   currentUserFromTokenFailure,
+//   resetToken,
+//   signUpUser,
+//   signUpUserSuccess,
+//   signUpUserFailure,
+//   resetUser,
+//   logInUser,
+//   logInUserSuccess,
+//   logInUserFailure,
+//   logoutUser,
+//   updateUserEmail
+// } from './user';
+
+export * from './user'
+//there is probably a way to mass export the above, but im not sure of it ATM. //i am now // ALSO, the export _ from 'PLACEHOLDER' syntax allows you to skip the import to here. leaving above import commented for self-education/reminder purposes
+
+
+// console.log(currentUserFromTokenSuccess, 'was currentUserFromTokenSuccess in actions/actionCreators.js');
 
 //select list
 export function selectList(choice) {
-  // console.log(choice, 'was choice in actionCreators');
+  console.log(choice, 'was choice in actionCreators');
   return {
     type: 'SELECT_LIST',
     choice

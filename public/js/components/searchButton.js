@@ -88,7 +88,7 @@ export default class SearchButton extends React.Component {
   }
 
   render(){
-    console.log(this.props, 'was this.props in components/searchButton');
+    // console.log(this.props, 'was this.props in components/searchButton');
 
 
     let searchClickedProps = {
