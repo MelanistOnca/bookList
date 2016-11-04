@@ -14,3 +14,16 @@ INSERT INTO books ( id, isbn13, title, publisher ) values ( 320, '0987654321123'
 INSERT INTO authors ( id, full_name ) values ( 3, 'john scalzi' );
 
 INSERT INTO authors ( id, full_name ) values ( 5, 'kate elliot' );
+
+--toberead seeds
+
+INSERT INTO toberead (user_id, book_id) values ( 1,2 );
+
+--haveread seeds
+
+INSERT INTO haveread (user_id, book_id) values ( 2, 320 );
+
+--currentlyreading seeds
+
+INSERT INTO currentlyreading (user_id, book_id) values ( 1, 320 );
+INSERT INTO currentlyreading (user_id, book_id) values ( 2,2 );

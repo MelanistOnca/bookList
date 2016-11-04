@@ -23,7 +23,7 @@ export default class EditOptions extends React.Component {
 
     // window.alert('test alert')
     if( (list[0]==="undefined")||!list[0] ) {
-      window.alert('Please select a list from the "Edit List: dropdown"')
+      window.alert('Please select a list from the "Edit List:" dropdown')
       //NOTE this doesn't seem to work if someone selects a list then changes back to the "select" dropdown.
       //NOTE the RE NOTE-ening: i had to make the list[0]=== check for a STRING of undefined. this seems shitty, but it works.
     }

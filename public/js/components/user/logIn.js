@@ -24,6 +24,19 @@ export default class LogIn extends React.Component {
     console.log(logInFn, 'was fn passed to submitInfo');
     e.preventDefault();
     logInFn();
+    $.ajax('/api/users')
+      // .done(console.log('success at /api/users') )
+      // .fail(console.log('fail at /api/users') )
+      // .always(console.log('complete') )
+      .done( () => {
+        console.log('success at /api/users');
+      })
+      .fail( () => {
+        console.log('failure at /api/users');
+      })
+      .always( () => {
+        console.log('ajax complete at /api/users');
+      })
   }
   render(){
     console.log(this.props, 'was this.props in components/login/logIn.js');
