@@ -83,7 +83,7 @@ function user(state=[], action) {
       // )
       return state;
     case 'LOG_IN_USER_SUCCESS': //return authenticated user,  make loading = false and status = authenticated
-    // return { ...state, user: action.payload.data.user, status:'authenticated', error:null, loading: false}; //<-- authenticated
+    return { ...state, user: action.payload.data.user, status:'authenticated', error:null, loading: false}; //<-- authenticated
     // my stuff
       console.log('LOG_IN_USER_SUCCESS case');
       console.log(state, 'was state in this case');

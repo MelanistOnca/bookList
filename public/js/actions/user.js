@@ -1,6 +1,6 @@
 // heavily inspired by tutorial https://github.com/rajaraodv/react-redux-blog
 // look into axios
-
+import axios from 'axios';
 
 export function currentUserFromToken(tokenInStorage) {
   // check if token is valid, if yes, get user from server
@@ -76,11 +76,16 @@ export function resetUser() {
 export function logInUser(formData) {
   // this shit again
   // const request = axios.post(`${ROOT_URL}/users/signin`, formValues);
+  const request = axios.post('api/user/login',formData)
+
   // yelling at yourself isn't funny anymore
   console.log('logInUser in actions/user.js called');
+
+  console.log(formData, 'was formData in actions/user.js');
+  console.log(request, 'was request in same');
   return {
     type: 'LOG_IN_USER',
-    // payload: request
+    payload: request
   }
 }
 

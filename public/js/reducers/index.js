@@ -17,6 +17,7 @@ import searchResults from './searchResults';
 // import currentISBN from './currentISBN';
 import newToList from './newToList';
 import user from './user';
+import logInForm from './logInForm_reducer';
 
 
 const rootReducer = combineReducers(
@@ -31,6 +32,7 @@ const rootReducer = combineReducers(
     // currentISBN,
     newToList,
     user,
+    logInForm,
     routing: routerReducer
   }
 )

@@ -69,3 +69,16 @@ export function removeFromList(list, bookId) {
     list
   }
 }
+
+export function updateFormUsername(formUsername) {
+  return {
+    type: 'UPDATE_FORM_USERNAME',
+    formUsername
+  }
+}
+export function updateFormPassword(formPassword) {
+  return {
+    type: 'UPDATE_FORM_PASSWORD',
+    formPassword
+  }
+}

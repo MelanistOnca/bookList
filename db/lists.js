@@ -1,9 +1,10 @@
 'use strict'
 const bcrypt = require('bcrypt');
 // const salt   = bcrypt.genSaltSync(10);
-const pgp    = require('pg-promise')({
-  // initialization options
-});
+const pgp    = require('pg-promise');
+// const pgp    = require('pg-promise')({
+//   // initialization options
+// });
 
 // https://github.com/vitaly-t/pg-promise/wiki/Connection-Syntax#configuration-object
 const connectionObject = {
