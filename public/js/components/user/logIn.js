@@ -25,16 +25,17 @@ export default class LogIn extends React.Component {
   //
   //
   // }
-  logIn(logInFn, e /* username and password will need to be passed here as well */){
+  logIn(logInFn, logInFormData, e /* username and password will need to be passed here as well */){
     console.log(e,'was e in submitInfo in components/user/logIn.js');
     console.log(logInFn, 'was fn passed to submitInfo');
+    console.log(logInFormData, 'was form data passed to submitInfo');
     e.preventDefault();
     // let testFormData = {
     //   'email': 'bla@bla.com',
     //   'password': 'gobbityguk'
     // }
     // console.log(body, 'was body in logIn in components/user/login.js');
-    logInFn();
+    logInFn(logInFormData);
     // $.ajax('/api/users')
     //   .done( () => {
     //     console.log('success at /api/users');
@@ -47,18 +48,20 @@ export default class LogIn extends React.Component {
     //   })
   }
   updateUsername(updateUsernameField, e){
-    console.log('updateUsername in component/user/logIn.js fired');
+    // console.log('updateUsername in component/user/logIn.js fired');
     let usernameField = e.target.value;
     updateUsernameField(usernameField)
 
   }
   updatePassword(updatePasswordField, e){
-    console.log('updatePassword in component/user/logIn.js fired');
+    // console.log('updatePassword in component/user/logIn.js fired');
     let passwordField = e.target.value;
     updatePasswordField(passwordField)
   }
   render(){
     console.log(this.props, 'was this.props in components/login/logIn.js');
+    console.log(this.props.logInForm, 'was this.props.logInForm in components/login/logIn.js');
+
     let event = window.event; //needed for firefox //binding 'this' in the bind call seemed to work. investigate further, hopefully will bypass this let definition in FF? will test with clickSignUp to see if functionality differs
     // console.log(this.getList, 'was this.getList in logIn.js');
     return(
@@ -88,7 +91,7 @@ export default class LogIn extends React.Component {
 
           </ul>
           <button
-            onClick={this.logIn.bind(event, this.props.logInUser)}
+            onClick={this.logIn.bind(event, this.props.logInUser, this.props.logInForm)}
             >
             Log In
           </button>

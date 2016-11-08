@@ -19,7 +19,8 @@ function mapStateToProps(state){
     searchResults: state.searchResults,
     // currentISBN: state.currentISBN,
     newToList: state.newToList,
-    user: state.user
+    user: state.user,
+    logInForm: state.logInForm
   }
 }
 

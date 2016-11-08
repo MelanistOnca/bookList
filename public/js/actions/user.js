@@ -82,6 +82,8 @@ export function logInUser(formData) {
   console.log('logInUser in actions/user.js called');
 
   console.log(formData, 'was formData in actions/user.js');
+  console.log(formData.username, 'was formData.username in actions/user.js');
+  console.log(formData.password, 'was formData.password in actions/user.js');
   console.log(request, 'was request in same');
   return {
     type: 'LOG_IN_USER',

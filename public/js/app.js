@@ -54,10 +54,10 @@ render(
             />
           <Route path="/toberead" component={ToBeRead}/>
           <Route path="/finished" component={Finished}/>
-          <Route path="/updateLists" component={UpdateLists}/>
-          <Route path="/signUp"
+          <Route path="/updatelists" component={UpdateLists}/>
+          <Route path="/signup"
             component={SignUp}/>
-          <Route path="/logIn"
+          <Route path="/login"
             component={LogIn}/>
           {/*
             catch-all route

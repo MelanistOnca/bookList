@@ -6,13 +6,13 @@ function logInForm(state=[], action) {
     case "UPDATE_FORM_USERNAME":
       return {
         ...state,
-        username: action.formUsername
+        'username': action.formUsername
       }
 
     case "UPDATE_FORM_PASSWORD":
       return {
         ...state,
-        password: action.formPassword
+        'password': action.formPassword
       }
       // [
       //   //basically the same as update form username, but with the password field.
