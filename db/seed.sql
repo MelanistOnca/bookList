@@ -1,6 +1,6 @@
 
 --user seeds
-INSERT INTO users ( id, admin, f_name, m_name, l_name, email, username, password_digest ) values (1, true, 'firsty', 'middley', 'lasty', 'e@mail.com', 'nameOfUser', 'sdasdgASD233324ADnotactuallyadigest');
+INSERT INTO users ( id, admin, f_name, m_name, l_name, email, username, password_digest ) values (1, true, 'firsty', 'middley', 'lasty', 'e@mail.com', 'nameOfUser', 'pass');
 
 INSERT INTO users ( id, admin, f_name, m_name, l_name, email, username, password_digest ) values (2, false, 'secondy', 'centery', 'finally', 'a@b.com', 'fiftieth user', 'alsoNotACTUALLYaDigest2355w');
 

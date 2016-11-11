@@ -30,7 +30,7 @@ router
 // :3003/api/user/signin
 router
   .get('/login', /* ?? , */ notImplement)
-  .post('/login', user_fns.logInUser,  notImplement)
+  .post('/login', user_fns.logInUser)
 
 
 module.exports = router;

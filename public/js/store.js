@@ -20,7 +20,9 @@ import searchResults from './data/searchResults';
 import newToList from './data/newToList';
 import user from './data/user';
 import logInForm from './data/logInForm';
+import signUpForm from './data/signUpForm';
 
+// console.log(signUpForm, 'was signUpForm in store.js');
 
 //default state
 const defaultState = {
@@ -33,7 +35,8 @@ const defaultState = {
   searchResults,
   newToList,
   user,
-  logInForm
+  logInForm,
+  signUpForm
   // currentISBN
 }
 

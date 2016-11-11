@@ -18,6 +18,7 @@ import searchResults from './searchResults';
 import newToList from './newToList';
 import user from './user';
 import logInForm from './logInForm_reducer';
+import signUpForm from './signUpForm_reducer';
 
 
 const rootReducer = combineReducers(
@@ -33,6 +34,7 @@ const rootReducer = combineReducers(
     newToList,
     user,
     logInForm,
+    signUpForm,
     routing: routerReducer
   }
 )
