@@ -1,5 +1,19 @@
 function signUpForm(state=[], action){
   console.log(state, 'was state in reducers/signUpForm_reducer');
+
+  // returns {
+  //   email:"a@b.com"
+  //   emailVer:"a@b.com"
+  //   firstName:"pat"
+  //   lastName:"mcw"
+  //   middleName:"j"
+  //   password:"signuppassword"
+  //   passwordVer:"signuppassword"
+  //   username:"signupusername"
+  //   usernameVer:"signupusername"
+  // }
+  // with test info
+
   console.log(action, 'was action in reducers/signUpForm_reducer');
 
   switch(action.type){
