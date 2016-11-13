@@ -1,4 +1,5 @@
-// heavily inspired by tutorial https://github.com/rajaraodv/react-redux-blog
+// heavily inspired by tutorial
+// https://github.com/rajaraodv/react-redux-blog
 // look into axios
 import axios from 'axios';
 
@@ -94,6 +95,7 @@ export function logInUser(formData) {
 
 export function logInUserSuccess(user) {
   console.log('logInUserSuccess in actions/user.js called');
+  console.log(user, 'was user in logInUserSuccess in actions/user.js');
   return {
     type: 'LOG_IN_USER_SUCCESS',
     payload: user

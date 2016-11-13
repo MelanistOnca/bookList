@@ -1,5 +1,5 @@
 function signUpForm(state=[], action){
-  console.log(state, 'was state in reducers/signUpForm_reducer');
+  // console.log(state, 'was state in reducers/signUpForm_reducer');
 
   // returns {
   //   email:"a@b.com"
@@ -14,7 +14,7 @@ function signUpForm(state=[], action){
   // }
   // with test info
 
-  console.log(action, 'was action in reducers/signUpForm_reducer');
+  // console.log(action, 'was action in reducers/signUpForm_reducer');
 
   switch(action.type){
 

@@ -5,11 +5,13 @@ import { render } from 'react-dom';
 
 export default class SignUp extends React.Component {
   submitInfo(signUpFn, signUpFormInfo, /*probably need more passed to check all the fields are verified*/ e){
-    console.log(e,'was e in submitInfo in components/user/signUp.js');
-    console.log(signUpFn, 'was fn passed to submitInfo');
-    console.log(signUpFormInfo, 'was signUpFormInfo passed to submitInfo');
+    // console.log(e,'was e in submitInfo in components/user/signUp.js');
+    // console.log(signUpFn, 'was fn passed to submitInfo');
+    // console.log(signUpFormInfo, 'was signUpFormInfo passed to submitInfo');
     e.preventDefault();
     //using signupusername and signuppassword for testing. email is a@b.com, pat j mcw
+
+    //NOTE: still want to do field verification?
     signUpFn(signUpFormInfo);
   }
   updateSignUpFormF_Name(updateF_NameField, e){
@@ -51,7 +53,7 @@ export default class SignUp extends React.Component {
 
   render(){
     //maybe make the inputs a component and pass props for labels? lot of copied code here
-    console.log(this.props, 'this.props in components/user/signUp.js');
+    // console.log(this.props, 'this.props in components/user/signUp.js');
     let event = window.event; //needed for firefox //binding 'this' in the bind call seemed to work. investigate further, hopefully will bypass this let definition in FF? will test with clickSignUp to see if functionality differs
     let blockStyle = {
       border: '1px solid black',

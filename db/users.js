@@ -97,6 +97,8 @@ module.exports.logInUser = ( req, res, next ) => {
       .then( (data) => {
         if (bcrypt.compareSync(password, data.password_digest)) {
           res.rows = data
+          console.log(data, 'was data in logInUser query');
+          console.log(res.rows, 'was res.rows in logInUser query');
           next()
         } else {
           res.status(401).json( {

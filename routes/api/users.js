@@ -1,7 +1,11 @@
+
 'use strict';
+
 
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const secret = process.env.ENV_SECRET;
 
 // const db = require('../db'); //may need to make/specify api functions?
 const user_fns = require('../../db/users');
@@ -30,7 +34,11 @@ router
 // :3003/api/user/login
 router
   .get('/login', /* ?? , */ notImplement)
-  .post('/login', user_fns.logInUser)
+  .post('/login', user_fns.logInUser, (req, res) =>{
+    let token = jwt.sign( res.rows, secret );
+
+    res.json( { agent: res.rows, token: token } )
+  })
 // :3003/api/user/signup
 router
   .get('/signup', /* ?? , */ notImplement)
