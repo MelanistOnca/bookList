@@ -40,13 +40,13 @@ export function resetToken() {
 
 export function signUpUser(formData) {
   // more axios
-  // const request = axios.post(`${ROOT_URL}/users/signup`, formValues);
+  const request = axios.post(`api/user/signup`, formData);
   // WELL?!??! HAVE YOU LOOKED INTO IT YET?
   console.log('signUpUser in actions/user.js called');
   console.log(formData, 'was formData in actions/user.js');
   return {
     type: 'SIGN_UP_USER',
-    // payload: request
+    payload: request
   }
 }
 

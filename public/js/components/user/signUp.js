@@ -57,7 +57,7 @@ export default class SignUp extends React.Component {
       border: '1px solid black',
       display: 'flex'
     }
-
+    //NOTE: remove the "value={...}" lines once done with testing
     return(
       <div
         id="signUpContainer"
@@ -74,6 +74,7 @@ export default class SignUp extends React.Component {
                   type="text"
                   placeholder="first name here"
                   onChange={this.updateSignUpFormF_Name.bind(this, this.props.updateSignUpF_Name)}
+                  value={this.props.signUpForm.firstName}
                   >
                   </input>
                 </label>
@@ -85,6 +86,7 @@ export default class SignUp extends React.Component {
                   type="text"
                   placeholder="middle name here"
                   onChange={this.updateSignUpFormM_Name.bind(this, this.props.updateSignUpM_Name)}
+                  value={this.props.signUpForm.middleName}
                   >
                   </input>
                 </label>
@@ -96,6 +98,7 @@ export default class SignUp extends React.Component {
                     type="text"
                     placeholder="last name here"
                     onChange={this.updateSignUpFormL_Name.bind(this, this.props.updateSignUpL_Name)}
+                    value={this.props.signUpForm.lastName}
                     >
                   </input>
                 </label>
@@ -111,6 +114,7 @@ export default class SignUp extends React.Component {
                 type="text"
                 placeholder="email here"
                 onChange={this.updateSignUpFormEmail.bind(this,this.props.updateSignUpEmail)}
+                value={this.props.signUpForm.email}
                 ></input></label>
               </li>
               <li>
@@ -119,6 +123,7 @@ export default class SignUp extends React.Component {
                 type="text"
                 placeholder="verify email here"
                 onChange={this.updateSignUpFormEmailVer.bind(this,this.props.updateSignUpEmailVer)}
+                value={this.props.signUpForm.emailVer}
                 ></input></label>
               </li>
             </ul>
@@ -132,6 +137,7 @@ export default class SignUp extends React.Component {
                 type="text"
                 placeholder="username here"
                 onChange={this.updateSignUpFormUsername.bind(this,this.props.updateSignUpUsername)}
+                value={this.props.signUpForm.username}
                 ></input></label>
               </li>
               <li>
@@ -140,6 +146,7 @@ export default class SignUp extends React.Component {
                 type="text"
                 placeholder="verify username here"
                 onChange={this.updateSignUpFormUsernameVer.bind(this,this.props.updateSignUpUsernameVer)}
+                value={this.props.signUpForm.usernameVer}
                 ></input></label>
               </li>
             </ul>
@@ -153,6 +160,7 @@ export default class SignUp extends React.Component {
                 type="text"
                 placeholder="password here"
                 onChange={this.updateSignUpFormPassword.bind(this,this.props.updateSignUpPassword)}
+                value={this.props.signUpForm.password}
                 ></input></label>
               </li>
               <li>
@@ -161,6 +169,7 @@ export default class SignUp extends React.Component {
                 type="text"
                 placeholder="verify password here"
                 onChange={this.updateSignUpFormPasswordVer.bind(this,this.props.updateSignUpPasswordVer)}
+                value={this.props.signUpForm.passwordVer}
                 ></input></label>
               </li>
             </ul>

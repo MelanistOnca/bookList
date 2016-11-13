@@ -27,10 +27,15 @@ router
   .put('/', /* modify user info in DB, */ notImplement)
   .delete('/', /* remove user info from DB, */ notImplement) //probably not going to use, instead make user info non-accessible?
 
-// :3003/api/user/signin
+// :3003/api/user/login
 router
   .get('/login', /* ?? , */ notImplement)
   .post('/login', user_fns.logInUser)
+// :3003/api/user/signup
+router
+  .get('/signup', /* ?? , */ notImplement)
+  // .post('/signup', /* ?? , */ notImplement)
+  .post('/signup', user_fns.createUser) //generates a 404 somewhere along the way, even when successfully making an entry in user table //you should probably figure out why, but it works for now.
 
 
 module.exports = router;

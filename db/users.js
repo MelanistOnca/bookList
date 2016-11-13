@@ -22,8 +22,10 @@ const db = pgp(connectionObject);
 
 //user functions
 
-module.exports.createSecure = ( username, password, callback ) => {
-
+function createSecure ( username, password, callback ) {
+  console.log(username, 'was username in createSecure in db/users.js');
+  console.log(password, 'was password in createSecure in db/users.js');
+  console.log(callback, 'was callback in createSecure in db/users.js');
   bcrypt.genSalt( (err,salt) => {
     bcrypt.hash(password, salt, (err,hash) => {
       //this callback saves the user to DB with hash'd pw
@@ -34,23 +36,32 @@ module.exports.createSecure = ( username, password, callback ) => {
 
 //function createSecure(email, password, callback){ ...code block ... } then at end of file have module.exports.createSecure = createSecure
 
+//have a similar function at a different route to create admins
 module.exports.createUser = ( req, res, next ) => {
   createSecure(req.body.username, req.body.password, saveUser);
-  saveUser = (username, hash) => {
-    db.none( "INSERT INTO users (admin, f_name, m_name , l_name, email, username, password_digest) VALUES ($1, $2, $3, $4, $5, $6, $7);", [req.body.admin, req.body.f_name, req.body.m_name, req.body.l_name, req.body.email, username, hash] )
-      .then( (data) => {
+  function saveUser (username, hash) {
+    console.log(req.body, 'req.body in saveUser in db/users.js');
+    db.none( "INSERT INTO users ( f_name, m_name , l_name, email, username, password_digest) VALUES ($1, $2, $3, $4, $5, $6);", [ req.body.firstName, req.body.middleName, req.body.lastName, req.body.email, username, hash] )
+      .then( (/*data*/) => {
         //success
         console.log('saveUser success');
+        // console.log(res.statuscode, 'was res.statuscode in saveUser success');
+        // console.log(data, 'was data in saveUser success');
         next();
       })
-      .catch( () => {
+      .catch( (err) => {
         //error
         console.log('error in save user.');
+        console.log(err, 'err');
       })
 
 
   }
 }
+
+// module.exports.createAdmin = ( req, res, next ) => {
+//
+// }
 
 module.exports.logInUser = ( req, res, next ) => {
   console.log(req.body, 'was req.body');
@@ -98,3 +109,5 @@ module.exports.logInUser = ( req, res, next ) => {
         console.error(error, "error finding user")
       })
 }
+
+// module.exports.createSecure = createSecure;
