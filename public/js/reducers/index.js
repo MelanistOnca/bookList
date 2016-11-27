@@ -2,6 +2,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+import { reducer as formReducer } from 'redux-form';
+
 //reducers
 // import currentlyReadingList from './currentlyReadingList';
 // // import currentlyReadingList from './currentlyReadingList';
@@ -35,7 +37,8 @@ const rootReducer = combineReducers(
     user,
     logInForm,
     signUpForm,
-    routing: routerReducer
+    routing: routerReducer,
+    form: formReducer
   }
 )
 

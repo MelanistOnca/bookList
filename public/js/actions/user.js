@@ -80,22 +80,32 @@ export function logInUser(formData) {
   // const request = axios.post(`${ROOT_URL}/users/signin`, formValues);
   const request = axios.post('api/user/login',formData)
 
-  // yelling at yourself isn't funny anymore
-  console.log('logInUser in actions/user.js called');
 
-  console.log(formData, 'was formData in actions/user.js');
-  console.log(formData.username, 'was formData.username in actions/user.js');
-  console.log(formData.password, 'was formData.password in actions/user.js');
-  console.log(request, 'was request in same');
+  console.log('logInUser in actions/user.js called');
+  // 
+  // console.log(formData, 'was formData in actions/user.js');
+  // console.log(formData.username, 'was formData.username in actions/user.js');
+  // console.log(formData.password, 'was formData.password in actions/user.js');
+  // console.log(request, 'was request in same');
+  // request
+  //   .then( (data)=>{
+  //     // console.log(data, 'was data in request.then in logInUser in actions/user.js');
+  //     // console.log(data.data, 'was data.data in request.then in logInUser in actions/user.js');//returns the data from the query
+  //     //the below line would set the session token to the token return from above data
+  //     // sessionStorage.setItem('jwtToken', data.data.token); //this probably needs to be in the component rather than here
+  //     // logInUserSuccess(data.data.user);
+  //   })
   return {
     type: 'LOG_IN_USER',
-    payload: request
+    // payload: request //will this have the response?
+    // differences in design from tutorial means i think i don't need the payload here
   }
 }
 
 export function logInUserSuccess(user) {
   console.log('logInUserSuccess in actions/user.js called');
   console.log(user, 'was user in logInUserSuccess in actions/user.js');
+  //how do i call this function from the response?
   return {
     type: 'LOG_IN_USER_SUCCESS',
     payload: user

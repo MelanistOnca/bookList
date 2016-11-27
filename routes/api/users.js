@@ -34,10 +34,13 @@ router
 // :3003/api/user/login
 router
   .get('/login', /* ?? , */ notImplement)
+
+  //example doesn't have an equivalent of user_fns.logInUser invoked here. looks like the mojo happens inside the (req,res) => {} function
   .post('/login', user_fns.logInUser, (req, res) =>{
     let token = jwt.sign( res.rows, secret );
 
-    res.json( { agent: res.rows, token: token } )
+    res.json( { user: res.rows, token: token } )
+
   })
 // :3003/api/user/signup
 router

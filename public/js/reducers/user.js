@@ -39,19 +39,7 @@ function user(state=[], action) {
       console.log('SIGN_UP_USER case');
       console.log(state, 'was state in this case');
       console.log(action, 'was action in this case');
-      // let stateReplace = {
-      //   "user": null,
-      //   "status": 'log_in',
-      //   "error": 'null',
-      //   "loading": true
-      // }
-      // return Object.assign(
-      //   {},
-      //
-      //     stateReplace
-      //
-      // )
-      // return state;
+
     case 'SIGN_UP_USER_SUCCESS': //return user, status = authenticated and make loading = false
     console.log('SIGN_UP_USER_SUCCESS case');
     console.log(state, 'was state in this case');
@@ -83,7 +71,10 @@ function user(state=[], action) {
       // )
       return state;
     case 'LOG_IN_USER_SUCCESS': //return authenticated user,  make loading = false and status = authenticated
-    return { ...state, user: action.payload.data.user, status:'authenticated', error:null, loading: false}; //<-- authenticated
+    console.log('LOG_IN_USER_SUCCESS');
+    console.log(state, 'was state in this case');
+    console.log(action, 'was action in this case');
+    return { ...state, user: action.payload/*.data.user*/, /*NOTE log this and see what it looks like*/ /* this is user data from the DB. it includes the password digest. i can probably alter the return of the DB query to not return that, or i can try getting specific here like user: {user: action.payload.user, ... etc and leave out the digest} but i think i remember having issues with this specificity type in the book data retrieval*/ status:'authenticated', error:null, loading: false}; //<-- authenticated
     // my stuff
       console.log('LOG_IN_USER_SUCCESS case');
       console.log(state, 'was state in this case');

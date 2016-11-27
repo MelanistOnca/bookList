@@ -63,15 +63,15 @@ module.exports.createUser = ( req, res, next ) => {
 //
 // }
 
-module.exports.logInUser = ( req, res, next ) => {
+module.exports.logInUser = ( req, res, next /*pass the logInUserSuccess function as part of req.body??*/) => {
   console.log(req.body, 'was req.body');
   // let email = req.body.email;
   let username = req.body.username;
   let password = req.body.password;
   // let password_digest = req.body.password;
   // console.log(email, 'that was email');
-  console.log(username, 'that was username');
-  console.log(password, 'that was password');
+  // console.log(username, 'that was username');
+  // console.log(password, 'that was password');
   //here need to do the pgp equiv of pg.connect(connString, () => {
   // if (err)...
   // let query = client.query(select ... )
@@ -93,12 +93,21 @@ module.exports.logInUser = ( req, res, next ) => {
 //     .catch((error) => {
 //       console.error(error,'error finding users')
 //     })
+// put db.one into a dispatch? review how dispatch works. mayb in the .then?
   db.one("SELECT * FROM users WHERE username like $1;", [username])
+      //NOTE review mapDispatchToProps, new Promise, and how they're used in signInFormContainer and SignInForm in the tutorial
       .then( (data) => {
         if (bcrypt.compareSync(password, data.password_digest)) {
           res.rows = data
           console.log(data, 'was data in logInUser query');
-          console.log(res.rows, 'was res.rows in logInUser query');
+          // console.log(data.payload, 'was data.payload');
+          // console.log(res.rows, 'was res.rows in logInUser query');
+          // res.json({
+          //   user: data
+          // })
+          // console.log('res.json happened');
+          // dispatch(logInUserSuccess(data))
+          // logInUserSuccess(data)
           next()
         } else {
           res.status(401).json( {
