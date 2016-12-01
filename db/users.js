@@ -98,10 +98,13 @@ module.exports.logInUser = ( req, res, next /*pass the logInUserSuccess function
       //NOTE review mapDispatchToProps, new Promise, and how they're used in signInFormContainer and SignInForm in the tutorial
       .then( (data) => {
         if (bcrypt.compareSync(password, data.password_digest)) {
+
           res.rows = data
           console.log(data, 'was data in logInUser query');
+          // res.rows.password_digest = null;
+          delete res.rows.password_digest;
           // console.log(data.payload, 'was data.payload');
-          // console.log(res.rows, 'was res.rows in logInUser query');
+          console.log(res.rows, 'was res.rows in logInUser query');
           // res.json({
           //   user: data
           // })
