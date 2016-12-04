@@ -6,6 +6,7 @@ DROP TABLE if EXISTS toberead CASCADE;
 DROP TABLE if EXISTS haveread CASCADE;
 DROP TABLE if EXISTS currentlyreading CASCADE;
 
+-- maybe break each table up into a separate file so that i can label them "models"
 CREATE TABLE users (
   id SERIAL PRIMARY KEY UNIQUE,
   admin boolean,

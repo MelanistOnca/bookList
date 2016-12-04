@@ -11,9 +11,10 @@ const bodyParser = require('body-parser');
 // var booksRoute = require( path.join( __dirname, 'routes/books') );
 
 //api routes
-const apiRoute = require( path.join ( __dirname, 'routes/api'))
+// const apiRoute = require( path.join ( __dirname, 'routes/api'))
 const apiUsersRoute = require( path.join ( __dirname, 'routes/api/users'))
 const apiBooksRoute = require( path.join ( __dirname, 'routes/api/books'))
+const apiISBNDBRoute = require( path.join ( __dirname, 'routes/api/ISBNDB'))
 
 const app = express();
 
@@ -42,8 +43,8 @@ app.get('/', (req,res) => {
 })
 
 // api test
-app.use('/api', apiRoute)
-app.get('/api', apiRoute)
+// app.use('/api', apiRoute)
+// app.get('/api', apiRoute)
 
 // api for user actions
 app.use('/api/user', apiUsersRoute)
@@ -52,6 +53,10 @@ app.get('/api/user', apiUsersRoute)
 // api for book actions
 app.use('/api/book', apiBooksRoute)
 app.get('/api/book', apiBooksRoute)
+
+// api for ISBNDB actions
+app.use('/api/isbndb', apiISBNDBRoute)
+app.get('/api/isbndb', apiISBNDBRoute)
 
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'))

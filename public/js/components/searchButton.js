@@ -16,6 +16,14 @@ export default class SearchButton extends React.Component {
     console.log(props.searchTerm[0], 'was props.searchTerm[0] in same');
     console.log(props.updateSearchTerm, 'was props.updateSearchTerm in same');
     props.updateSearchTerm(props.searchTerm[0])
+
+    //MEGA NOTE
+    //MEGA NOTE
+    //MEGA NOTE
+     //migrate the ISBNdb api call to the db/isbndb.js file
+    //END OF MEGA NOTE
+    //END OF MEGA NOTE
+    //END OF MEGA NOTE
     //NOTE: also need to update search term when coming from the author book list button
     // **************
     //end of NOTE
