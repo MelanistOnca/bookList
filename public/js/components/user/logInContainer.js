@@ -1,3 +1,5 @@
+// NOTE i believe this is now redundant
+
 // import LogIn from './logIn.js';
 // import {
 //   logInUser,
