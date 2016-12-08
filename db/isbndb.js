@@ -94,18 +94,27 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
   }
   // reqCB()
   //  reqCB  ( req, res, next ) => {
-   function reqCB  ( req, res, next ) {
+  //  function reqCB  ( req, res, next ) {
     // db.___()
     // whatever ISBNdb wants me to do to get a result by ISBN
     // pgp(searchType). //this should be subsituting for the db. in, for example, users.
     // pgp(options[searchOptions.searchType])
+    console.log(next, 'was next in reqCB in db/isbndb.js');
     rp(options[searchOptions.searchType])
+      .catch( (err) => {
+        console.log(err, 'was err in db/isbndb getResultsFromSearch fn');
+        console.log(options, 'was options in .catch in same');
+        next()
+      })
       .then( (data) => {
         console.log(data, 'was data in db/isbndb getResultsFromSearch fn');
-        console.log(typeof data, 'was typeof data in db/isbndb getResultsFromSearch fn');
+        // console.log(typeof data, 'was typeof data in db/isbndb getResultsFromSearch fn');
+        res.rows = data;
+        // console.log(res.rows, 'was res.rows in same');
+        next()
       })
-  }
-  reqCB()
+  // }
+  // reqCB()
 
 }
 

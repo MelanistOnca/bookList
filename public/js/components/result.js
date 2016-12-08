@@ -9,7 +9,7 @@ export default class Result extends React.Component {
 
   render(){
 
-    // console.log(this.props, 'this.props in components/result.js');
+    console.log(this.props, 'this.props in components/result.js');
     // console.log(this.props.searchResults[0], 'was this.props.searchResults[0] in components/result.js');
     // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
         let resultsView = [];

@@ -79,17 +79,31 @@ export default class SearchButton extends React.Component {
       searchTerm,
       searchType
     }
-    console.log(options, 'was options in componets/searchButton', typeof options, 'was typeof options');
+    // console.log(options, 'was options in componets/searchButton', typeof options, 'was typeof options');
 
     // console.log(options.searchType, 'was options.searchType in same'); //returns undefined
-    console.log(searchType, 'was search type in searchClicked() componenets/searchButton.js');
+    // console.log(searchType, 'was search type in searchClicked() componenets/searchButton.js');
     // console.log(options[searchType], 'was options[searchType] in same');
 
     // console.log(options[searchType], 'was options[searchType] before rp() in components/searchFor.js');
     //need to see if i can add in a .something so that if a search fails (author?q=scalzi) it tries a more general search, i.e. authorS?q=scalzi
+    ///////////////
+    console.log('axios.post runs here');
+    const request = axios.post('api/isbndb', options) //may need to make the accompanying fields part of a form
+    request
+      .catch( (err) => {
+        console.log(err,'was err in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+      })
+      .then( (data) => {
+        console.log(data,'was data in the .then from the axios.post in searchClicked fn in components/searchButton.js');
 
-    axios.post('api/isbndb', options) //may need to make the accompanying fields part of a form
+        console.log(typeof data, 'was typeof in same');
 
+        console.log(data.data,'was data.data in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+        console.log(typeof data.data, 'was typeof in same');
+        props.receiveResults(data)
+        console.log('props.receiveResults(data) invoked above this line');
+      })
     // the rp section is moved to db/isbndb.js
     // rp(options[searchType])
     //   .then( (res) => {
