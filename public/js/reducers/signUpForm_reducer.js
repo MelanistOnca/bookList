@@ -16,7 +16,7 @@ function signUpForm(state=[], action){
 
   // console.log(action, 'was action in reducers/signUpForm_reducer');
 
-  switch(action.type){
+  switch(action.type){ 
 
     case "UPDATE_SIGNUP_F_NAME":
       return {

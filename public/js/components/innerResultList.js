@@ -37,10 +37,14 @@ export default class InnerResultList extends React.Component {
   //       console.log(err, 'was err in returnISBN() components/innerResultList.js');
   //     })
   // } //decided against pinging ISBNdb for each book of a given author. user can ping for title if they're interested in adding.
-
+  componentWillReceiveProps(nextProps){
+    console.log(this.props, 'was this.props in innerResultList componentWillReceiveProps');
+    console.log(nextProps, 'was nextProps in innerResultList componentWillReceiveProps');
+    this.props=nextProps;
+  }
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
-    // console.log(this.props, 'was this.props in components/innerResultList');
+    console.log(this.props, 'was this.props in components/innerResultList');
     // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
     // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');

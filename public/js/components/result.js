@@ -6,15 +6,29 @@ import InnerResultList from './innerResultList';
 
 export default class Result extends React.Component {
 
-
+  componentWillReceiveProps(nextProps){
+    console.log('componentWillReceiveProps ran');
+    console.log(this.props, 'this.props in componentWillReceiveProps');
+    console.log(nextProps, 'nextProps in componentWillReceiveProps');
+    // console.log(startingPoint, 'startingPoint in componentWillReceiveProps'); //this is undefined, which makes complete sense
+    // this.props = nextProps;
+  }
   render(){
 
     console.log(this.props, 'this.props in components/result.js');
+    console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
+    console.log(this.props.searchResults.data, 'was this.props.searchResults.data in components/result.js');
+    console.log(this.props.searchResults.data.data.result.data, 'was this.props.searchResults.data.data.result.data in components/result.js');
     // console.log(this.props.searchResults[0], 'was this.props.searchResults[0] in components/result.js');
-    // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
         let resultsView = [];
-        let startingPoint = this.props.searchResults ? this.props.searchResults[0].data :
-        'string'
+
+        // let startingPoint = this.props.searchResults ? this.props.searchResults[0].data :
+        // [{'key': 'value'}]; //dont think i can use startingPoint as a shortcut anymore, using my-API as the data source
+        // console.log(this.props.searchResults[0].data, 'was this.props.searchResults[0].data');
+        // console.log(startingPoint, ' was startingPoint');
+        // console.log(typeof startingPoint, 'was typeof startingPoint');
+        // console.log(startingPoint[0], 'was startingPoint[0]');
+        // NOTE this probably broke when i switched the results to come from my server rather than the live function call?
         // [{}] ; //undefined
         // [{"":""}] ; //undefined
         //is an array of objects when searching for "scalzi" as "authors"
@@ -22,8 +36,16 @@ export default class Result extends React.Component {
           // when searching for authorS (plural!) each object is an author who in some way matched the search critera
           // when searching for ISBN, it returns an array with a single object, startingPoint[0]. this object has book data.
 
+        // console.log(this.props.searchResults[0], 'was this.props.searchResults[0]'); //returns object. to get what i want in the my-API version, i need this to be .data.result.data
         // this.props.searchResults[0] ?
-        // console.log(Object.keys(startingPoint[0]), 'was Object.keys(startingPoint[0]) in components/result.js') : console.log('bullshit text');
+        // console.log('this.props.searchResults[0] true') : console.log('this.props.searchResults[0] false');
+        // let test = this.props.searchResults[0].data.result ? this.props.searchResults[0].data.result.data[0] : 'this.props.searchResults[0].data.result.data is false'
+        // console.log(test, 'was test', startingPoint[0], 'was startingPoint[0] after test'); //these should be the same. they are not. i think startingPoint is only being defined on initial render, and not updating once the ajax response comes through
+        //
+        // this.props.searchResults[0] ?
+        // console.log(Object.keys(startingPoint[0]), 'was Object.keys(startingPoint[0]) in components/result.js') :
+        // console.log('bullshit text');
+        console.log();
 
         //when results present on authorS (plural!) search, returns ["author_id", "name", "book_count", "dates", "book_ids", "category_ids", "last_name", "first_name", "subject_ids", "name_latin"] //these are the keys for the author object
 
@@ -37,7 +59,8 @@ export default class Result extends React.Component {
 
 
 
-        let spLength = startingPoint ? startingPoint.length : 0;
+        // let spLength = startingPoint ? startingPoint.length : 0;
+        let spLength = 6;
         // console.log(spLength, 'was spLength just after declaration in components/result.js');
 
         // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/result.js');
@@ -45,17 +68,19 @@ export default class Result extends React.Component {
 
         let stamp = new Date().getTime();
 
-        // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
+        console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
         // let identicalURIforTitleOrISBN = 'ISBN' || 'Title';
         //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
         switch(this.props.selectedSearchType[0]) {
           case 'Authors':
           // console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
           for(let i = 0; i < spLength ; i++){
+            console.log(this.props.searchResults.data[i], 'was this.props.searchResults.data[i] and maybe is the author object?');
+            console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in components/result.js');
             let uniqueStamp = `${i}${stamp}`;
-            let authorsBookTitleArray = startingPoint[i] ? startingPoint[i].book_ids : [] ; // ehhhhh
-            let authorsFirstName = startingPoint[i] ? startingPoint[i].first_name : '' ; // ehhhhh
-            let authorsLastName = startingPoint[i] ? startingPoint[i].last_name : '' ; // ehhhhh
+            let authorsBookTitleArray = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].book_ids : [] ; // ehhhhh
+            let authorsFirstName = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].first_name : '' ; // ehhhhh
+            let authorsLastName = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].last_name : '' ; // ehhhhh
             // console.log(spLength, 'spLength in for loop in components/result.js');
             resultsView.push(
 
@@ -70,8 +95,8 @@ export default class Result extends React.Component {
 
                 <InnerResultList
 
-                  matchedAuthor={startingPoint[i]}
-                  searchResult={this.props.searchResult}
+                  matchedAuthor={this.props.searchResults.data.data.result.data[i]}
+                  searchResult={this.props.searchResults.data.data.result.data}
                   receiveResults={this.props.receiveResults}
                   updateSearchType={this.props.updateSearchType}
                   selectedListKey={this.props.selectedListKey}
@@ -84,7 +109,7 @@ export default class Result extends React.Component {
             )
             // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Authors" case in  components/result.js');
           } //end of for-loop in 'Authors' case
-
+          console.log(resultsView, 'was resultsView before break; in Authors case');
           break;
           case 'Title' :
           // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
@@ -113,7 +138,9 @@ export default class Result extends React.Component {
             )
             // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
 
-          }
+          } //end of loop in "Title" case
+          console.log(resultsView, 'was resultsView before break; in Title case');
+          break; //derp
           case 'ISBN' :
           // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
@@ -143,7 +170,7 @@ export default class Result extends React.Component {
 
           }
 
-
+          console.log(resultsView, 'was resultsView before break; in ISBN case');
           break;
           case '' : //trying an or case above, which is ugly but effective here? hopefully. it did not work, only triggered on A when ( A || B ). duplicated code for 2 cases. SO BAAAAD
           // console.log(this.props.selectedSearchType, 'should be an empty string in "" case in components/result.js');
@@ -151,14 +178,14 @@ export default class Result extends React.Component {
           break;
           default:
 
-            // console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
+            console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
             // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in default case in components/result.js')
             // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in default case in components/result.js');
 
         } //end of switch
 
 
-
+        console.log(resultsView, 'was resultsView before return() in components/result.js');
 
         // let stamp = new Date().getTime();
         // let uniqueStamp = `${i}${stamp}`;
@@ -167,7 +194,7 @@ export default class Result extends React.Component {
     return(
       <div
         id="resultContainer">
-
+        results here
         {resultsView}
 
       </div>
