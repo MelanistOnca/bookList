@@ -74,7 +74,7 @@ export default class Result extends React.Component {
         switch(this.props.selectedSearchType[0]) {
           case 'Authors':
           // console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
-          for(let i = 0; i < spLength ; i++){
+          for(let i = 0; i < this.props.searchResults.data.data.result.data[i].length ; i++){
             console.log(this.props.searchResults.data[i], 'was this.props.searchResults.data[i] and maybe is the author object?');
             console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in components/result.js');
             let uniqueStamp = `${i}${stamp}`;
@@ -115,16 +115,21 @@ export default class Result extends React.Component {
           // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
           // let uniqueStamp = `${i}${stamp}`;
-          for(let i = 0; i < spLength ; i++){
+          console.log(this.props.searchResults.data.data.result.data[0],' was this.props.searchResults.data.data.result.data[0] copied from authors, in title');
+          console.log(this.props.searchResults.data.data.result.data[0].length,' was this.props.searchResults.data.data.result.data[0].length copied from authors, in title');
+          // console.log(this.props.searchResults.data.data.result.data[0], 'was this.props.searchResults.data.data.result.data[0] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
+          // console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
+          for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
+            let uniqueStamp = `${i}${stamp}`;
             resultsView.push(
               <div
-                key={stamp}
-                id={stamp}
+                key={uniqueStamp}
+                id={uniqueStamp}
                 className="searchResultSingle"
                 style={{"border":"solid 1px"}}
                 >
                 <InnerResultList
-                  matchedISBN={startingPoint[i]}
+                  matchedISBN={this.props.searchResults.data.data.result.data[i]}
                   searchResults={this.props.searchResults}
                   receiveResults={this.props.receiveResults}
                   updateSearchType={this.props.updateSearchType}
@@ -136,7 +141,7 @@ export default class Result extends React.Component {
 
               </div>
             )
-            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
+            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
 
           } //end of loop in "Title" case
           console.log(resultsView, 'was resultsView before break; in Title case');
@@ -145,16 +150,17 @@ export default class Result extends React.Component {
           // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
           // let i = 0;
           // let uniqueStamp = `${i}${stamp}`;
-          for(let i = 0; i < spLength ; i++){
+          for(let i = 0; i < this.props.searchResults.data.data.result.data[i].length ; i++){
+            let uniqueStamp = `${i}${stamp}`;
             resultsView.push(
               <div
-                key={stamp}
-                id={stamp}
+                key={uniqueStamp}
+                id={uniqueStamp}
                 className="searchResultSingle"
                 style={{"border":"solid 1px"}}
                 >
                 <InnerResultList
-                  matchedISBN={startingPoint[i]}
+                  matchedISBN={this.props.searchResults.data.data.result.data[i]}
                   searchResults={this.props.searchResults}
                   receiveResults={this.props.receiveResults}
                   updateSearchType={this.props.updateSearchType}
