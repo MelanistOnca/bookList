@@ -119,8 +119,18 @@ export default class InnerResultList extends React.Component {
       //   (this.props.matchedISBN !== undefined)
       // )
       //   ? (
-      let authorName =
-      this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : this.props.matchedISBN.name;
+      console.log();
+      let authorName = this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : 'No author creditted'
+      //NOTE start
+      // let authorName;
+      // if((this.props.matchedISBN.author_data)) {
+      //   authorName = 'No author creditted'
+      // } else{
+      //   authorName = this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : this.props.matchedISBN.name;
+      //   //i'm not entirely sure where i get the this.props.matchedISBN.name as a case from? it must have been a valid possibility for some search returns, but it does not appear on the book data i'm currently viewing.
+      // }
+      // // i feel like i could maybe replace the "this.props.matchedISBN.name" with the "no author creditted" string and remove the if/else construct. unless of course matchedISBN.name is not an error
+      // NOTE end: this block may need to be reimplemented if matchedISBN.name is a valid case
           readableArray.push(
             <div
               className={"bookFromISBN_Result"}
