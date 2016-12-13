@@ -21,8 +21,7 @@ export default class ToBeRead extends React.Component{
           listKey = {"toBeReadList"}
 
           />
-          <TestButton
-            />
+          
       </div>
     )
   }

@@ -8,10 +8,11 @@ export default class ListView extends React.Component {
 
   render(){
 
-    // console.log(this.props, 'this.props in components/listView.js');
+    console.log(this.props, 'this.props in components/listView.js');
     let key = this.props.listKey;
     // listKey is this.props.selectedListKey in components which actively choose a list, and is just a string with the appropriate key name in the "static" page lists
     //that is probably bad practice, but i don't think i can use "key" as a prop name, and it is descriptively super accurate being the key for the list, or the selected list key depending on an selection or static page.
+    //need to have the reading/toberead/finished component pages set the this.props.selectedListKey on load so that i can bypass the use of 'key' variable here
 
     // console.log(key,'key in components/listView.js');
 
@@ -35,6 +36,7 @@ export default class ListView extends React.Component {
         let uniqueStamp = `${i}${stamp}`;
         listDisplay.push(
           <SingleBook
+            {...this.props}
             key = {uniqueStamp}
             id = {uniqueStamp}
             title={thisBook.title}

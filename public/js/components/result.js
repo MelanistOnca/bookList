@@ -6,19 +6,19 @@ import InnerResultList from './innerResultList';
 
 export default class Result extends React.Component {
 
-  componentWillReceiveProps(nextProps){
-    console.log('componentWillReceiveProps ran');
-    console.log(this.props, 'this.props in componentWillReceiveProps');
-    console.log(nextProps, 'nextProps in componentWillReceiveProps');
-    // console.log(startingPoint, 'startingPoint in componentWillReceiveProps'); //this is undefined, which makes complete sense
-    // this.props = nextProps;
-  }
+  // componentWillReceiveProps(nextProps){
+  //   console.log('componentWillReceiveProps ran');
+  //   console.log(this.props, 'this.props in componentWillReceiveProps');
+  //   console.log(nextProps, 'nextProps in componentWillReceiveProps');
+  //   // console.log(startingPoint, 'startingPoint in componentWillReceiveProps'); //this is undefined, which makes complete sense
+  //   // this.props = nextProps;
+  // }
   render(){
 
     console.log(this.props, 'this.props in components/result.js');
-    console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
-    console.log(this.props.searchResults.data, 'was this.props.searchResults.data in components/result.js');
-    console.log(this.props.searchResults.data.data.result.data, 'was this.props.searchResults.data.data.result.data in components/result.js');
+    // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
+    // console.log(this.props.searchResults.data, 'was this.props.searchResults.data in components/result.js');
+    // console.log(this.props.searchResults.data.data.result.data, 'was this.props.searchResults.data.data.result.data in components/result.js');
     // console.log(this.props.searchResults[0], 'was this.props.searchResults[0] in components/result.js');
         let resultsView = [];
 
@@ -68,7 +68,7 @@ export default class Result extends React.Component {
 
         let stamp = new Date().getTime();
 
-        console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
+        // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
         // let identicalURIforTitleOrISBN = 'ISBN' || 'Title';
         //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
         switch(this.props.selectedSearchType[0]) {
@@ -93,21 +93,25 @@ export default class Result extends React.Component {
                 <p>{authorsFirstName} {authorsLastName}</p>
                 <p>(use the Title selection to search for a book and add to your list)</p>
 
-                <InnerResultList
-
-                  matchedAuthor={this.props.searchResults.data.data.result.data[i]}
-                  searchResult={this.props.searchResults.data.data.result.data}
-                  receiveResults={this.props.receiveResults}
-                  updateSearchType={this.props.updateSearchType}
-                  selectedListKey={this.props.selectedListKey}
-                  updateSearchTerm={this.props.updateSearchTerm}
-                  addToList={this.props.addToList}
-                  removeFromList={this.props.removeFromList}
-                  />
+              <InnerResultList
+                {...this.props}
+                matchedISBN={this.props.searchResults.data.data.result.data[i]}
+                />
 
               </div>
             )
             // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Authors" case in  components/result.js');
+            // <InnerResultList
+            //
+            //   matchedAuthor={this.props.searchResults.data.data.result.data[i]}
+            //   searchResult={this.props.searchResults.data.data.result.data}
+            //   receiveResults={this.props.receiveResults}
+            //   updateSearchType={this.props.updateSearchType}
+            //   selectedListKey={this.props.selectedListKey}
+            //   updateSearchTerm={this.props.updateSearchTerm}
+            //   addToList={this.props.addToList}
+            //   removeFromList={this.props.removeFromList}
+            //   />
           } //end of for-loop in 'Authors' case
           console.log(resultsView, 'was resultsView before break; in Authors case');
           break;
@@ -130,21 +134,24 @@ export default class Result extends React.Component {
                 className="searchResultSingle"
                 style={{"border":"solid 1px"}}
                 >
-                <InnerResultList
-                  matchedISBN={this.props.searchResults.data.data.result.data[i]}
-                  searchResults={this.props.searchResults}
-                  receiveResults={this.props.receiveResults}
-                  updateSearchType={this.props.updateSearchType}
-                  selectedListKey={this.props.selectedListKey}
-                  updateSearchTerm={this.props.updateSearchTerm}
-                  addToList={this.props.addToList}
-                  removeFromList={this.props.removeFromList}
-                  />
+              <InnerResultList
+                {...this.props}
+                matchedISBN={this.props.searchResults.data.data.result.data[i]}
+                />
 
               </div>
             )
             console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
-
+            // <InnerResultList
+            //   matchedISBN={this.props.searchResults.data.data.result.data[i]}
+            //   searchResults={this.props.searchResults}
+            //   receiveResults={this.props.receiveResults}
+            //   updateSearchType={this.props.updateSearchType}
+            //   selectedListKey={this.props.selectedListKey}
+            //   updateSearchTerm={this.props.updateSearchTerm}
+            //   addToList={this.props.addToList}
+            //   removeFromList={this.props.removeFromList}
+            //   />
           } //end of loop in "Title" case
           console.log(resultsView, 'was resultsView before break; in Title case');
           break; //derp
@@ -162,20 +169,24 @@ export default class Result extends React.Component {
                 style={{"border":"solid 1px"}}
                 >
                 <InnerResultList
+                  {...this.props}
                   matchedISBN={this.props.searchResults.data.data.result.data[i]}
-                  searchResults={this.props.searchResults}
-                  receiveResults={this.props.receiveResults}
-                  updateSearchType={this.props.updateSearchType}
-                  selectedListKey={this.props.selectedListKey}
-                  updateSearchTerm={this.props.updateSearchTerm}
-                  addToList={this.props.addToList}
-                  removeFromList={this.props.removeFromList}
                   />
+
 
               </div>
             )
             // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
-
+            // <InnerResultList
+            //   matchedISBN={this.props.searchResults.data.data.result.data[i]}
+            //   searchResults={this.props.searchResults}
+            //   receiveResults={this.props.receiveResults}
+            //   updateSearchType={this.props.updateSearchType}
+            //   selectedListKey={this.props.selectedListKey}
+            //   updateSearchTerm={this.props.updateSearchTerm}
+            //   addToList={this.props.addToList}
+            //   removeFromList={this.props.removeFromList}
+            //   />
           }
 
           console.log(resultsView, 'was resultsView before break; in ISBN case');

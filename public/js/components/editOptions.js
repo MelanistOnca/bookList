@@ -8,7 +8,7 @@ export default class EditOptions extends React.Component {
   // this.props.bookId //this should be a title with underscores for spaces
 
   //i can probably consolodate the add and remove functions into a single function since i'm passing in the appropriate function when this is called.
-  addToList( list, bookId, addFn, e) {
+  addToList( list, bookId, user, addFn, e) {
 
     // console.log('addToList called');
     // console.log(event, 'was event');
@@ -16,12 +16,16 @@ export default class EditOptions extends React.Component {
     //
     // console.log(list[0], 'was list[0] in addToList components/editOptions.js');
     // console.log(bookId, 'was bookId in addToList components/editOptions.js');
+    console.log(user, 'was user in addToList components/editOptions.js');
+    console.log(user.user, 'was user.user in addToList components/editOptions.js');
+    console.log('//////////////////////');
     // console.log(addFn, 'was addFn in addToList components/editOptions.js');
     e.preventDefault();
     // console.log(e, 'was e after .preventDefault()');
     let fnArg = {
       list: list[0],
-      book: bookId
+      book: bookId,
+      user: user.user
     }
 
     // window.alert('test alert')
@@ -29,6 +33,10 @@ export default class EditOptions extends React.Component {
       window.alert('Please select a list from the "Edit List:" dropdown')
       //NOTE this doesn't seem to work if someone selects a list then changes back to the "select" dropdown.
       //NOTE the RE NOTE-ening: i had to make the list[0]=== check for a STRING of undefined. this seems shitty, but it works.
+      return
+    }
+    if( (user.user.id==='') ) {
+      window.alert('Please log in before adding a book to a list')
       return
     }
     console.log('log AFTER the winow.alert'); //this does fire, but not until after the alert is acknowledged.
@@ -56,7 +64,7 @@ export default class EditOptions extends React.Component {
       // console.log(event, 'was event',this.props.selectedListKey, 'was this.props.selectedListKey', this.props.isbn13, 'was this.props.isbn13', this.props.addToList, 'was this.props.addToList');
           listButton =
           <button
-          onClick={this.addToList.bind(event, this.props.selectedListKey,this.props.matchedISBN,this.props.addToList)}
+          onClick={this.addToList.bind(event, this.props.selectedListKey, this.props.matchedISBN, this.props.user, this.props.addToList)}
             >
             Add to list
           </button>;
@@ -66,7 +74,7 @@ export default class EditOptions extends React.Component {
 
           listButton =
           <button
-            onClick={this.removeFromList.bind(event, this.props.selectedListKey, this.props.matchedISBN )}
+            onClick={this.removeFromList.bind(event, this.props.selectedListKey, this.props.matchedISBN, this.props.user )}
             >
             Remove from list
           </button>

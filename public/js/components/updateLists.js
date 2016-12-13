@@ -33,11 +33,10 @@ export default class UpdateList extends React.Component {
     const event = window.event;
     return(
       <div id="updateListsContainer">
-
         <Selector
-          selectList={this.props.selectList}
-          selectedListKey={this.props.selectedListKey}
+          {...this.props}
           />
+
 
         {/*
         <form>
@@ -57,20 +56,32 @@ export default class UpdateList extends React.Component {
         */}
 
         <Selected
-          selectedListKey={this.props.selectedListKey}
-          listCollection={this.props.listCollection}
-          searchTerm={this.props.searchTerm}
-          updateSearchTerm={this.props.updateSearchTerm}
-          searchType={this.props.searchType}
-          updateSearchType={this.props.updateSearchType}
-          selectedSearchType={this.props.selectedSearchType}
-          searchResults={this.props.searchResults}
-          receiveResults={this.props.receiveResults}
-          addToList={this.props.addToList}
-          removeFromList={this.props.removeFromList}
+          {...this.props}
           />
+
 
       </div>
     )
+
+    // <Selector
+    //   selectList={this.props.selectList}
+    //   selectedListKey={this.props.selectedListKey}
+    //   />
+
+    ///////
+
+    // <Selected
+    //   selectedListKey={this.props.selectedListKey}
+    //   listCollection={this.props.listCollection}
+    //   searchTerm={this.props.searchTerm}
+    //   updateSearchTerm={this.props.updateSearchTerm}
+    //   searchType={this.props.searchType}
+    //   updateSearchType={this.props.updateSearchType}
+    //   selectedSearchType={this.props.selectedSearchType}
+    //   searchResults={this.props.searchResults}
+    //   receiveResults={this.props.receiveResults}
+    //   addToList={this.props.addToList}
+    //   removeFromList={this.props.removeFromList}
+    //   />
   }
 }

@@ -38,10 +38,13 @@ module.exports.getList = ( req, res, next ) => {
   //       console.log(error, 'was error in db.one(getList) in /db/lists.js');
   //     })
 }
-function insertToJoin(book, list, user) {
+function insertToJoin(user, book, list ) {
   console.log(book, 'was book in insertToJoin()', typeof book, 'was typeof for same');
   console.log(list, 'was list in insertToJoin()', typeof list, 'was typeof for same');
   console.log(user, 'was user in insertToJoin()', typeof user, 'was typeof for same');
+  // if( (user.id==='') ) {
+  //   return 'this is probably where i should throw an error' //or maybe require a user value on the front end before running the function?
+  // } //added a check on front end, would probably want one somewhere on backend too for safety.
   let lowerCaseList = list.toLowerCase();
   db.any("INSERT INTO $1 (user_id, book_id) VALUES ($2, $3);", [lowerCaseList, user.id, book.id])
     .then( () => {
@@ -49,7 +52,7 @@ function insertToJoin(book, list, user) {
     })
 
 }
-function checkForBook( book, list, next ) {
+function checkForBook( user, book, list, next ) {
   console.log(book.isbnString, 'was book.isbnString in checkForBook()');
   db.one("SELECT * FROM books WHERE isbn13=$1", [book.isbnString])
     .catch( (err) => { //this means book was NOT found
@@ -59,7 +62,7 @@ function checkForBook( book, list, next ) {
       //can i do a .then() in here to add the book to the list?
         .then( (data) => {
           console.log(data, 'was data in the interior .then() inside checkForBook() in db/lists');
-          insertToJoin(/*book, list*/)
+          insertToJoin(user, book, list)
           next()
         })
       next()
@@ -67,7 +70,7 @@ function checkForBook( book, list, next ) {
     .then( (bookData) => { // this means book was found
       console.log(bookData, 'was bookData in checkForBook'); //bookData picks up the bookId here
       // res.rows = data;
-      insertToJoin(bookData, list)
+      insertToJoin(user, bookData, list)
       next()
     })
 }
@@ -99,6 +102,8 @@ module.exports.addToList = ( req, res, next ) => {
   console.log(title, 'was title'); //logs Old man's war was title
   let publisher = req.body.book.publisher_name
   console.log(publisher, 'was publisher'); //logs Tor was publisher
+  let user = req.body.user
+  console.log(user, 'was user');
   let book = {
     isbnString,
     title,
@@ -108,7 +113,7 @@ module.exports.addToList = ( req, res, next ) => {
   let list = req.body.list
   console.log(list, 'was list'); //logs toBeReadList was list
 
-  checkForBook(book, list, next);
+  checkForBook(user, book, list, next);
 
   // next()
   // if yes, proceed

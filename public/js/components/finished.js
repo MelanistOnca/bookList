@@ -18,6 +18,7 @@ export default class Finished extends React.Component{
         <ListView
           listCollection = {this.props.listCollection}
           listKey = {"haveReadList"}
+          {...this.props}
 
           />
       </div>

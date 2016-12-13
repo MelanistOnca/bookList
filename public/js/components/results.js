@@ -45,18 +45,21 @@ export default class Results extends React.Component {
         {/*<ListView
 
           />*/}
+        <Result
+          {...this.props}
+          />
 
-          <Result
-            selectedSearchType={this.props.selectedSearchType}
-            searchResults={this.props.searchResults}
-            receiveResults={this.props.receiveResults}
-            updateSearchType={this.props.updateSearchType}
-            updateSearchTerm={this.props.updateSearchTerm}
-            selectedListKey={this.props.selectedListKey}
-            addToList={this.props.addToList}
-            removeFromList={this.props.removeFromList}
-            />
       </div>
     )
+    // <Result
+    //   selectedSearchType={this.props.selectedSearchType}
+    //   searchResults={this.props.searchResults}
+    //   receiveResults={this.props.receiveResults}
+    //   updateSearchType={this.props.updateSearchType}
+    //   updateSearchTerm={this.props.updateSearchTerm}
+    //   selectedListKey={this.props.selectedListKey}
+    //   addToList={this.props.addToList}
+    //   removeFromList={this.props.removeFromList}
+    //   />
   }
 }

@@ -19,23 +19,35 @@ export default class Selected extends React.Component {
     return(
       <div id = "selectedListKeyContainer">
         <SearchFor
-          updateSearchTerm={this.props.updateSearchTerm}
-          searchTerm={this.props.searchTerm}
-          updateSearchType={this.props.updateSearchType}
-          searchType={this.props.searchType}
-          selectedSearchType={this.props.selectedSearchType}
-          searchResults={this.props.searchResults}
-          receiveResults={this.props.receiveResults}
-          selectedListKey={this.props.selectedListKey}
-          addToList={this.props.addToList}
-          removeFromList={this.props.removeFromList}
+          {...this.props}
           />
+
         <p>{listTitle}</p>
         <ListView
+          {...this.props}
           listKey={this.props.selectedListKey}
-          listCollection={this.props.listCollection}
           />
+
       </div>
     )
+    // <SearchFor
+    //   updateSearchTerm={this.props.updateSearchTerm}
+    //   searchTerm={this.props.searchTerm}
+    //   updateSearchType={this.props.updateSearchType}
+    //   searchType={this.props.searchType}
+    //   selectedSearchType={this.props.selectedSearchType}
+    //   searchResults={this.props.searchResults}
+    //   receiveResults={this.props.receiveResults}
+    //   selectedListKey={this.props.selectedListKey}
+    //   addToList={this.props.addToList}
+    //   removeFromList={this.props.removeFromList}
+    //   />
+
+    ///////
+
+    // <ListView
+    //   listKey={this.props.selectedListKey}
+    //   listCollection={this.props.listCollection}
+    //   />
   }
 }

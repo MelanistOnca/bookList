@@ -23,7 +23,7 @@ export default class Reading extends React.Component{
         <ListView
           listCollection = {this.props.listCollection}
           listKey = {"currentlyReadingList"}
-
+          {...this.props}
           />
       </div>
     )

@@ -128,28 +128,38 @@ export default class SearchFor extends React.Component {
             />
 
           <SearchButton
-            selectedSearchType={this.props.selectedSearchType}
-            searchTerm={this.props.searchTerm}
-            receiveResults={this.props.receiveResults}
-            updateSearchType={this.props.updateSearchType}
-            updateSearchTerm={this.props.updateSearchTerm}
-            addToList={this.props.addToList}
-            removeFromList={this.props.removeFromList}
+            {...this.props}
             />
+
         </form>
 
-
         <Result
-          selectedSearchType={this.props.selectedSearchType}
-          searchResults={this.props.searchResults}
-          receiveResults={this.props.receiveResults}
-          updateSearchType={this.props.updateSearchType}
-          selectedListKey={this.props.selectedListKey}
-          updateSearchTerm={this.props.updateSearchTerm}
-          addToList={this.props.addToList}
-          removeFromList={this.props.removeFromList}
+          {...this.props}
           />
+
       </div>
     )
+    // <SearchButton
+    //   selectedSearchType={this.props.selectedSearchType}
+    //   searchTerm={this.props.searchTerm}
+    //   receiveResults={this.props.receiveResults}
+    //   updateSearchType={this.props.updateSearchType}
+    //   updateSearchTerm={this.props.updateSearchTerm}
+    //   addToList={this.props.addToList}
+    //   removeFromList={this.props.removeFromList}
+    //   />
+
+    ///////
+
+    // <Result
+    //   selectedSearchType={this.props.selectedSearchType}
+    //   searchResults={this.props.searchResults}
+    //   receiveResults={this.props.receiveResults}
+    //   updateSearchType={this.props.updateSearchType}
+    //   selectedListKey={this.props.selectedListKey}
+    //   updateSearchTerm={this.props.updateSearchTerm}
+    //   addToList={this.props.addToList}
+    //   removeFromList={this.props.removeFromList}
+    //   />
   }
 }

@@ -28,6 +28,7 @@ export default class SingleBook extends React.Component {
         <p>Author : {this.props.author}</p>
         <p>Genre : {this.props.genre}</p>
         <EditOptions
+          {...this.props}
           />
 
       </div>

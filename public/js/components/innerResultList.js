@@ -151,17 +151,23 @@ export default class InnerResultList extends React.Component {
               </ul>
               <button>theoretical button to add to list. need to request selected list to make it work.</button>
               <EditOptions
+                {...this.props}
                 addOrRemoveButton={'add'}
-                matchedISBN={this.props.matchedISBN}
-                selectedListKey={this.props.selectedListKey}
-                addToList={this.props.addToList}
-                removeFromList={this.props.removeFromList}
                 />
+
 
             </div>
           )
       // )
       // : console.log('matchedISBN did not exist');
+      //testing {...this.props}
+      // <EditOptions
+      //   addOrRemoveButton={'add'}
+      //   matchedISBN={this.props.matchedISBN}
+      //   selectedListKey={this.props.selectedListKey}
+      //   addToList={this.props.addToList}
+      //   removeFromList={this.props.removeFromList}
+      //   />
     } //end of matchedISBN if statement
     // <SearchButton
     //   receiveResults={this.props.receiveResults}
