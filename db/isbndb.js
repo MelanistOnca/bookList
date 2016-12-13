@@ -107,10 +107,23 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
         next()
       })
       .then( (data) => {
-        console.log(data, 'was data in db/isbndb getResultsFromSearch fn');
+        // console.log(data, 'was data in db/isbndb getResultsFromSearch fn');
         // console.log(typeof data, 'was typeof data in db/isbndb getResultsFromSearch fn');
-        res.rows = data;
+        if (data.author_data===undefined){
+          res.rows = data;
+          // console.log(res.rows, 'was res.rows before author_data shennanigans');
+          res.rows.data[0].author_data = [
+            {
+              "name": 'No author creditted - notice courtesy of bookList team'
+            }
+          ]
+          // console.log(res.rows, 'was res.rows after shennanigans');
+        } else {
+          res.rows = data;
+        }
+
         // console.log(res.rows, 'was res.rows in same');
+        // console.log(res.rows.data, 'was res.rows.data in same');
         next()
       })
   // }

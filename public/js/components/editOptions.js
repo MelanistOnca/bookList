@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-
+import axios from 'axios';
 
 export default class EditOptions extends React.Component {
   //props passed to this component include:
@@ -14,21 +14,27 @@ export default class EditOptions extends React.Component {
     // console.log(event, 'was event');
     // console.log(e, 'was e in addToList components/editOptions.js');
     //
-    // console.log(list, 'was list in addToList components/editOptions.js');
+    // console.log(list[0], 'was list[0] in addToList components/editOptions.js');
     // console.log(bookId, 'was bookId in addToList components/editOptions.js');
     // console.log(addFn, 'was addFn in addToList components/editOptions.js');
     e.preventDefault();
     // console.log(e, 'was e after .preventDefault()');
-    let fnArg = [list[0],bookId]
+    let fnArg = {
+      list: list[0],
+      book: bookId
+    }
 
     // window.alert('test alert')
     if( (list[0]==="undefined")||!list[0] ) {
       window.alert('Please select a list from the "Edit List:" dropdown')
       //NOTE this doesn't seem to work if someone selects a list then changes back to the "select" dropdown.
       //NOTE the RE NOTE-ening: i had to make the list[0]=== check for a STRING of undefined. this seems shitty, but it works.
+      return
     }
     console.log('log AFTER the winow.alert'); //this does fire, but not until after the alert is acknowledged.
-    addFn(fnArg); //only registered first param. means i need to include list and bookId in a single object.
+    console.log(fnArg, 'was fnArg before addFn() call in addToList() components/editOptions.js');
+    addFn(fnArg); //only registered first param. means i need to include list and bookId in a single object. //NOTE//this only updates on store-side, does not interact with DB. i guess i need to either add an axios.put here to update the list or have that happen in the reducer?
+    axios.post('/api/users/list', fnArg)
 
   }
   removeFromList(list, bookId, rmvFn, e) {
@@ -41,7 +47,7 @@ export default class EditOptions extends React.Component {
   }
 
   render(){
-
+    console.log(this.props, 'was this.props in components/editOptions.js render()');
     let listButton;
     let event = window.event;
     switch(this.props.addOrRemoveButton) {

@@ -1,7 +1,7 @@
 
 function searchResults(state=[],action) {
-  console.log(state, 'was state in reducers/searchResults');
-  console.log(action, 'was action in reducers/searchResults');
+  // console.log(state, 'was state in reducers/searchResults');
+  // console.log(action, 'was action in reducers/searchResults');
   switch(action.type){
     case 'RECEIVE_RESULTS':
 

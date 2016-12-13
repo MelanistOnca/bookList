@@ -36,7 +36,7 @@ class LogIn extends React.Component {
     console.log(logInSuccessFn, 'was logInSuccessFn passed to submitInfo');
     console.log(logInFormData, 'was form data passed to submitInfo');
     e.preventDefault();
-    const request = axios.post('api/user/login',logInFormData)
+    const request = axios.post('api/users/login',logInFormData)
     //NOTE use axios from logInUser in actions/user.js to access the request .then data.data to update the user store
 
     request

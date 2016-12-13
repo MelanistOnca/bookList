@@ -5,7 +5,7 @@ INSERT INTO users ( id, admin, f_name, m_name, l_name, email, username, password
 INSERT INTO users ( id, admin, f_name, m_name, l_name, email, username, password_digest ) values (2, false, 'secondy', 'centery', 'finally', 'abbity@babbity.com', 'fiftieth user', 'alsoNotACTUALLYaDigest2355w');
 
 --book seeds
-INSERT INTO books ( id, isbn13, title, publisher ) values ( 2, '1234567890987', 'GENERIC TITLE', 'Paid in exposure publishing');
+INSERT INTO books ( id, isbn13, title, publisher ) values ( 99, '1234567890987', 'GENERIC TITLE', 'Paid in exposure publishing');
 
 INSERT INTO books ( id, isbn13, title, publisher ) values ( 320, '0987654321123', 'NON GENERIC TITLE', 'fuck Paid in exposure publishing');
 

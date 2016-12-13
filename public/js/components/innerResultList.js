@@ -38,16 +38,17 @@ export default class InnerResultList extends React.Component {
   //     })
   // } //decided against pinging ISBNdb for each book of a given author. user can ping for title if they're interested in adding.
   componentWillReceiveProps(nextProps){
-    console.log(this.props, 'was this.props in innerResultList componentWillReceiveProps');
-    console.log(nextProps, 'was nextProps in innerResultList componentWillReceiveProps');
-    this.props=nextProps;
+    // console.log(this.props, 'was this.props in innerResultList componentWillReceiveProps');
+    // console.log(nextProps, 'was nextProps in innerResultList componentWillReceiveProps');
+    // this.props=nextProps;
   }
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
-    console.log(this.props, 'was this.props in components/innerResultList');
+    console.log(this.props, 'was this.props in components/innerResultList in render()');
     // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
     // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');
+    console.log(this.props.addToList, 'was this.props.addToList in components/innerResultList in render()');
     let readableArray = [];
     let stamp = new Date().getTime();
 
@@ -120,7 +121,10 @@ export default class InnerResultList extends React.Component {
       // )
       //   ? (
       console.log();
-      let authorName = this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : 'No author creditted'
+      let authorName = this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : 'No author creditted'; //this is here to
+
+
+      // let authorName = this.props.matchedISBN.author_data ? (this.props.matchedISBN.author_data[0] ? this.props.matchedISBN.author_data[0].name : 'No author creditted') : 'No author creditted';
       //NOTE start
       // let authorName;
       // if((this.props.matchedISBN.author_data)) {

@@ -41,7 +41,7 @@ export function resetToken() {
 
 export function signUpUser(formData) {
   // more axios
-  const request = axios.post(`api/user/signup`, formData);
+  const request = axios.post(`api/users/signup`, formData);
   // WELL?!??! HAVE YOU LOOKED INTO IT YET?
   console.log('signUpUser in actions/user.js called');
   console.log(formData, 'was formData in actions/user.js');
@@ -78,11 +78,11 @@ export function resetUser() {
 export function logInUser(formData) {
   // this shit again
   // const request = axios.post(`${ROOT_URL}/users/signin`, formValues);
-  const request = axios.post('api/user/login',formData)
+  const request = axios.post('api/users/login',formData)
 
 
   console.log('logInUser in actions/user.js called');
-  // 
+  //
   // console.log(formData, 'was formData in actions/user.js');
   // console.log(formData.username, 'was formData.username in actions/user.js');
   // console.log(formData.password, 'was formData.password in actions/user.js');

@@ -47,8 +47,8 @@ app.get('/', (req,res) => {
 // app.get('/api', apiRoute)
 
 // api for user actions
-app.use('/api/user', apiUsersRoute)
-app.get('/api/user', apiUsersRoute)
+app.use('/api/users', apiUsersRoute)
+app.get('/api/users', apiUsersRoute)
 
 // api for book actions
 app.use('/api/book', apiBooksRoute)

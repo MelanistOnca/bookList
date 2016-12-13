@@ -19,7 +19,7 @@ CREATE TABLE users (
 );
 CREATE TABLE books (
   id SERIAL PRIMARY KEY UNIQUE,
-  isbn13 varchar(13),
+  isbn13 varchar(13), -- may want to make this UNIQUE as well
   title varchar(30),
   publisher varchar(80)
   -- author FORMAT_OF_REFERENCED_FIELD references authors(FIELD FROM authors TABLE)
