@@ -50,6 +50,7 @@ router
   // .post('/signup', /* ?? , */ notImplement)
   .post('/signup', user_fns.createUser) //generates a 404 somewhere along the way, even when successfully making an entry in user table //you should probably figure out why, but it works for now.
 
+
 // :3003/api/users/list
 router
   .get('/list', notImplement)
@@ -57,5 +58,13 @@ router
   .post('/list', list_fns.addToList, (req,res) => {
     res.json( { data: res.rows})
   }) //this is not a put since we are adding an entry to a join table
+
+// janky route used for list retrieval shennanigans
+router
+  .get('/:uID/list/:lID', list_fns.getList, (req,res) => {
+    //tbr list = 1, cr list = 2, hr list =3
+    console.log('list_fns.getList fired');
+    res.json( { data: res.rows})
+  })
 
 module.exports = router;

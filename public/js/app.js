@@ -21,6 +21,7 @@ import Nav from './components/nav';
 import SignUp from './components/user/signUp';
 import LogIn from './components/user/logIn';
 import Placeholder from './components/placeholder';
+import BasicList from './components/basicList';
 
 
 //redux stuff
@@ -50,15 +51,17 @@ render(
             {Placeholder} is an empty div but gets the site to not shoot errors and has this.props.children acting "correctly"
           */}
           <IndexRoute component={Placeholder}/>
-          <Route path="/reading" component={Reading}
+          <Route path="/reading" component={BasicList}
             />
-          <Route path="/toberead" component={ToBeRead}/>
-          <Route path="/finished" component={Finished}/>
+          <Route path="/toberead" component={BasicList}/>
+          <Route path="/finished" component={BasicList}/>
           <Route path="/updatelists" component={UpdateLists}/>
           <Route path="/signup"
             component={SignUp}/>
           <Route path="/login"
             component={LogIn}/>
+          <Route path="/basicList"
+            component={BasicList}/>
           {/*
             catch-all route
           */}

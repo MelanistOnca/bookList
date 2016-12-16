@@ -25,7 +25,6 @@ export default class Selected extends React.Component {
         <p>{listTitle}</p>
         <ListView
           {...this.props}
-          listKey={this.props.selectedListKey}
           />
 
       </div>
@@ -48,6 +47,11 @@ export default class Selected extends React.Component {
     // <ListView
     //   listKey={this.props.selectedListKey}
     //   listCollection={this.props.listCollection}
+    //   />
+
+    // <ListView
+    //   {...this.props}
+    //   listKey={this.props.selectedListKey}
     //   />
   }
 }

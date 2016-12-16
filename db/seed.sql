@@ -17,7 +17,11 @@ INSERT INTO authors ( id, full_name ) values ( 5, 'kate elliot' );
 
 --toberead seeds
 
-INSERT INTO toberead (user_id, book_id) values ( 1,2 );
+INSERT INTO toberead (user_id, book_id) values ( 1,99 );
+INSERT INTO toberead (user_id, book_id) values ( 1,320 );
+-- INSERT INTO toberead (user_id, book_id) VALUES (8, 320);
+-- INSERT INTO toberead (user_id, book_id) VALUES (8, 5);
+-- INSERT INTO toberead (user_id, book_id) VALUES (8, 2);
 
 --haveread seeds
 
@@ -26,4 +30,4 @@ INSERT INTO haveread (user_id, book_id) values ( 2, 320 );
 --currentlyreading seeds
 
 INSERT INTO currentlyreading (user_id, book_id) values ( 1, 320 );
-INSERT INTO currentlyreading (user_id, book_id) values ( 2,2 );
+INSERT INTO currentlyreading (user_id, book_id) values ( 2,99 );

@@ -43,10 +43,10 @@ export default class Selector extends React.Component{
             <option value="undefined">Select</option>
             <option value="toBeReadList">
               To Be Read List</option>
-            <option value="haveReadList">
-              Have Read List</option>
             <option value="currentlyReadingList">
               Currently Reading List</option>
+            <option value="haveReadList">
+              Have Read List</option>
           </select>
         </form>
       </div>

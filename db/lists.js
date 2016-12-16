@@ -27,16 +27,51 @@ module.exports.getList = ( req, res, next ) => {
 
   //get list of books based on the particular list type and user
   // params of user and list type
+  console.log(req.body, 'was req.body');
+  console.log(req.params, 'was req.params');
+  // console.log(req.params.uid, 'was req.params.uid');
+  console.log(req.params.uID, 'was req.params.uID');
+  console.log(req.params.lID, 'was req.params.lID');
+  //tbr=1, cr=2, hr=3
+  let user_id = parseInt(req.params.uID);
+  let listDB_name;
+  switch (req.params.lID) {
+    case '1':
+      listDB_name = "toberead"
+
+    break;
+    case '2':
+      listDB_name = "currentlyreading"
+
+    break;
+    case '3':
+      listDB_name = "haveread"
+
+    break;
+    default:
+      console.log(req.params.lID, 'was req.params.lID and did not match switch cases. probably "Select"');
+
+  }
 
 //get list should return the list
-  // db.one(getList) //promise for list
-  //     .then(list => {
-  //       //list found
-  //     })
-  //     .catch(error => {
-  //       //error found
-  //       console.log(error, 'was error in db.one(getList) in /db/lists.js');
-  //     })
+
+  db.any("SELECT * FROM $1~ WHERE user_id = $2;", [listDB_name, user_id]) //promise for list
+      .then( (list) => {
+        //list found
+        console.log(list, 'was list in db.one(/*find list SQL expression*/) in db/lists getList fn');
+        // list.push(listDB_name);
+        // NOTE look at your user encapsulation to see if you can figure out why the res.rows.listName thing isn't working below
+        res.rows = list;
+        // res.rows.listName = listDB_name;
+        console.log(res.rows, 'was res.rows in db.one(/*find list SQL expression*/) in db/lists getList fn');
+        next();
+      })
+      .catch( (error) => {
+        //error found
+        console.log(error, 'was error in db.one(/*find list SQL expression*/) in /db/lists.js getList fn');
+        console.log(listDB_name, user_id, 'was listDB_name, user_id');
+        next();
+      })
 }
 function insertToJoin(user, book, list ) {
   console.log(book, 'was book in insertToJoin()', typeof book, 'was typeof for same');
@@ -45,8 +80,10 @@ function insertToJoin(user, book, list ) {
   // if( (user.id==='') ) {
   //   return 'this is probably where i should throw an error' //or maybe require a user value on the front end before running the function?
   // } //added a check on front end, would probably want one somewhere on backend too for safety.
-  let lowerCaseList = list.toLowerCase();
-  db.any("INSERT INTO $1 (user_id, book_id) VALUES ($2, $3);", [lowerCaseList, user.id, book.id])
+  let lowerCaseList = list.slice(0,-4).toLowerCase();
+  console.log(lowerCaseList, 'was lowerCaseList');
+
+  db.any("INSERT INTO $1~ (user_id, book_id) VALUES ($2, $3);", [lowerCaseList, user.id, book.id])
     .then( () => {
       console.log('added user and book to list');
     })

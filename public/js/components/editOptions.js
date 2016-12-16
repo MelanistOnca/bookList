@@ -16,17 +16,46 @@ export default class EditOptions extends React.Component {
     //
     // console.log(list[0], 'was list[0] in addToList components/editOptions.js');
     // console.log(bookId, 'was bookId in addToList components/editOptions.js');
-    console.log(user, 'was user in addToList components/editOptions.js');
-    console.log(user.user, 'was user.user in addToList components/editOptions.js');
-    console.log('//////////////////////');
+    // console.log(user, 'was user in addToList components/editOptions.js');
+    // console.log(user.user, 'was user.user in addToList components/editOptions.js');
+    // console.log('//////////////////////');
     // console.log(addFn, 'was addFn in addToList components/editOptions.js');
     e.preventDefault();
     // console.log(e, 'was e after .preventDefault()');
+    let listNumber;
+    switch (list[0]) {
+      case "Select": {
+        listNumber = 0;
+        // console.log('Select case, listNumber=0');
+      }
+      break;
+      case "toBeReadList": {
+        listNumber = 1;
+        // console.log('toBeReadList case, listNumber=1');
+      }
+      break;
+      case "currentlyReadingList": {
+        listNumber = 2;
+        // console.log('currentlyReadingList case, listNumber=2');
+      }
+      break;
+      case "haveReadList": {
+        listNumber = 3;
+        // console.log('haveReadList case, listNumber=3');
+      }
+      break;
+      default:  console.log(list[0],' was list[0], and did not match any switch case');
+    }
+
     let fnArg = {
       list: list[0],
+      listNumber,
       book: bookId,
       user: user.user
     }
+    // console.log('%%%%%%%%%%');
+    // console.log(fnArg.listNumber, 'was fnArg.listNumber');
+    // console.log('%%%%%%%%%%');
 
     // window.alert('test alert')
     if( (list[0]==="undefined")||!list[0] ) {
@@ -35,14 +64,34 @@ export default class EditOptions extends React.Component {
       //NOTE the RE NOTE-ening: i had to make the list[0]=== check for a STRING of undefined. this seems shitty, but it works.
       return
     }
-    if( (user.user.id==='') ) {
-      window.alert('Please log in before adding a book to a list')
-      return
-    }
-    console.log('log AFTER the winow.alert'); //this does fire, but not until after the alert is acknowledged.
-    console.log(fnArg, 'was fnArg before addFn() call in addToList() components/editOptions.js');
+    //NOTE NOTE re-enable this after testing
+    // if( (user.user.id==='') ) {
+    //   window.alert('Please log in before adding a book to a list')
+    //   return
+    // }
+    //NOTE the above should be enabled for live
+    // console.log('log AFTER the winow.alert'); //this does fire, but not until after the alert is acknowledged.
+    // console.log(fnArg, 'was fnArg before addFn() call in addToList() components/editOptions.js');
     addFn(fnArg); //only registered first param. means i need to include list and bookId in a single object. //NOTE//this only updates on store-side, does not interact with DB. i guess i need to either add an axios.put here to update the list or have that happen in the reducer?
-    axios.post('/api/users/list', fnArg)
+    console.log('.....before axios.post in addToList in components/editOptions .....');
+    axios.post('/api/users/list', fnArg)//post since i'm adding an entry to a join table
+      .then( (data)=>{
+        console.log(data, 'was data in the axios.post in addToList in components/editOptions');
+        // console.log(fnArg.user, 'was fnArg.user');
+        axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`) //this feels janky afffffffffff. so let's call it clever?
+          .then( (list) => {
+            console.log(list, 'was list in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
+          })
+          .catch( (error) => {
+            console.log(error, 'was error in .catch of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
+          })
+
+      })
+      .catch( (error)=>{
+        console.log(erro, 'was error in the axios.post in addToList in components/editOptions');
+      })
+    console.log('///// after axios.post in addToList in components/editOptions /////');
+    // NOTE need function here to update store from DB to show new list entry there. could i put this in the list component? will it update appropriately? in order to do so, it would probably have to update when the list component loads/receives props
 
   }
   removeFromList(list, bookId, rmvFn, e) {
