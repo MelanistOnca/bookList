@@ -26,5 +26,7 @@ select * from users where username = $x RETURNING
 select * from haveread where user_id = $x;
 
 -- change haveread to the appropriate list
-select * from $y where user_id = $x
+select * from $y~ where user_id = $x;
 -- $y being the list currently being viewed/editted, $x being id of logged in user
+
+select * from books where id = $x;

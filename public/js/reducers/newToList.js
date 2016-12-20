@@ -39,7 +39,7 @@ function newToList(state=[], action) { //this was my original syntax
           }
       } //this allows a single book to be added to each of the lists, but does not allow for new .isbn13 values to create new keys
 
-      //NOTE NOTE NOTE im overengineering here. adding multiple books to a list at once is beyond what i need. person looks up book, then adds to list. if they want to browser a bunch of books, go to BN or amazon.
+      //NOTE NOTE NOTE
 
       // let stateReplace =  {} //would need to copy state to this object, then add on to it? then probably do something like ...state, stateReplace   in the return below.
 

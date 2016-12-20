@@ -7,6 +7,13 @@ const pgp    = require('pg-promise')({
   // initialization options
 });
 const axios = require('axios') ; //why didn't import axios from 'axios' work here?!? i have es2015 in the babel script/post-install babel preset in package.json
+
+const book_fns = require('./books') ;
+// console.log(books, 'was books');
+// console.log(books.bookDataFromList, 'was books.bookDataFromList');
+
+
+
 // https://github.com/vitaly-t/pg-promise/wiki/Connection-Syntax#configuration-object
 const connectionObject = {
     host: 'localhost',
@@ -37,33 +44,50 @@ module.exports.getList = ( req, res, next ) => {
   let listDB_name;
   switch (req.params.lID) {
     case '1':
-      listDB_name = "toberead"
+      listDB_name = {
+        "sql": "toberead",
+        "front": "toBeReadList"
+      }
 
     break;
     case '2':
-      listDB_name = "currentlyreading"
+      listDB_name = {
+        "sql": "currentlyreading",
+        "front": "currentlyReadingList"
+      }
 
     break;
     case '3':
-      listDB_name = "haveread"
+      listDB_name = {
+        "sql": "haveread",
+        "front": "haveReadList"
+      }
 
     break;
     default:
       console.log(req.params.lID, 'was req.params.lID and did not match switch cases. probably "Select"');
 
   }
-
+  console.log(listDB_name, 'was listDB_name');
 //get list should return the list
 
-  db.any("SELECT * FROM $1~ WHERE user_id = $2;", [listDB_name, user_id]) //promise for list
-      .then( (list) => {
+  db.any("SELECT * FROM $1~ WHERE user_id = $2;", [listDB_name.sql, user_id]) //promise for list
+      .then( (joinList) => {
         //list found
-        console.log(list, 'was list in db.one(/*find list SQL expression*/) in db/lists getList fn');
+        console.log(joinList, 'was joinList in db.any(/*find list SQL expression*/) in db/lists getList fn');
+        // console.log(list[0], 'was list[0] in db.any(/*find list SQL expression*/) in db/lists getList fn');
         // list.push(listDB_name);
         // NOTE look at your user encapsulation to see if you can figure out why the res.rows.listName thing isn't working below
-        res.rows = list;
+        let listObj = {
+          list: joinList,
+          listDB_name
+        }
         // res.rows.listName = listDB_name;
-        console.log(res.rows, 'was res.rows in db.one(/*find list SQL expression*/) in db/lists getList fn');
+        // console.log(res.rows, 'was res.rows in db.one(/*find list SQL expression*/) in db/lists getList fn');
+        //i think i need another sql query here to get the book info, and then return THAT as a list.
+        // this.bookDataFromList({'listObj': 'blabla'}) //this is actually a function that belongs in the db/books.js file
+        book_fns.bookDataFromList(listObj) //this is actually a function that belongs in the db/books.js file
+        res.rows = listObj;
         next();
       })
       .catch( (error) => {
@@ -73,6 +97,14 @@ module.exports.getList = ( req, res, next ) => {
         next();
       })
 }
+
+// bookDataFromList = (param1, param2, etc) => {
+//   console.log('bookDataFromList fired');
+// } //this function should come from db/books.js file
+//may need to export this at some point? if so, will need to add this.bookDataFromList to getList() invocation
+// module.exports.bookDataFromList = (param1, param2, etc) => {
+//   console.log('bookDataFromList fired');
+// }
 function insertToJoin(user, book, list ) {
   console.log(book, 'was book in insertToJoin()', typeof book, 'was typeof for same');
   console.log(list, 'was list in insertToJoin()', typeof list, 'was typeof for same');

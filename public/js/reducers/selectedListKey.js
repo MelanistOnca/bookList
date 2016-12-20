@@ -31,6 +31,12 @@ function selectedListKey(state=[], action) {
         // ...state,
         // list: "SELECTION MADE"
       ]
+      // return {
+      //   ...state,
+      //   action.choice
+      // } // does this work for a string?
+
+      // return action.choice //maybe this works for a string?
 
 
     default:
