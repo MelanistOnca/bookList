@@ -20,3 +20,9 @@ INSERT INTO  (  ) values (  );
 
 --currently reading join
 INSERT INTO  (  ) values (  );
+
+-- altering a table to add a column
+ALTER TABLE books ADD COLUMN author varchar(80);
+
+-- add data to this new column for a single book
+UPDATE books SET author = 'No author creditted - notice courtesy of bookList team' WHERE id = 1;

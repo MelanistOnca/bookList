@@ -65,10 +65,10 @@ export default class EditOptions extends React.Component {
       return
     }
     //NOTE NOTE re-enable this after testing
-    // if( (user.user.id==='') ) {
-    //   window.alert('Please log in before adding a book to a list')
-    //   return
-    // }
+    if( (user.user.id==='') ) {
+      window.alert('Please log in before adding a book to a list')
+      return
+    }
     //NOTE the above should be enabled for live
     // console.log('log AFTER the winow.alert'); //this does fire, but not until after the alert is acknowledged.
     console.log(fnArg, 'was fnArg before addFn() call in addToList() components/editOptions.js');
@@ -78,11 +78,17 @@ export default class EditOptions extends React.Component {
       .then( (data)=>{
         // console.log(data, 'was data in the axios.post in addToList in components/editOptions');
         // console.log(fnArg.user, 'was fnArg.user');
-        axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`) //this feels janky afffffffffff. so let's call it clever?
+        axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`) //this route calls the getList backend function. //this route feels janky afffffffffff. so let's call it clever?
           .then( (list) => {
-            console.log(list.data.data, 'was list.data.data in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
-            console.log(list.data, 'was list.data in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
-            console.log(list, 'was list in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
+            console.log(list.data.data, 'was list.data.data in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)'); //this returns the listObj object from the getList backend function.
+            // format as {
+            //   list, //array, each element {user_id: NUM, book_id: NUM }
+            //   listDB_name //object {front: STRING_using_frontend_naming, sql: STRING_using_sql_labels/names}
+            // }
+            //NOTE create route to use for getBookDataFromList, then do an axios here to run it
+            axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`) // i don't need the list info to get book data, i can just get the book data
+            // console.log(list.data, 'was list.data in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
+            // console.log(list, 'was list in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
             //need to have store update to this list
             // let fnArg = {
             //   list: list[0],

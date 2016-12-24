@@ -46,21 +46,24 @@ module.exports.getList = ( req, res, next ) => {
     case '1':
       listDB_name = {
         "sql": "toberead",
-        "front": "toBeReadList"
+        "front": "toBeReadList",
+        "lID": "1"
       }
 
     break;
     case '2':
       listDB_name = {
         "sql": "currentlyreading",
-        "front": "currentlyReadingList"
+        "front": "currentlyReadingList",
+        "lID": "2"
       }
 
     break;
     case '3':
       listDB_name = {
         "sql": "haveread",
-        "front": "haveReadList"
+        "front": "haveReadList",
+        "lID": "3"
       }
 
     break;
@@ -86,7 +89,21 @@ module.exports.getList = ( req, res, next ) => {
         // console.log(res.rows, 'was res.rows in db.one(/*find list SQL expression*/) in db/lists getList fn');
         //i think i need another sql query here to get the book info, and then return THAT as a list.
         // this.bookDataFromList({'listObj': 'blabla'}) //this is actually a function that belongs in the db/books.js file
-        book_fns.bookDataFromList(listObj) //this is actually a function that belongs in the db/books.js file
+        ///////////NOTE////////////////
+        // console.log('just before book_fns.bookDataFromList() called in db/lists.js');
+        // book_fns.bookDataFromList(listObj, res, next)
+        // console.log('just after book_fns.bookDataFromList() called in db/lists.js'); //this is actually a function that belongs in the db/books.js file
+        ///////////NOTE/////////////////
+        //should i have this as a axios.SOMETHING instead? and then call the bookDataFromList fn from there? yes? NOTE this may be a good idea or not? my brain feels fried atm.
+        // res.rows = listObj;
+
+        // //NOTE does a .then here solve my problems?
+        // .then( (thingy) => {
+        //   //do stuff with thingy
+        // })
+        // .catch( (error) => {
+        //   //report error
+        // })
         res.rows = listObj;
         next();
       })
@@ -134,6 +151,14 @@ function checkForBook( user, book, list, next ) {
           insertToJoin(user, book, list)
           next()
         })
+        .catch( (error) => {
+          console.log(error, 'was error inside the chained functions. most recent function was addBookToLibrary() call');
+          next()
+        })
+      //i get the following message about unhandled exceptions from the db server:
+      // (node:32117) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 2): TypeError: Cannot read property 'then' of undefined
+      // (node:32117) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+      //NOTE figure out what exactly it wants me to do, or maybe see if there's better syntax for a query you're OK with failing?
       next()
     })
     .then( (bookData) => { // this means book was found
@@ -145,7 +170,8 @@ function checkForBook( user, book, list, next ) {
 }
 
 function addBookToLibrary (book, next) {
-  db.any("INSERT INTO books (isbn13, title, publisher) VALUES ($1, $2, $3)", [book.isbnString, book.title, book.publisher])
+  console.log(book, 'was book in addBookToLibrary fn in db/lists');
+  db.one("INSERT INTO books (isbn13, title, publisher, author) VALUES ($1, $2, $3, $4)", [book.isbnString, book.title, book.publisher, book.authorName])
     .then( (data) => {
       console.log(data, 'was data in addBookToLibrary in db/lists.js');//probably want to include a log that i've inserted a row into book table, and with what data, here
 
@@ -160,6 +186,9 @@ module.exports.addToList = ( req, res, next ) => {
   //check that book is in book db.
   // if no, add to book db
   // console.log(req.body, 'was req.body');
+  console.log(req.body.book.author_data, 'was req.body.author_data'); //returns [ { name: 'Leckie, Ann', id: 'leckie_ann' } ]
+  // console.log(req.body.book.author_data[0], 'was req.body.author_data[0]'); //returns
+  console.log(req.body.book.author_data[0].name, 'was req.body.author_data[0].name'); //returns Leckie, Ann
   // NOTE need to add user.id at LEAST to the data sent here, and pass it along to the insertToJoin function
   //NOTE NOTE NOTE NOTE NOTE NOTE
   // req.body.book.isbn13 is book's isbn13 from isbndb
@@ -173,10 +202,14 @@ module.exports.addToList = ( req, res, next ) => {
   console.log(publisher, 'was publisher'); //logs Tor was publisher
   let user = req.body.user
   console.log(user, 'was user');
+  // let authorName= req.body.author_data[0].name
+  let authorName= req.body.book.author_data[0].name
+  console.log(authorName, 'was authorName');
   let book = {
     isbnString,
     title,
-    publisher
+    publisher,
+    authorName
   }
   console.log(book, 'was book');
   let list = req.body.list

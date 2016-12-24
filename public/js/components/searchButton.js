@@ -4,9 +4,9 @@ import { render } from 'react-dom';
 const rp = require('request-promise');
 import axios from 'axios';
 
-'../../../db/isbndb'
-'../../../db/isbndb'
-// const isbndb_fns = require('../../../db/isbndb'); //pg-native error similar to components/user/login. i'm guessing i can't import stuff from DB directory into public? maybe?
+// '../../../db/isbndb'
+// '../../../db/isbndb'
+// const isbndb_fns = require('../../../db/isbndb'); //pg-native error similar to components/user/login. i'm guessing i can't import stuff from DB directory into public? maybe? ==> DUH. because the db files AREN'T public, therefore stuff in public does not have access to them
 
 export default class SearchButton extends React.Component {
   //NOTE: theoretically, this will receive all the info that the current button in ./components/searchFor uses, as props, and then i can replace that button with this component, but then also re-use this component in the element that lists books by an author so that the user can get the info on whichever specific book there they want the info on.

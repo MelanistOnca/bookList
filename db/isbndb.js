@@ -72,7 +72,7 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
 
   //possibly need CORS/Access-Control-Allow-Origin  related something in the header here?
   let templateString = `template string`
-  let authorUri = `http://isbndb.com/api/v2/json/${apiKey}/${searchOptions.searchType}`
+  // let authorUri = `http://isbndb.com/api/v2/json/${apiKey}/${searchOptions.searchType}`
   let options = {
     "authors" : {
       uri: `http://isbndb.com/api/v2/json/${apiKey}/${searchOptions.searchType}`,
@@ -108,21 +108,28 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
       })
       .then( (data) => {
         // console.log(data, 'was data in db/isbndb getResultsFromSearch fn');
+        // console.log(data.data, 'was data.data in db/isbndb getResultsFromSearch fn');
+        // console.log(data.data[0].author_data, 'was data.data.author_data in db/isbndb getResultsFromSearch fn');
+        console.log(data.data[0].author_data[0].name, 'was data.data[0].author_data[0].name in db/isbndb getResultsFromSearch fn'); //this returns the author's name. isbndb formats it as Last, First
+        // console.log(data.data.author_data[0], 'was data.data.author_data in db/isbndb getResultsFromSearch fn');
         // console.log(typeof data, 'was typeof data in db/isbndb getResultsFromSearch fn');
-        if (data.author_data===undefined){
-          res.rows = data;
+        // console.log(data.author_data, 'was data.author_data in db/isbndb getResultsFromSearch fn');
+        res.rows = data;
+        console.log(res.rows, 'was res.rows in db/isbndb getResultsFromSearch fn');
+        if (data.data[0].author_data[0]===undefined){
+          // res.rows = data;
           // console.log(res.rows, 'was res.rows before author_data shennanigans');
-          res.rows.data[0].author_data = [
+          res.rows.data[0].author_data[0] =
             {
               "name": 'No author creditted - notice courtesy of bookList team'
             }
-          ]
-          // console.log(res.rows, 'was res.rows after shennanigans');
-        } else {
-          res.rows = data;
-        }
 
-        // console.log(res.rows, 'was res.rows in same');
+          // console.log(res.rows, 'was res.rows after shennanigans');
+        } /*else {
+          res.rows = data;
+        }*/
+
+        console.log(res.rows, 'was res.rows in same');
         // console.log(res.rows.data, 'was res.rows.data in same');
         next()
       })
