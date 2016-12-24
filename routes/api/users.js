@@ -61,7 +61,7 @@ router
 
 // janky route used for list retrieval shennanigans
 router
-  .get('/:uID/list/:lID', list_fns.getList, (req,res) => {
+  .get('/:uID/list/:lID', list_fns.getList, (req,res) => { //this route may be obsoleted by the lists/lid/users/uid/books route i'm working on
     //tbr list = 1, cr list = 2, hr list =3
     console.log('list_fns.getList fired');
     res.json( { data: res.rows}) //the data: key here may be responsible for some of the data.data stuff i see in the front, consider reformating this response and the effected areas to deal with res.json( res.rows), instead? need to check specs if this is possible

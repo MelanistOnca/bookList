@@ -77,7 +77,7 @@ module.exports.getList = ( req, res, next ) => {
   db.any("SELECT * FROM $1~ WHERE user_id = $2;", [listDB_name.sql, user_id]) //promise for list
       .then( (joinList) => {
         //list found
-        console.log(joinList, 'was joinList in db.any(/*find list SQL expression*/) in db/lists getList fn');
+        // console.log(joinList, 'was joinList in db.any(/*find list SQL expression*/) in db/lists getList fn');
         // console.log(list[0], 'was list[0] in db.any(/*find list SQL expression*/) in db/lists getList fn');
         // list.push(listDB_name);
         // NOTE look at your user encapsulation to see if you can figure out why the res.rows.listName thing isn't working below

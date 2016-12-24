@@ -26,12 +26,12 @@ function newToList(state=[], action) { //this was my original syntax
       //
       // }
       // let authorName = this.props.matchedISBN.author_data ? (this.props.matchedISBN.author_data[0] ? this.props.matchedISBN.author_data[0].name : 'No author creditted') : 'No author creditted'; //this and its use below feels like a violation of state and/or the functional paradigm? i should probably have this check on when we receive data from isbndb query? maybe?
-
+      /**/
       return {
         ...state,
 
-          [action.list.list]: {
-            [action.list.book.isbn13]: {
+          [action.list.list]/*frontend list name*/: {
+            [action.list.book.isbn13]/*book's isbn13*/: {
                 "author": action.list.book.author_data[0].name,
                 "title": action.list.book.title,
                 "publisher": action.list.book.publisher_name

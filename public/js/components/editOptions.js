@@ -85,23 +85,41 @@ export default class EditOptions extends React.Component {
             //   list, //array, each element {user_id: NUM, book_id: NUM }
             //   listDB_name //object {front: STRING_using_frontend_naming, sql: STRING_using_sql_labels/names}
             // }
-            //NOTE create route to use for getBookDataFromList, then do an axios here to run it
-            axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`) // i don't need the list info to get book data, i can just get the book data
-            // console.log(list.data, 'was list.data in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
-            // console.log(list, 'was list in .then of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
-            //need to have store update to this list
-            // let fnArg = {
-            //   list: list[0],
-            //   listNumber,
-            //   book: bookId,
-            //   user: user.user
-            // }
             console.log(user, 'was user in same');
+            axios.post(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`, list.data.data)
+              .then( (listWithBooks) => {
+                console.log(listWithBooks, 'was listWithBooks in .then of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+              })
+              .catch( (error) => {
+                console.log(error,'was error in .catch of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+              })
           })
           .catch( (error) => {
             console.log(error, 'was error in .catch of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');
           })
-
+        // is the above get
+        // console.log('just before axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`)');
+        // axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`) // NOTE trying this as a post, below
+        //   .then( (listWithBooks) => {
+        //     console.log(listWithBooks, 'was listWithBooks in .then of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+        //   })
+        //   .catch( (error) => {
+        //     console.log(error,'was error in .catch of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+        //   }) //gonna try this as a post. end of NOTE
+        // let temp = {'something':'filler body'}
+        // let listRouteArg = {
+        //   list: list[0],
+        //   listNumber,
+        //   user: user.user
+        // };
+        //could do something like let listRouteArg = delete fnArg.book, but im not sure if that would leave fnArg alone in case i need to use it again. i suspect it changes fnArg
+        // axios.post(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`, listRouteArg)
+        //   .then( (listWithBooks) => {
+        //     console.log(listWithBooks, 'was listWithBooks in .then of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+        //   })
+        //   .catch( (error) => {
+        //     console.log(error,'was error in .catch of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+        //   })
       })
       .catch( (error)=>{
         console.log(error, 'was error in the axios.post in addToList in components/editOptions');

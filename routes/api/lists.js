@@ -43,7 +43,17 @@ router
     // res.send('list_fns.bookDataFromList fired from ... api/lists/:lID/users/:uID/books/ route. this is the res.send placeholder')
     res.json( res.rows )
   }
-  )
+) // so part of my problem here is i want to send a list object with the results of the join table search. do i requery and then work wth that result? that seems silly. otherwise, do i use this as a post route? let's try it as a post route.
+  .post('/:lID/users/:uID/books/',
+  // notImplement
+  book_fns.bookDataFromList,
+  // for the list id (1,2,3:toberead,currentlyreading,haveread), return all books on that list
+  (req,res) => {
+    console.log('list_fns.bookDataFromList fired from ... api/lists/:lID/users/:uID/books/ route');
+    // res.send('list_fns.bookDataFromList fired from ... api/lists/:lID/users/:uID/books/ route. this is the res.send placeholder')
+    res.json( res.rows )
+  }
+)
 
 
 
