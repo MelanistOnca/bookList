@@ -3,8 +3,8 @@
 // }
 
 const toBeReadList = {
-  "title":"To Be Read List",
-  "list": {
+  // "title":"To Be Read List",
+  // "list": {
     "TBRLbookId1": {
       "title":"ninefox gambit",
       "author":"i forget",
@@ -20,7 +20,7 @@ const toBeReadList = {
       "author":"some author",
       "genre":"some genre"
     }
-  }
+  // }
 
 
 }

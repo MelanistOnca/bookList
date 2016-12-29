@@ -13,7 +13,7 @@ export default class SingleBook extends React.Component {
           // author
           // genre
   render(){
-    // console.log(this.props, 'this.props in singleBook.js');
+    console.log(this.props, 'this.props in singleBook.js');
     // console.log(this.props.pickedList,'this.props.pickedList in singleBook.js');
 
 
@@ -26,7 +26,7 @@ export default class SingleBook extends React.Component {
         >
         <p>Title : {this.props.title}</p>
         <p>Author : {this.props.author}</p>
-        <p>Genre : {this.props.genre}</p>
+        <p>Publisher : {this.props.publisher}</p>
         <EditOptions
           {...this.props}
           />

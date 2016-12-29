@@ -8,7 +8,7 @@ export default class EditOptions extends React.Component {
   // this.props.bookId //this should be a title with underscores for spaces
 
   //i can probably consolodate the add and remove functions into a single function since i'm passing in the appropriate function when this is called.
-  addToList( list, bookId, user, addFn, e) {
+  addToList( list, bookId, user, addFn, updateListFn, e) {
 
     // console.log('addToList called');
     // console.log(event, 'was event');
@@ -22,7 +22,7 @@ export default class EditOptions extends React.Component {
     // console.log(addFn, 'was addFn in addToList components/editOptions.js');
     e.preventDefault();
     // console.log(e, 'was e after .preventDefault()');
-    let listNumber;
+    let listNumber,listFrontTitle;
     switch (list[0]) {
       case "Select": {
         listNumber = 0;
@@ -31,16 +31,19 @@ export default class EditOptions extends React.Component {
       break;
       case "toBeReadList": {
         listNumber = 1;
+        listFrontTitle = "To Be Read List";
         // console.log('toBeReadList case, listNumber=1');
       }
       break;
       case "currentlyReadingList": {
         listNumber = 2;
+        listFrontTitle = "Currently Reading List";
         // console.log('currentlyReadingList case, listNumber=2');
       }
       break;
       case "haveReadList": {
         listNumber = 3;
+        listFrontTitle = "Have Read List";
         // console.log('haveReadList case, listNumber=3');
       }
       break;
@@ -50,6 +53,7 @@ export default class EditOptions extends React.Component {
     let fnArg = {
       list: list[0],
       listNumber,
+      listFrontTitle,
       book: bookId,
       user: user.user
     }
@@ -89,6 +93,42 @@ export default class EditOptions extends React.Component {
             axios.post(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`, list.data.data)
               .then( (listWithBooks) => {
                 console.log(listWithBooks, 'was listWithBooks in .then of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+                ///////////
+                // function to update store list data based on listWithBooks book info and list.listDB_name.front label
+                // console.log(fnArg, 'was fnArg in same');
+                console.log(fnArg.user.id, 'was fnArg.user.id in same'); // gives user id number from DB
+                console.log(fnArg.list, 'was fnArg.user.id in same'); //gives list name that is compatible with listCollection store
+                // getList(fnArg) //don't need this here, need to set the state based on the data in listWithBooks.
+                let uniqueBookList = {};
+                // console.log(el, 'was el in listConents.forEach in reducer/listCollection');
+                // // returns
+                // // {
+                // //   author, //author name str
+                // //   id, // book id int in my DB
+                // //   isbn13, //isbn13 string
+                // //   publisher, //publ str
+                // //   title //title str
+                // // }
+                // listWithBooks.data.forEach( (el) => {
+                //   // console.log(el.isbn13, 'was el.isbn13 in listWithBooks.data.forEach in components/editOptions.js'); //returns the isbn13 of the book
+                //   uniqueBookList.[el.isbn13] = {
+                //     "Title": [el.title],
+                //     "Author": [el.author],
+                //     "Publisher": [el.publisher]
+                //   }
+                //
+                //   // console.log(uniqueBookList, 'was uniqueBookList inside forEach');
+                // })
+                // console.log(uniqueBookList, 'was uniqueBookList after forEach');
+
+                let updateFnArg = {
+                  user_id: fnArg.user.id,
+                  listName: fnArg.list,
+                  listTitle: fnArg.listFrontTitle,
+                  listContents: listWithBooks.data,
+                  uniqueBookList
+                }
+                updateListFn(updateFnArg)
               })
               .catch( (error) => {
                 console.log(error,'was error in .catch of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
@@ -147,7 +187,7 @@ export default class EditOptions extends React.Component {
       // console.log(event, 'was event',this.props.selectedListKey, 'was this.props.selectedListKey', this.props.isbn13, 'was this.props.isbn13', this.props.addToList, 'was this.props.addToList');
           listButton =
           <button
-          onClick={this.addToList.bind(event, this.props.selectedListKey, this.props.matchedISBN, this.props.user, this.props.addToList)}
+          onClick={this.addToList.bind(event, this.props.selectedListKey, this.props.matchedISBN, this.props.user, this.props.addToList, this.props.updateList)}
             >
             Add to list
           </button>;

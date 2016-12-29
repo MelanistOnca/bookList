@@ -2,8 +2,8 @@
 //   "history list":"old man's WARRRRR"
 // }
 const haveReadList = {
-  "title":"Have Read List",
-  "list": {
+  // "title":"Have Read List",
+  // "list": {
     "HRLbook1IdHere": {
       "title":"old man's WARRRRR",
       "author":"J Scalzi",
@@ -14,7 +14,7 @@ const haveReadList = {
       "author":"second author",
       "genre":"random genre"
     }
-  }
+  // }
 
 }
 

@@ -12,7 +12,7 @@ import rootReducer from './reducers/index';
 // import toBeReadList from './data/toBeReadList';
 import selectedListKey from './data/selectedListKey';
 import listCollection from './data/listCollection';
-// import listTranslate from './data/listTranslate';
+import listTranslate from './data/listTranslate';
 import searchTerm from './data/searchTerm';
 import searchType from './data/searchType';
 import selectedSearchType from './data/selectedSearchType';
@@ -29,7 +29,7 @@ import signUpForm from './data/signUpForm';
 const defaultState = {
   selectedListKey,
   listCollection,
-  // listTranslate
+  listTranslate,
   searchTerm,
   searchType,
   selectedSearchType,

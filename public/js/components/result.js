@@ -15,7 +15,7 @@ export default class Result extends React.Component {
   // }
   render(){
 
-    console.log(this.props, 'this.props in components/result.js');
+    // console.log(this.props, 'this.props in components/result.js');
     // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
     // console.log(this.props.searchResults.data, 'was this.props.searchResults.data in components/result.js');
     // console.log(this.props.searchResults.data.data.result.data, 'was this.props.searchResults.data.data.result.data in components/result.js');
@@ -197,14 +197,14 @@ export default class Result extends React.Component {
           break;
           default:
 
-            console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
+            // console.log('no case matched for this.props.selectedSearchType in switch in components/result.js');
             // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in default case in components/result.js')
             // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] in default case in components/result.js');
 
         } //end of switch
 
 
-        console.log(resultsView, 'was resultsView before return() in components/result.js');
+        // console.log(resultsView, 'was resultsView before return() in components/result.js');
 
         // let stamp = new Date().getTime();
         // let uniqueStamp = `${i}${stamp}`;

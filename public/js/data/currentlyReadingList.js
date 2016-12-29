@@ -9,8 +9,8 @@
 // }
 
 const currentlyReadingList = {
-  "title":"Currently Reading List",
-  "list": {
+  // "title":"Currently Reading List",
+  // "list": {
     //prototype on how i should order/arrange info from query
     // "isbn13" : {
     //
@@ -36,7 +36,7 @@ const currentlyReadingList = {
       "author":"grrm",
       "genre":"never to be finished"
     }
-  }
+  // }
 
 }
 

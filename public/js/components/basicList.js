@@ -6,24 +6,56 @@ import ListView from './listView';
 export default class BasicList extends React.Component {
 
   setSelectedListKey(listKey, selectList){
-    console.log(listKey, 'was listKey in setSelectedListKey in basicList.js');
-    console.log(selectList, 'was selectList in setSelectedListKey in basicList.js');
-    selectList(listKey)
+    // console.log(listKey, 'was listKey in setSelectedListKey in basicList.js');
+    // console.log(selectList, 'was selectList in setSelectedListKey in basicList.js');
 
+    selectList(listKey);
+
+
+
+  }
+  getListFn(listKey, getList, user_id) {
+    console.log(listKey, 'was listKey in getListFn in basicList.js');
+    console.log(user_id, 'was user_id in getListFn in basicList.js');
+    console.log(getList, 'was getList in getListFn in basicList.js');
+    let fnArg = {
+      listKey,
+      user_id
+    }
+    console.log('???????????????????');
+    console.log(fnArg, 'was fnArg in getListFn in basicList.js');
+    console.log('???????????????????');
+    //i want to run the axios.get here? i think? and then update store with getList fn based on results?
+
+    getList( fnArg );//this also needs user info
 
   }
   componentWillMount(){
     let listKeyLabel = window.location.pathname.split("/")[1]
-    console.log(listKeyLabel, 'was listKeyLabel in basicList.js'); //returns array ["", "basicList"], where basicList is the /route_name_here
-    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js'); //returns empty array
+    console.log('+++++++++++++');
+    console.log(listKeyLabel, 'was listKeyLabel in componentWillMount in basicList.js'); //returns array ["", "basicList"], where basicList is the /route_name_here
+    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in componentWillMount in basicList.js'); //returns empty array
     // let listKey = `${this.props.selectedListKey}`
+    // let labelLength = listKeyLabel.length;
+    // console.log(listKeyLabel.length, 'listKeyLabel.length');
+    // console.log(labelLength, 'labelLength');
+    // console.log(listKeyLabel.substr(labelLength-4,4), 'was listKeyLabel.substr(labelLength-4,4)');
+    console.log(`${listKeyLabel}List`);
+    console.log('++++++++++++++');
+
+    // this.props.getList(`${listKeyLabel}List`)
     if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
-      this.setSelectedListKey(listKeyLabel, this.props.selectList)
+      this.setSelectedListKey(listKeyLabel, this.props.selectList )
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
     }
 
   }
   componentWillReceiveProps(nextProps){
-    console.log(this.props, 'was this.props in basicList.js in componentWillReceiveProps');
+    console.log(',,,,,,,,,,,,,,');
+    // console.log(this.props, 'was this.props in basicList.js in componentWillReceiveProps');
+    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js in componentWillReceiveProps');
+    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in basicList.js in componentWillReceiveProps');
+    console.log('"""""""""""""');
     console.log(nextProps, 'was nextProps in same');
     // let listKeyLabel = window.location.pathname.split("/")
     // let listKeyLabel = window.location.pathname.split("/")[1]
@@ -80,7 +112,7 @@ export default class BasicList extends React.Component {
   render(){
     console.log('.........');
     console.log(this.props, 'was this.props in basicList.js');
-    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
+    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
     console.log('/////////');
 
     let listKeyLabel = window.location.pathname.split("/")[1]
@@ -115,7 +147,7 @@ export default class BasicList extends React.Component {
         console.log("sumpfin dun gon wrong in da basicList.js switch");
     }
 
-    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in componentWillReceiveProps in basicList.js'); //returns empty array
+    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in componentWillReceiveProps in basicList.js'); //returns empty array
     // let listKey = `${this.props.selectedListKey}`
     // if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
     //   this.setSelectedListKey(listKeyLabel, this.props.selectList)
@@ -123,19 +155,26 @@ export default class BasicList extends React.Component {
 
 
 
-    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js');
+    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js');
     console.log(listKeyLabel, 'was listKeyLabel before the second conditional');
+    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] before the second conditional');
+    // console.log(this.props.getList, 'was this.props.getList before conditionals in basicList.js');
+    console.log(this.props.selectedListKey.length, 'was this.props.selectedListKey.length before conditionals in basicList.js');
     if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
       console.log('this.props.selectedListKey.length===0');
-      this.setSelectedListKey(listKeyLabel, this.props.selectList)
+      this.setSelectedListKey(listKeyLabel, this.props.selectList )
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
     } else if(this.props.selectedListKey[0]!==listKeyLabel) { //this probably catches more labels than it needs to?
       console.log('this.props.selectedListKey[0]!==listKeyLabel');
       console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in the second conditional');
       console.log(listKeyLabel, 'was listKeyLabel in the second conditional');
-      this.setSelectedListKey(listKeyLabel, this.props.selectList)
+      this.setSelectedListKey(listKeyLabel, this.props.selectList )
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
     } else {
-      console.log('too many else if');
+      console.log(`${this.props.selectedListKey[0]} is equal to ${listKeyLabel}`);
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
     }
+    // this.props.getList(listKeyLabel, this.props.getList, this.props.user.user.id)
 
     return(
       <div

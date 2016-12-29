@@ -19,14 +19,15 @@ export default class ListView extends React.Component {
 
     // console.log('............');
     // console.log(key,'key in components/listView.js');
-    // console.log(this.props.listCollection, 'was this.props.listCollection in componenets/listView');
+    console.log(this.props.listCollection, 'was this.props.listCollection in componenets/listView');
 
-    let listTitle= this.props.listCollection[key] ? this.props.listCollection[key].title : undefined;
+    // let listTitle= this.props.listCollection[key] ? this.props.listCollection[key].title : undefined;
+    let listTitle= this.props.listCollection[key] ? this.props.listTranslate[key] : undefined;
 
     // console.log(listTitle,'listTitle in componenets/listView');
     // console.log(`${listTitle} THIS IS listTitle WITH THE $ NOTATION`);
 
-    let listShow = this.props.listCollection[key] ? this.props.listCollection[key].list : "no key, therefore no list"
+    let listShow = this.props.listCollection[key] ? this.props.listCollection[key] : "no key, therefore no list"
     // console.log(listShow, 'listShow in componenets/listView');
 
     let listShowKeys = listShow ? Object.keys(listShow) : "no listShow yet, therefore no listShowKeys";
@@ -40,9 +41,12 @@ export default class ListView extends React.Component {
 
     if(listTitle){
       for(let i = 0; i < listLength; i++){
+        // console.log(listShow[listShowKeys], 'was listShow[listShowKeys]');
+        // console.log(listShow[listShowKeys[i]], 'was listShow[listShowKeys[i]]');
         let thisBook = listShow[listShowKeys[i]]
         let stamp = new Date().getTime();
         let uniqueStamp = `${i}${stamp}`;
+        console.log(thisBook, 'was thisBook in components/listView');
         listDisplay.push(
           <SingleBook
             {...this.props}
@@ -50,7 +54,7 @@ export default class ListView extends React.Component {
             id = {uniqueStamp}
             title={thisBook.title}
             author={thisBook.author}
-            genre={thisBook.genre}
+            publisher={thisBook.publisher}
             />
         )
 

@@ -1,13 +1,13 @@
 // const newToList = (state=[], action) => {
 function newToList(state=[], action) { //this was my original syntax
   // console.log('reducers/newToList.js is where both addToList and removeFromList are defined. yes, the naming conventions could be better');
-  console.log(state, 'was state in reducers/newToList');
-  console.log(action,'was action in same');
+  // console.log(state, 'was state in reducers/newToList');
+  // console.log(action,'was action in same');
   switch(action.type){
     case 'ADD_TO_LIST' : //may need to make cases for each list?
     //i THINK the info i want will com in as action.list and action.isbn or action.book. may be state.___ instead? will need to see
-      // console.log(state, 'was state in ADD_TO_LIST case in reducers/newToList'); //this shows the list keys. //as empty objects??
-      // console.log(action, 'was action in ADD_TO_LIST case in reducers/newToList'); //this shows the list object, which has keys 'list' and 'book'. //i am not sure where the list object wrap over list/book is coming from.
+      console.log(state, 'was state in ADD_TO_LIST case in reducers/newToList'); //this shows the list keys. //as empty objects??
+      console.log(action, 'was action in ADD_TO_LIST case in reducers/newToList'); //this shows the list object, which has keys 'list' and 'book'. //i am not sure where the list object wrap over list/book is coming from.
       // let selectedListKey = action.list.list;
       // console.log(selectedListKey, 'was selectedListKey in ADD_TO_LIST case in reducers/newToList');
       // console.log(action.list.list, 'was action.list.list in same');
@@ -207,6 +207,19 @@ function newToList(state=[], action) { //this was my original syntax
       console.log();
 
       return state;
+    case 'GET_LIST' :
+    console.log('getgetgetgetget');
+    console.log(state, 'was state in GET_LIST case in reducers/newToList');
+    console.log(action, 'was action in GET_LIST case in reducers/newToList');
+    console.log('getting list from DB and setting store list to it');
+    console.log('getgetgetgetget');
+    console.log(' i may want to be using the listColletion reducer instead of this, the newToList reducer');
+
+      return state;
+      // return {
+      //   ...state,
+      //
+      // }
 
     default:
       return state;

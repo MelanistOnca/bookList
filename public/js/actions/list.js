@@ -7,16 +7,33 @@ export function selectList(choice) {
     choice
   }
 }
+export function getList(fnArg) {
+  console.log(fnArg, 'was fnArg in getList in actionCreators');
+  console.log(fnArg.listKey, 'was fnArg.listKey in getList in actionCreators');
+  console.log(fnArg.user_id, 'was fnArg.user_id in getList in actionCreators');
+  return {
+    type: 'GET_LIST',
+    listKey : fnArg.listKey, //dunno if i need this?
+    user_id: fnArg.user_id
+  }
+}
+// export function getHaveReadList(/* param */) { //probably going to generalize this to be a getList() function. not sure that i need a parameter?
+//
+//   return {
+//     type: 'GET_HAVE_READ_FROM_DB',
+//     choice
+//   }
+// }
 
 //update a list
-export function updateList(/*listName, user, listBooks*/ listInfo) {
+export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
   //have a single object passed as the arg that has  listName, user, and the books in the list in it.
   console.log('updateList in action/list.js was called');
-  console.log(listInfo, 'was listInfo in same');
-  console.log(typeof listInfo, 'was typeof listInfo in same');
+  console.log(fnArg, 'was fnArg in same');
+
   return{
     type: 'UPDATE_LIST',
-    payload: listInfo
+    listInfo: fnArg
   }
 }
 

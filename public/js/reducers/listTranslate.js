@@ -8,9 +8,12 @@ function listTranslate(state=[],action) {
 
       //NOTE
       //this is where i want to access the human-readable value for the key label
-      return [
-        state
-      ]
+      return state //since i'm just using this as a key-value retrieval, i don't think i actually need an reducer?
+      return {
+        ...state,
+        // action.
+      }
+
 
     default:
       return state;

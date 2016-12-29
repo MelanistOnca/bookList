@@ -11,7 +11,7 @@ import { routerReducer } from 'react-router-redux';
 // import toBeReadList from './toBeReadList';
 import selectedListKey from './selectedListKey';
 import listCollection from './listCollection';
-// import listTranslate from './listTranslate';
+import listTranslate from './listTranslate';
 import searchTerm from './searchTerm';
 import searchType from './searchType';
 import selectedSearchType from './selectedSearchType';
@@ -27,7 +27,7 @@ const rootReducer = combineReducers(
   {
     selectedListKey,
     listCollection,
-    // listTranslate,
+    listTranslate,
     searchTerm,
     searchType,
     selectedSearchType,

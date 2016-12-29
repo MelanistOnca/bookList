@@ -106,8 +106,8 @@ function user(state=[], action) {
       console.log(state, 'was state in this case');
       return state;
     default:
-      console.log('default case');
-      console.log(state, 'was state in this case');
+      // console.log('default case');
+      // console.log(state, 'was state in this case');
       return state;
     //
   }
