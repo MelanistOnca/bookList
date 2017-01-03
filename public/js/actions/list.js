@@ -7,7 +7,7 @@ export function selectList(choice) {
     choice
   }
 }
-export function getList(fnArg) {
+export function getList(fnArg) { //using arg so that when i get the console logs, it's giving me the used arg. since this is definition, it's a parameter labelled fnArg
   console.log(fnArg, 'was fnArg in getList in actionCreators');
   console.log(fnArg.listKey, 'was fnArg.listKey in getList in actionCreators');
   console.log(fnArg.user_id, 'was fnArg.user_id in getList in actionCreators');
@@ -28,6 +28,14 @@ export function getList(fnArg) {
 //update a list
 export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
   //have a single object passed as the arg that has  listName, user, and the books in the list in it.
+  // fnArg as passed from EditOptions is defined as
+  // let updateFnArg = {
+  //   user_id: fnArg.user.id,
+  //   listName: fnArg.list,
+  //   listTitle: fnArg.listFrontTitle,
+  //   listContents: listWithBooks.data,
+  //   uniqueBookList
+  // }
   console.log('updateList in action/list.js was called');
   console.log(fnArg, 'was fnArg in same');
 

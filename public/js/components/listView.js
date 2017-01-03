@@ -19,7 +19,7 @@ export default class ListView extends React.Component {
 
     // console.log('............');
     // console.log(key,'key in components/listView.js');
-    console.log(this.props.listCollection, 'was this.props.listCollection in componenets/listView');
+    // console.log(this.props.listCollection, 'was this.props.listCollection in componenets/listView');
 
     // let listTitle= this.props.listCollection[key] ? this.props.listCollection[key].title : undefined;
     let listTitle= this.props.listCollection[key] ? this.props.listTranslate[key] : undefined;
@@ -46,7 +46,7 @@ export default class ListView extends React.Component {
         let thisBook = listShow[listShowKeys[i]]
         let stamp = new Date().getTime();
         let uniqueStamp = `${i}${stamp}`;
-        console.log(thisBook, 'was thisBook in components/listView');
+        // console.log(thisBook, 'was thisBook in components/listView');
         listDisplay.push(
           <SingleBook
             {...this.props}

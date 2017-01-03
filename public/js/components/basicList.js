@@ -28,6 +28,13 @@ export default class BasicList extends React.Component {
     //i want to run the axios.get here? i think? and then update store with getList fn based on results?
 
     getList( fnArg );//this also needs user info
+    // updatelist needs updateFnArg
+    // let updateFnArg = { //this will be listInfo in reducer
+    //   //i need a lot of the work done in editOptions here. i should see if i can reference/define those operations elsewhere and then call them here
+    //   listContents: ,
+    //   listName: ,
+    //
+    // } //probably going to get all he work from editOptions into the reducer so i can just do updateList(stuff) here
 
   }
   componentWillMount(){
