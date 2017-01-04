@@ -1,6 +1,7 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import thunk from 'redux-thunk';
 
 
 //root reducer
@@ -47,9 +48,11 @@ const enhancers = compose(
 );
 
 //store
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 // export default class const store //look up why class is used for react components
 //this SHOULD work as is, but in case of error, triple check
-const store = createStore(rootReducer, defaultState, enhancers)
+// const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(thunk))
+const store = createStoreWithMiddleware(rootReducer, defaultState, enhancers)
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

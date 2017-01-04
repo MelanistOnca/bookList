@@ -31,10 +31,10 @@ class LogIn extends React.Component {
   //
   // }
   logIn(logInFn, logInSuccessFn, logInFormData, e ){
-    console.log(e,'was e in submitInfo in components/user/logIn.js');
-    console.log(logInFn, 'was logInFn passed to submitInfo');
-    console.log(logInSuccessFn, 'was logInSuccessFn passed to submitInfo');
-    console.log(logInFormData, 'was form data passed to submitInfo');
+    // console.log(e,'was e in submitInfo in components/user/logIn.js');
+    // console.log(logInFn, 'was logInFn passed to submitInfo');
+    // console.log(logInSuccessFn, 'was logInSuccessFn passed to submitInfo');
+    // console.log(logInFormData, 'was form data passed to submitInfo');
     e.preventDefault();
     const request = axios.post('api/users/login',logInFormData)
     //NOTE use axios from logInUser in actions/user.js to access the request .then data.data to update the user store
@@ -47,9 +47,9 @@ class LogIn extends React.Component {
         //try logInFn here
         // logInFn(logInFormData) //if this isn't run, data still shows up ok below
         logInFn(logInFormData) //payload has been commented out of user.js return for this attempt
-        console.log(data, 'was data in first then in components/user/logIn.js'); //returns an object with keys config, data, headers, request, status, statusText.
+        // console.log(data, 'was data in first then in components/user/logIn.js'); //returns an object with keys config, data, headers, request, status, statusText.
         //data.data gives object with keys token and user
-        console.log(data.data.user, 'was data.data.user in first then in components/user/logIn.js');
+        // console.log(data.data.user, 'was data.data.user in first then in components/user/logIn.js');
         // console.log(logInFormData, 'was logInFormData in first then in components/user/logIn.js'); //returns object with keys username and password
         //may need to return new Promise
         //here
@@ -114,8 +114,8 @@ class LogIn extends React.Component {
     //   })
   }
   updateUsername(updateUsernameField, e){
-    console.log('updateUsername in component/user/logIn.js fired');
-    console.log(updateUsernameField, 'was updateUsernameField');
+    // console.log('updateUsername in component/user/logIn.js fired');
+    // console.log(updateUsernameField, 'was updateUsernameField');
     let usernameField = e.target.value;
     updateUsernameField(usernameField)
 
@@ -136,8 +136,8 @@ class LogIn extends React.Component {
     //   // const { handleSubmit, handleChange, this.logIn, this.updateUsername, this.updatePassword } = props;
     //
     // }
-    console.log(this.props, 'this.props in components/user/login.js');
-    console.log(this.props.logInUserSuccess, 'this.props.logInUserSuccess in components/user/login.js');
+    // console.log(this.props, 'this.props in components/user/login.js');
+    // console.log(this.props.logInUserSuccess, 'this.props.logInUserSuccess in components/user/login.js');
     // return(
     //   <div
     //     id="logInContainer">

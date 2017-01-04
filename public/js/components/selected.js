@@ -15,8 +15,8 @@ export default class Selected extends React.Component {
     // let listTitle = (this.props.listCollection[key] ? this.props.listCollection[key].title : undefined);
 
     console.log(key, 'was key in selected.js');
-    console.log(this.props.listTranslate[key], 'was this.props.listTranslate[key] in selected.js');
-    let listTitle= this.props.listCollection[key] ? this.props.listTranslate[key] : undefined;
+    console.log(this.props.listTranslate[key].listFrontTitle, 'was this.props.listTranslate[key].listFrontTitle in selected.js');
+    let listTitle= this.props.listCollection[key] ? this.props.listTranslate[key].listFrontTitle : undefined;
 
     // let listTitle = (this.props.listCollection[key] ? this.props.listCollection[key].title : undefined);
 

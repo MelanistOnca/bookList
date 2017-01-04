@@ -57,6 +57,7 @@ export default class EditOptions extends React.Component {
       book: bookId,
       user: user.user
     }
+    console.log(fnArg, 'was fnArg in in addToList components/editOptions.js');
     // console.log('%%%%%%%%%%');
     // console.log(fnArg.listNumber, 'was fnArg.listNumber');
     // console.log('%%%%%%%%%%');
@@ -126,7 +127,8 @@ export default class EditOptions extends React.Component {
                   user_id: fnArg.user.id,
                   listName: fnArg.list,
                   listTitle: fnArg.listFrontTitle, //i may not need listTitle here?
-                  listContents: listWithBooks.data
+                  listContents: listWithBooks.data,
+                  listNumber: fnArg.listNumber
                   // ,uniqueBookList
                 }
                 updateListFn(updateFnArg)
@@ -135,7 +137,7 @@ export default class EditOptions extends React.Component {
               .catch( (error) => {
                 console.log(error,'was error in .catch of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
               })
-              //NOTE full end of note since i really should have the catch included in the reducer with the .then that invokes updateListFn above 
+              //NOTE full end of note since i really should have the catch included in the reducer with the .then that invokes updateListFn above
           })
           .catch( (error) => {
             console.log(error, 'was error in .catch of axios.get(`/api/users/${fnArg.user.id}/list/${fnArg.listNumber}`)');

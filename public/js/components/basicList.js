@@ -37,6 +37,21 @@ export default class BasicList extends React.Component {
     // } //probably going to get all he work from editOptions into the reducer so i can just do updateList(stuff) here
 
   }
+  updateListFn(userData, listName, updateListFn, listTranslate){
+    console.log(userData, 'was userData in updateListFn in components/basicList');
+    console.log(listName, 'was listName in updateListFn in components/basicList');
+    console.log('listData is probably not what i want it to be right now, is just listKeyLabel');
+    console.log(updateListFn, 'was updateListFn in updateListFn in components/basicList');
+    console.log(listTranslate, 'was listTranslate in updateListFn in components/basicList');
+
+    let fnArg = {
+      user_id: userData.id,
+      listName,
+      listNumber: listTranslate[listName].listNumber
+    }
+    updateListFn(fnArg)
+
+  }
   componentWillMount(){
     let listKeyLabel = window.location.pathname.split("/")[1]
     console.log('+++++++++++++');
@@ -54,6 +69,7 @@ export default class BasicList extends React.Component {
     if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
       this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     }
 
   }
@@ -171,15 +187,18 @@ export default class BasicList extends React.Component {
       console.log('this.props.selectedListKey.length===0');
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
       this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     } else if(this.props.selectedListKey[0]!==listKeyLabel) { //this probably catches more labels than it needs to?
       console.log('this.props.selectedListKey[0]!==listKeyLabel');
       console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in the second conditional');
       console.log(listKeyLabel, 'was listKeyLabel in the second conditional');
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
       this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     } else {
       console.log(`${this.props.selectedListKey[0]} is equal to ${listKeyLabel}`);
       this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     }
     // this.props.getList(listKeyLabel, this.props.getList, this.props.user.user.id)
 
