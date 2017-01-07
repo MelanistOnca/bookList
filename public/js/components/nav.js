@@ -32,7 +32,11 @@ export default class Nav extends React.Component{
           <li><NavLink
             to="/updateLists"
             >
-            UpdateLists</NavLink></li>
+            Update Lists</NavLink></li>
+          <li><NavLink
+            to="/updateuserinfo"
+            >
+            Update User Info</NavLink></li>
         </ul>
         <UserSection
           {...this.props}

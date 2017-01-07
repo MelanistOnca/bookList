@@ -1,4 +1,4 @@
-console.log('listTranslate from data/listTranslate loaded');
+// console.log('listTranslate from data/listTranslate loaded');
 const listTranslate = {
   "select": {
     'listNumber': 0,

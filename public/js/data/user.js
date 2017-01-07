@@ -3,6 +3,7 @@
 const user = {
   'user': {
     'id': '',
+    // 'id': undefined,
     'admin': false,
     // 'createdAt': '', //not sure if i need this for this scale project?
     'email': '',
@@ -12,9 +13,10 @@ const user = {
     // 'updatedAt': '',
     'username': ''
   },
+  // 'user': null,
   'error': null,
   'loading': false,
-  'status': ''
+  'status': 'initial state'
 }
 
 // the following was the user info found in the ProfileCard component of the tutorial page after logging in, as a prop:
