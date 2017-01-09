@@ -63,6 +63,11 @@ function userFormData(state=[], action){
         ...state,
         'passwordVer': action.userFormPasswordVer
       }
+    case "UPDATE_USERFORM_CURRENT_PASSWORD":
+      return {
+        ...state,
+        'currentPassword': action.userFormCurrentPassword
+      }
     case "LOGGED_IN_USER_DATA":
       console.log(state, 'was state in LOGGED_IN_USER_DATA case');
       console.log(action, 'was action in LOGGED_IN_USER_DATA case');

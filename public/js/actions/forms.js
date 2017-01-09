@@ -85,3 +85,9 @@ export function updateUserFormPasswordVer(userFormPasswordVer) {
     userFormPasswordVer
   }
 }
+export function updateUserFormCurrentPassword(userFormCurrentPassword) {
+  return {
+    type: 'UPDATE_USERFORM_CURRENT_PASSWORD',
+    userFormCurrentPassword
+  }
+}

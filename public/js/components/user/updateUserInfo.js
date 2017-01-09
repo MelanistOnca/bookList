@@ -55,7 +55,7 @@ export default class UpdateUserInfo extends React.Component {
 
 
   }
-  updatePasswordFieldInfo(e){
+  updatePasswordFieldInfo(props, e){
     console.log('updatePasswordFieldInfo called in components/user/updateUserInfo.js');
     console.log(e.target, 'was e.target');
     console.log(e.target.id, 'was e.target.id'); //provides the element ID of the field being updated. change these to differ from signup form ids
@@ -63,6 +63,19 @@ export default class UpdateUserInfo extends React.Component {
     // currentPasswordInput,
     // passwordInput,
     // passwordVerification
+    switch(e.target.id) {
+      case 'currentPasswordInput':
+        props.updateUserFormCurrentPassword(e.target.value)
+      break;
+      case 'passwordInput':
+        props.updateUserFormPassword(e.target.value);
+      break;
+      case 'passwordVerification':
+        props.updateUserFormPasswordVer(e.target.value);
+      break;
+      default:
+        console.log('no cases matched in switch in updatePasswordFieldInfo in components/user/updateUserInfo.js');
+    }
   }
   submitUpdatedInfo(updateFn,userFormData,e) {
     console.log('submitUpdatedInfo in components/user/updateUserInfo.js called');
