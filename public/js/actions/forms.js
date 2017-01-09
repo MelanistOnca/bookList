@@ -31,57 +31,57 @@ export function updateFormPassword(formPassword) {
   }
 }
 
-export function updateSignUpF_Name(signUpF_Name) {
+export function updateUserFormF_Name(userFormF_Name) {
   return {
-    type: 'UPDATE_SIGNUP_F_NAME',
-    signUpF_Name
+    type: 'UPDATE_USERFORM_F_NAME',
+    userFormF_Name
   }
 }
-export function updateSignUpM_Name(signUpM_Name) {
+export function updateUserFormM_Name(userFormM_Name) {
   return {
-    type: 'UPDATE_SIGNUP_M_NAME',
-    signUpM_Name
+    type: 'UPDATE_USERFORM_M_NAME',
+    userFormM_Name
   }
 }
-export function updateSignUpL_Name(signUpL_Name) {
+export function updateUserFormL_Name(userFormL_Name) {
   return {
-    type: 'UPDATE_SIGNUP_L_NAME',
-    signUpL_Name
+    type: 'UPDATE_USERFORM_L_NAME',
+    userFormL_Name
   }
 }
-export function updateSignUpEmail(signUpEmail) {
+export function updateUserFormEmail(userFormEmail) {
   return {
-    type: 'UPDATE_SIGNUP_EMAIL',
-    signUpEmail
+    type: 'UPDATE_USERFORM_EMAIL',
+    userFormEmail
   }
 }
-export function updateSignUpEmailVer(signUpEmailVer) {
+export function updateUserFormEmailVer(userFormEmailVer) {
   return {
-    type: 'UPDATE_SIGNUP_EMAIL_VER',
-    signUpEmailVer
+    type: 'UPDATE_USERFORM_EMAIL_VER',
+    userFormEmailVer
   }
 }
-export function updateSignUpUsername(signUpUsername) {
+export function updateUserFormUsername(userFormUsername) {
   return {
-    type: 'UPDATE_SIGNUP_USERNAME',
-    signUpUsername
+    type: 'UPDATE_USERFORM_USERNAME',
+    userFormUsername
   }
 }
-export function updateSignUpUsernameVer(signUpUsernameVer) {
+export function updateUserFormUsernameVer(userFormUsernameVer) {
   return {
-    type: 'UPDATE_SIGNUP_USERNAME_VER',
-    signUpUsernameVer
+    type: 'UPDATE_USERFORM_USERNAME_VER',
+    userFormUsernameVer
   }
 }
-export function updateSignUpPassword(signUpPassword) {
+export function updateUserFormPassword(userFormPassword) {
   return {
-    type: 'UPDATE_SIGNUP_PASSWORD',
-    signUpPassword
+    type: 'UPDATE_USERFORM_PASSWORD',
+    userFormPassword
   }
 }
-export function updateSignUpPasswordVer(signUpPasswordVer) {
+export function updateUserFormPasswordVer(userFormPasswordVer) {
   return {
-    type: 'UPDATE_SIGNUP_PASSWORD_VER',
-    signUpPasswordVer
+    type: 'UPDATE_USERFORM_PASSWORD_VER',
+    userFormPasswordVer
   }
 }

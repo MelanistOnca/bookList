@@ -3,58 +3,58 @@ import { render } from 'react-dom';
 
 // import { Field, reduxForm } from 'redux-form';
 
-import signUpForm from '../../data/signUpForm.js';
+import userFormData from '../../data/userFormData.js';
 
 class SignUp extends React.Component {
-  submitInfo(signUpFn, signUpFormInfo, /*probably need more passed to check all the fields are verified*/ e){
+  submitInfo(signUpFn, userFormDataInfo, /*probably need more passed to check all the fields are verified*/ e){
     // console.log(e,'was e in submitInfo in components/user/signUp.js');
     // console.log(signUpFn, 'was fn passed to submitInfo');
-    // console.log(signUpFormInfo, 'was signUpFormInfo passed to submitInfo');
+    // console.log(userFormDataInfo, 'was userFormDataInfo passed to submitInfo');
     e.preventDefault();
     //using signupusername and signuppassword for testing. email is a@b.com, pat j mcw
 
     //NOTE: still want to do field verification?
-    signUpFn(signUpFormInfo);
+    signUpFn(userFormDataInfo);
   }
   handleChange(e) {
     this.props.onChange(e)
   }
-  updateSignUpFormF_Name(updateF_NameField, e){
+  updateUserFormFormF_Name(updateF_NameField, e){
     let targetField = e.target.value;
-    // console.log('updateSignUpFormF_Name got called');
+    // console.log('updateUserFormFormF_Name got called');
     updateF_NameField(targetField);
   } //there should be a way to dynamically check which field is being updated so that i can only have one function call that will update the appropriate field only? if F_NameField, updateF_Name. probably some kind of switch statement? might need to change the update reducers?
-  updateSignUpFormM_Name(updateM_NameField, e){
+  updateUserFormFormM_Name(updateM_NameField, e){
     let targetField = e.target.value;
     updateM_NameField(targetField);
   }
-  updateSignUpFormL_Name(updateL_NameField, e){
+  updateUserFormFormL_Name(updateL_NameField, e){
     let targetField = e.target.value;
     updateL_NameField(targetField);
   }
-  updateSignUpFormEmail(updateSignUpMailField, e){
+  updateUserFormFormEmail(updateUserFormMailField, e){
     let targetField = e.target.value;
-    updateSignUpMailField(targetField);
+    updateUserFormMailField(targetField);
   }
-  updateSignUpFormEmailVer(updateSignUpMailVerField, e){
+  updateUserFormFormEmailVer(updateUserFormMailVerField, e){
     let targetField = e.target.value;
-    updateSignUpMailVerField(targetField);
+    updateUserFormMailVerField(targetField);
   }
-  updateSignUpFormUsername(updateSignUpUsernameField, e){
+  updateUserFormFormUsername(updateUserFormUsernameField, e){
     let targetField = e.target.value;
-    updateSignUpUsernameField(targetField);
+    updateUserFormUsernameField(targetField);
   }
-  updateSignUpFormUsernameVer(updateSignUpUsernameVerField, e){
+  updateUserFormFormUsernameVer(updateUserFormUsernameVerField, e){
     let targetField = e.target.value;
-    updateSignUpUsernameVerField(targetField);
+    updateUserFormUsernameVerField(targetField);
   }
-  updateSignUpFormPassword(updateSignUpPasswordField, e){
+  updateUserFormFormPassword(updateUserFormPasswordField, e){
     let targetField = e.target.value;
-    updateSignUpPasswordField(targetField);
+    updateUserFormPasswordField(targetField);
   }
-  updateSignUpFormPasswordVer(updateSignUpPasswordVerField, e){
+  updateUserFormFormPasswordVer(updateUserFormPasswordVerField, e){
     let targetField = e.target.value;
-    updateSignUpPasswordVerField(targetField);
+    updateUserFormPasswordVerField(targetField);
   }
 
   render(){
@@ -83,8 +83,8 @@ class SignUp extends React.Component {
                   id="firstNameInput"
                   type="text"
                   placeholder="first name here"
-                  onChange={this.updateSignUpFormF_Name.bind(this, this.props.updateSignUpF_Name)}
-                  value={this.props.signUpForm.firstName}
+                  onChange={this.updateUserFormFormF_Name.bind(this, this.props.updateUserFormF_Name)}
+                  value={this.props.userFormData.firstName}
                   >
                   </input>
                 </label>
@@ -95,8 +95,8 @@ class SignUp extends React.Component {
                   id="middleNameInput"
                   type="text"
                   placeholder="middle name here"
-                  onChange={this.updateSignUpFormM_Name.bind(this, this.props.updateSignUpM_Name)}
-                  value={this.props.signUpForm.middleName}
+                  onChange={this.updateUserFormFormM_Name.bind(this, this.props.updateUserFormM_Name)}
+                  value={this.props.userFormData.middleName}
                   >
                   </input>
                 </label>
@@ -107,8 +107,8 @@ class SignUp extends React.Component {
                     id="lastNameInput"
                     type="text"
                     placeholder="last name here"
-                    onChange={this.updateSignUpFormL_Name.bind(this, this.props.updateSignUpL_Name)}
-                    value={this.props.signUpForm.lastName}
+                    onChange={this.updateUserFormFormL_Name.bind(this, this.props.updateUserFormL_Name)}
+                    value={this.props.userFormData.lastName}
                     >
                   </input>
                 </label>
@@ -123,8 +123,8 @@ class SignUp extends React.Component {
                 id="emailInput"
                 type="text"
                 placeholder="email here"
-                onChange={this.updateSignUpFormEmail.bind(this,this.props.updateSignUpEmail)}
-                value={this.props.signUpForm.email}
+                onChange={this.updateUserFormFormEmail.bind(this,this.props.updateUserFormEmail)}
+                value={this.props.userFormData.email}
                 ></input></label>
               </li>
               <li>
@@ -132,8 +132,8 @@ class SignUp extends React.Component {
                 id="emailVerification"
                 type="text"
                 placeholder="verify email here"
-                onChange={this.updateSignUpFormEmailVer.bind(this,this.props.updateSignUpEmailVer)}
-                value={this.props.signUpForm.emailVer}
+                onChange={this.updateUserFormFormEmailVer.bind(this,this.props.updateUserFormEmailVer)}
+                value={this.props.userFormData.emailVer}
                 ></input></label>
               </li>
             </ul>
@@ -146,8 +146,8 @@ class SignUp extends React.Component {
                 id="usernameInput"
                 type="text"
                 placeholder="username here"
-                onChange={this.updateSignUpFormUsername.bind(this,this.props.updateSignUpUsername)}
-                value={this.props.signUpForm.username}
+                onChange={this.updateUserFormFormUsername.bind(this,this.props.updateUserFormUsername)}
+                value={this.props.userFormData.username}
                 ></input></label>
               </li>
               <li>
@@ -155,8 +155,8 @@ class SignUp extends React.Component {
                 id="usernameVerification"
                 type="text"
                 placeholder="verify username here"
-                onChange={this.updateSignUpFormUsernameVer.bind(this,this.props.updateSignUpUsernameVer)}
-                value={this.props.signUpForm.usernameVer}
+                onChange={this.updateUserFormFormUsernameVer.bind(this,this.props.updateUserFormUsernameVer)}
+                value={this.props.userFormData.usernameVer}
                 ></input></label>
               </li>
             </ul>
@@ -169,8 +169,8 @@ class SignUp extends React.Component {
                 id="passwordInput"
                 type="text"
                 placeholder="password here"
-                onChange={this.updateSignUpFormPassword.bind(this,this.props.updateSignUpPassword)}
-                value={this.props.signUpForm.password}
+                onChange={this.updateUserFormFormPassword.bind(this,this.props.updateUserFormPassword)}
+                value={this.props.userFormData.password}
                 ></input></label>
               </li>
               <li>
@@ -178,14 +178,14 @@ class SignUp extends React.Component {
                 id="passwordVerification"
                 type="text"
                 placeholder="verify password here"
-                onChange={this.updateSignUpFormPasswordVer.bind(this,this.props.updateSignUpPasswordVer)}
-                value={this.props.signUpForm.passwordVer}
+                onChange={this.updateUserFormFormPasswordVer.bind(this,this.props.updateUserFormPasswordVer)}
+                value={this.props.userFormData.passwordVer}
                 ></input></label>
               </li>
             </ul>
           </li>
           <button
-            onClick={this.submitInfo.bind(event, this.props.signUpUser, this.props.signUpForm)}
+            onClick={this.submitInfo.bind(event, this.props.signUpUser, this.props.userFormData)}
 
             >
             Sign Up</button>

@@ -149,7 +149,7 @@ export default class InnerResultList extends React.Component {
                 <li>Publisher: {this.props.matchedISBN.publisher_name}</li>
                 <li>ISBN: {this.props.matchedISBN.isbn13}</li>
               </ul>
-              <button>theoretical button to add to list. need to request selected list to make it work.</button>
+              
               <EditOptions
                 {...this.props}
                 addOrRemoveButton={'add'}

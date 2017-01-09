@@ -63,7 +63,7 @@ module.exports.createUser = ( req, res, next ) => {
 //
 // }
 
-module.exports.logInUser = ( req, res, next /*pass the logInUserSuccess function as part of req.body??*/) => {
+module.exports.logInUser = ( req, res, next ) => {
   console.log(req.body, 'was req.body');
   // let email = req.body.email;
   let username = req.body.username;
@@ -72,28 +72,7 @@ module.exports.logInUser = ( req, res, next /*pass the logInUserSuccess function
   // console.log(email, 'that was email');
   // console.log(username, 'that was username');
   // console.log(password, 'that was password');
-  //here need to do the pgp equiv of pg.connect(connString, () => {
-  // if (err)...
-  // let query = client.query(select ... )
-  // bla bla
-  // res.rows = results.rows[0]
-// })
 
-// this is from the group project that used pgp
-// db.one("SELECT * FROM users WHERE email LIKE $1;", [email])
-//     .then((data) => {
-//       if (bcrypt.compareSync(password, data.password_digest)) {
-//         res.rows = data
-//         next()
-//       } else {
-//         res.status(401).json({data:"Fool this no workie"})
-//         next()
-//       }
-//     })
-//     .catch((error) => {
-//       console.error(error,'error finding users')
-//     })
-// put db.one into a dispatch? review how dispatch works. mayb in the .then?
   db.one("SELECT * FROM users WHERE username like $1;", [username])
       //NOTE review mapDispatchToProps, new Promise, and how they're used in signInFormContainer and SignInForm in the tutorial
       .then( (data) => {
@@ -122,6 +101,28 @@ module.exports.logInUser = ( req, res, next /*pass the logInUserSuccess function
       .catch( (error) => {
         console.error(error, "error finding user")
       })
+}
+
+// module.exports.getUserInfo = ( req,res,next ) => {
+//   db.one("SELECT * FROM users WHERE ")
+// }
+
+module.exports.updateUser = ( req,res,next ) => {
+  console.log('updateUser in db/users.js ran');
+  console.log(req.body, 'was req.body in updateUser in db/users.js');
+  // console.log(req.params, 'was req.params in updateUser in db/users.js');
+  db.any("UPDATE users SET f_name = $1, m_name = $2, l_name = $3, email = $4, username = $5 WHERE id = $6 ;", [STUFF]) //i wonder if i can do WHERE username = $x while the username is possibly being updated? I may need a req.body.oldUsername type thing for that to work. is using the user id a really bad idea? //see the pgp docs mentioning a format for protecting against injection
+    .then( (data) => {
+      console.log(data, 'was data in .then of updateUser in db/users.js');
+      res.rows = data;
+      //this presumes that i get return info i want. I believe i will need "RETURNING f_name, m_name, l_name, email, username" added to the update statement above
+      next()
+    })
+    .catch( (error) => {
+      console.log(error, 'was error in .then of updateUser in db/users.js');
+      next()
+    })
+  next()
 }
 
 // module.exports.createSecure = createSecure;

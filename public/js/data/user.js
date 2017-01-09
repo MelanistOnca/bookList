@@ -9,6 +9,7 @@ const user = {
     'email': '',
     // 'hasVerifiedEmail': false, //definitely not using this right now
     'first_name': '',
+    'middle_name': '',
     'last_name': '',
     // 'updatedAt': '',
     'username': ''

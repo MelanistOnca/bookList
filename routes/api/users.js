@@ -33,6 +33,13 @@ router
   .put('/', /* modify user info in DB, */ notImplement)
   .delete('/', /* remove user info from DB, */ notImplement) //probably not going to use, instead make user info non-accessible?
 
+// :3003/api/users/signup
+router
+.get('/signup', /* ?? , */ notImplement)
+// .post('/signup', /* ?? , */ notImplement)
+.post('/signup', user_fns.createUser) //generates a 404 somewhere along the way, even when successfully making an entry in user table //you should probably figure out why, but it works for now.
+
+
 // :3003/api/users/login
 router
   .get('/login', /* ?? , */ notImplement)
@@ -44,12 +51,21 @@ router
     res.json( { user: res.rows, token: token } )
 
   })
-// :3003/api/users/signup
-router
-  .get('/signup', /* ?? , */ notImplement)
-  // .post('/signup', /* ?? , */ notImplement)
-  .post('/signup', user_fns.createUser) //generates a 404 somewhere along the way, even when successfully making an entry in user table //you should probably figure out why, but it works for now.
 
+// :3003/api/users/update
+router
+  // .put('/update', notImplement)
+  // .post('/update', notImplement)
+  // .post('/update', user_fns.updateUser,
+  //   (req,res) => {
+  //     res.json( {payload: res.rows})
+  //   }
+  // )
+  .put('/update', user_fns.updateUser,
+    (req,res) => {
+      res.json( {payload: res.rows})
+    }
+  )
 
 // :3003/api/users/list
 router

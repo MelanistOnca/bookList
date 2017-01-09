@@ -62,56 +62,7 @@ class LogIn extends React.Component {
           })
       })
 
-    //try a console log of the below
-    // logInFn(logInFormData);
-    // console.log(logInFn(logInFormData), 'was logInFn call');
-    // let calledLogIn = logInFn(logInFormData);
-    // console.log(calledLogIn, 'was calledLogIn');
-    // console.log(calledLogIn.payload, 'was calledLogIn.payload');
-    // console.log(calledLogIn.payload.PromiseValue, 'was calledLogIn.payload.PromiseValue');
-
-    // console.log(logInSuccessFn(logInFn(logInFormData)), 'was logInSuccessFn(logInFn(logInFormData))');
-
-    // logInSuccessFn(logInFn(logInFormData));
-    // let gummy = new Promise (
-    //   (resolve, reject) => {
-    //
-    //   }
-    // )
-
-    // logInFn(logInFormData)
-      // .then( (data) => {
-      //   console.log(data, 'was data in .then of logInFn call in logIn in components/user/login.js');
-      //   next()
-      // })
-      // .catch( (error) =>{
-      //   console.error(error, 'error in logInFn call in logIn in components/user/login.js');
-      // })
-
-
-    // if(calledLogIn) {
-    //   console.log('calledLogIn true');
-    //   logInSuccessFn(logInFormData.username)
-    // } else {
-    //   console.log('calledLogIn false');
-    // }
-
-
-
-
-    //to see what it returns
-
-
-    // $.ajax('/api/users')
-    //   .done( () => {
-    //     console.log('success at /api/users');
-    //   })
-    //   .fail( () => {
-    //     console.log('failure at /api/users');
-    //   })
-    //   .always( () => {
-    //     console.log('ajax complete at /api/users');
-    //   })
+    
   }
   updateUsername(updateUsernameField, e){
     // console.log('updateUsername in component/user/logIn.js fired');

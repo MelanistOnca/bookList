@@ -128,11 +128,28 @@ export function logoutUser() {
   }
 }
 
-export function updateUserEmail(email) {
-  // not sure im going to use this? probably good idea to use it. we'll see
+export function updateUserInfo(userInfo) {
+
+  console.log('updateUserInfo in actions/user.js called');
+  return {
+    type: 'UPDATE_USER_INFO',
+    payload: userInfo
+  }
+}
+export function updateUserEmail(userEmail) {
+
   console.log('updateUserEmail in actions/user.js called');
   return {
     type: 'UPDATE_USER_EMAIL',
-    payload: email
+    payload: userEmail
+  }
+}
+
+export function userInfoToFormData(userInfo) {
+  console.log('userInfoToFormData in actions/user.js called');
+  console.log(userInfo, 'was userInfo in same');
+  return {
+    type: "LOGGED_IN_USER_DATA",
+    payload: userInfo
   }
 }
