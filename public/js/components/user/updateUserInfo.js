@@ -88,14 +88,15 @@ export default class UpdateUserInfo extends React.Component {
       // lastName,
       // middleName,
       // username //do i want to allow users to change username? there's got to be a reason this isn't a common option in username services?
-    console.log(userFormData.email, 'was userFormData.email in in components/user/updateUserInfo.js called');
-    console.log(userFormData.firstName, 'was userFormData.firstName in in components/user/updateUserInfo.js called');
-    console.log(userFormData.middleName, 'was userFormData.middleName in in components/user/updateUserInfo.js called');
-    console.log(userFormData.lastName, 'was userFormData.lastName in in components/user/updateUserInfo.js called');
-    console.log(userFormData.username, 'was userFormData.username in in components/user/updateUserInfo.js called');
+    // console.log(userFormData.email, 'was userFormData.email in in components/user/updateUserInfo.js called');
+    // console.log(userFormData.firstName, 'was userFormData.firstName in in components/user/updateUserInfo.js called');
+    // console.log(userFormData.middleName, 'was userFormData.middleName in in components/user/updateUserInfo.js called');
+    // console.log(userFormData.lastName, 'was userFormData.lastName in in components/user/updateUserInfo.js called');
+    // console.log(userFormData.username, 'was userFormData.username in in components/user/updateUserInfo.js called');
+    updateFn(userFormData) //need to add user_id to userFormData and update this.userInfoToFormData and its passed function to move that info over so that i have it when passing formdata here. for use in SQL command
 
   }
-  submitUpdatedPassword() {
+  submitUpdatedPassword(updateFn, userFormData, e) {
     console.log('submitUpdatedPassword in components/user/updateUserInfo.js called');
 
   }
@@ -134,11 +135,6 @@ export default class UpdateUserInfo extends React.Component {
     return (
       <div
         id="updateUserInfoContainer">
-
-        Update user info here
-
-
-
         <ul >
           Update User Information
           <li>
@@ -221,7 +217,7 @@ export default class UpdateUserInfo extends React.Component {
             Update Info</button>
         </ul>
         <ul>
-          Update Password
+          Update Password (not yet implemented)
           <li>
             <ul style={blockStyle}>
               <li>
@@ -254,7 +250,7 @@ export default class UpdateUserInfo extends React.Component {
             </ul>
           </li>
           <button
-            onClick={this.submitUpdatedPassword}
+            onClick={this.submitUpdatedPassword.bind(this. this.updateUserPassword, this.props.userFormData)}
 
             >
             Set New Password</button>

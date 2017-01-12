@@ -7,6 +7,53 @@ import SearchFor from './searchFor';
 
 export default class Selected extends React.Component {
 
+  // componentWillReceiveProps(nextProps){
+  //   // let fnArg = {
+  //   //   listKey,
+  //   //   user_id
+  //   // }
+  //   console.log(this.props, 'was this.props in componentWillReceiveProps in components/selected.js');
+  //   // let fnArg = {
+  //   //   this.props.selectedListKey[0],
+  //   //   this.props.user.user.id
+  //   // }
+  //   if (this.props.user.status==="authenticated") {
+  //     // let listKey = this.props.selectedListKey[0];
+  //     // let uID = this.props.user.user.id;
+  //     let getFnArg = {
+  //       listKey: this.props.selectedListKey[0],
+  //       user_id: this.props.user.user.id
+  //     }
+  //     console.log('before getList in componentWillReceiveProps in components/selected.js');
+  //     console.log('kind of expecting this to loop?');
+  //     this.props.getList(getFnArg)
+  //     console.log('after getList in componentWillReceiveProps in components/selected.js');
+  //     // this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
+  //     // let fnArg = {
+  //     //   user_id: userData.id,
+  //     //   listName,
+  //     //   listNumber: listTranslate[listName].listNumber
+  //     // }
+  //     // console.log('just before the updateListFn call in getListFn in in basicList.js');
+  //     // updateListFn(fnArg);
+  //     // console.log('just after the updateListFn call in getListFn in in basicList.js');
+  //     console.log(this.props.listTranslate, 'was this.props.listTranslate');
+  //     console.log(this.props.selectedListKey[0], 'was this.props.listTranslate');
+  //     // console.log(this.props.listTranslate[this.props.selectedListKey[0]].listNumber, 'was this.props.listTranslate[this.props.selectedListKey[0]].listNumber');
+  //     console.log(this.props.listTranslate[this.props.selectedListKey[0]].listNumber, 'was this.props.listTranslate[this.props.selectedListKey[0]].listNumber');
+  //     let updateFnArg = {
+  //       user_id: this.props.user.user.id,
+  //       listName: this.props.selectedListKey[0],
+  //       listNumber: this.props.listTranslate[this.props.selectedListKey[0]].listNumber
+  //     }
+  //     console.log('just before the updateListFn call in getListFn in in basicList.js');
+  //     this.props.updateList(updateFnArg);
+  //     console.log('just after the updateListFn call in getListFn in in basicList.js');
+  //   }
+  // }
+  // componentWillMount(){
+  //   this.props.getList()
+  // }
   render(){
 
 

@@ -131,9 +131,20 @@ export function logoutUser() {
 export function updateUserInfo(userInfo) {
 
   console.log('updateUserInfo in actions/user.js called');
+  console.log(userInfo, 'was userInfo in same');
+  axios.post('api/users/update', userInfo)
   return {
     type: 'UPDATE_USER_INFO',
     payload: userInfo
+  }
+}
+export function updateUserPassword(userPassword) {
+
+  console.log('updateUserPassword in actions/user.js called');
+
+  return {
+    type: 'UPDATE_USER_PASSWORD',
+    payload: userPassword
   }
 }
 export function updateUserEmail(userEmail) {

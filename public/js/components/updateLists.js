@@ -10,7 +10,27 @@ import Selected from './selected';
 
 export default class UpdateList extends React.Component {
 
+  componentWillMount(){
+    // let listKeyLabel = window.location.pathname.split("/")[1]
+    // console.log('+++++++++++++');
+    // console.log(listKeyLabel, 'was listKeyLabel in componentWillMount in basicList.js'); //returns array ["", "basicList"], where basicList is the /route_name_here
+    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in componentWillMount in basicList.js'); //returns empty array
+    // // let listKey = `${this.props.selectedListKey}`
+    // // let labelLength = listKeyLabel.length;
+    // // console.log(listKeyLabel.length, 'listKeyLabel.length');
+    // // console.log(labelLength, 'labelLength');
+    // // console.log(listKeyLabel.substr(labelLength-4,4), 'was listKeyLabel.substr(labelLength-4,4)');
+    // console.log(`${listKeyLabel}List`);
+    // console.log('++++++++++++++');
 
+    // this.props.getList(`${listKeyLabel}List`)
+    // if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
+    //   // this.setSelectedListKey(listKeyLabel, this.props.selectList )
+    //   // this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+    //   this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
+    // }
+
+  }
   render(){
     //on selection, change subcomponents to appropriate UI elements
     // console.log(this.props,'this.props in components/updateLists.js');
@@ -30,7 +50,7 @@ export default class UpdateList extends React.Component {
     // console.log(this.props, 'this.props in components/updateLists');
     // console.log(this.props.selectedSearchType, 'this.props.selectedSearchType in components/updateLists');
     // console.log(this.props.selectedListKey[0], 'this.props.selectedListKey[0] in components/updateLists');//returns toBeReadList
-    const event = window.event;
+    // const event = window.event;
     return(
       <div id="updateListsContainer">
         <Selector

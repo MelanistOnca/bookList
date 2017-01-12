@@ -111,7 +111,7 @@ module.exports.updateUser = ( req,res,next ) => {
   console.log('updateUser in db/users.js ran');
   console.log(req.body, 'was req.body in updateUser in db/users.js');
   // console.log(req.params, 'was req.params in updateUser in db/users.js');
-  db.any("UPDATE users SET f_name = $1, m_name = $2, l_name = $3, email = $4, username = $5 WHERE id = $6 ;", [STUFF]) //i wonder if i can do WHERE username = $x while the username is possibly being updated? I may need a req.body.oldUsername type thing for that to work. is using the user id a really bad idea? //see the pgp docs mentioning a format for protecting against injection
+  db.any("UPDATE users SET f_name = $1, m_name = $2, l_name = $3, email = $4, username = $5 WHERE id = $6 ;", [req.body.firstName, req.body.middleName, req.body.lastName, rq.body.email, req.body.username]) //i wonder if i can do WHERE username = $x while the username is possibly being updated? I may need a req.body.oldUsername type thing for that to work. is using the user id a really bad idea? //see the pgp docs mentioning a format for protecting against injection
     .then( (data) => {
       console.log(data, 'was data in .then of updateUser in db/users.js');
       res.rows = data;

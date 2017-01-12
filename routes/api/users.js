@@ -37,7 +37,7 @@ router
 router
 .get('/signup', /* ?? , */ notImplement)
 // .post('/signup', /* ?? , */ notImplement)
-.post('/signup', user_fns.createUser) //generates a 404 somewhere along the way, even when successfully making an entry in user table //you should probably figure out why, but it works for now.
+.post('/signup', user_fns.createUser) //NOTE: generates a 404 somewhere along the way, even when successfully making an entry in user table //TODO: you should probably figure out why, but it works for now. //possbily whatever db.__ thing i'm using???!?!?!
 
 
 // :3003/api/users/login
@@ -56,16 +56,16 @@ router
 router
   // .put('/update', notImplement)
   // .post('/update', notImplement)
-  // .post('/update', user_fns.updateUser,
-  //   (req,res) => {
-  //     res.json( {payload: res.rows})
-  //   }
-  // )
-  .put('/update', user_fns.updateUser,
+  .post('/update', user_fns.updateUser,
     (req,res) => {
       res.json( {payload: res.rows})
     }
   )
+  // .put('/update', user_fns.updateUser,
+  //   (req,res) => {
+  //     res.json( {payload: res.rows})
+  //   }
+  // )
 
 // :3003/api/users/list
 router

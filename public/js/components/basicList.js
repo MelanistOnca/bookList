@@ -15,41 +15,37 @@ export default class BasicList extends React.Component {
 
   }
   getListFn(listKey, getList, user_id) {
-    console.log(listKey, 'was listKey in getListFn in basicList.js');
-    console.log(user_id, 'was user_id in getListFn in basicList.js');
-    console.log(getList, 'was getList in getListFn in basicList.js');
+    // console.log(listKey, 'was listKey in getListFn in basicList.js');
+    // console.log(user_id, 'was user_id in getListFn in basicList.js');
+    // console.log(getList, 'was getList in getListFn in basicList.js');
     let fnArg = {
       listKey,
       user_id
     }
-    console.log('???????????????????');
-    console.log(fnArg, 'was fnArg in getListFn in basicList.js');
-    console.log('???????????????????');
-    //i want to run the axios.get here? i think? and then update store with getList fn based on results?
-
-    getList( fnArg );//this also needs user info
-    // updatelist needs updateFnArg
-    // let updateFnArg = { //this will be listInfo in reducer
-    //   //i need a lot of the work done in editOptions here. i should see if i can reference/define those operations elsewhere and then call them here
-    //   listContents: ,
-    //   listName: ,
+    // console.log('???????????????????');
+    // console.log(fnArg, 'was fnArg in getListFn in basicList.js');
+    // console.log('???????????????????');
     //
-    // } //probably going to get all he work from editOptions into the reducer so i can just do updateList(stuff) here
+    // console.log('just before the getList call in getListFn in in basicList.js');
+    getList( fnArg );
+    // console.log('just after the getList call in getListFn in in basicList.js');
 
   }
   updateListFn(userData, listName, updateListFn, listTranslate){
-    console.log(userData, 'was userData in updateListFn in components/basicList');
-    console.log(listName, 'was listName in updateListFn in components/basicList');
-    console.log('listData is probably not what i want it to be right now, is just listKeyLabel');
-    console.log(updateListFn, 'was updateListFn in updateListFn in components/basicList');
-    console.log(listTranslate, 'was listTranslate in updateListFn in components/basicList');
+    // console.log(userData, 'was userData in updateListFn in components/basicList');
+    // console.log(listName, 'was listName in updateListFn in components/basicList');
+    // console.log('listData is probably not what i want it to be right now, is just listKeyLabel');
+    // console.log(updateListFn, 'was updateListFn in updateListFn in components/basicList');
+    // console.log(listTranslate, 'was listTranslate in updateListFn in components/basicList');
 
     let fnArg = {
       user_id: userData.id,
       listName,
       listNumber: listTranslate[listName].listNumber
     }
-    updateListFn(fnArg)
+    console.log('just before the updateListFn call in getListFn in in basicList.js');
+    updateListFn(fnArg);
+    console.log('just after the updateListFn call in getListFn in in basicList.js');
 
   }
   componentWillMount(){
@@ -74,60 +70,10 @@ export default class BasicList extends React.Component {
 
   }
   componentWillReceiveProps(nextProps){
-    console.log(',,,,,,,,,,,,,,');
-    // console.log(this.props, 'was this.props in basicList.js in componentWillReceiveProps');
-    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js in componentWillReceiveProps');
-    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in basicList.js in componentWillReceiveProps');
-    console.log('"""""""""""""');
-    console.log(nextProps, 'was nextProps in same');
-    // let listKeyLabel = window.location.pathname.split("/")
-    // let listKeyLabel = window.location.pathname.split("/")[1]
-    // console.log(listKeyLabel, 'was listKeyLabel in componentWillReceiveProps in basicList.js'); //returns array ["", "basicList"], where basicList is the /route_name_here
-    //
-    // //NOTE needed the switch here rather than in the function, since the URL and store values will never match ===>> this is probably bad design, but we're living with it.
-    // switch (listKeyLabel) {
-    //   // case "basicList":
-    //   // // test case
-    //   // listKeyLabel="basicList"
-    //   //
-    //   // break;
-    //   case "reading":
-    //   // currentlyReadingList
-    //   listKeyLabel = "currentlyReadingList"
-    //
-    //   break;
-    //   case "toberead":
-    //   // toBeReadList
-    //   listKeyLabel = "toBeReadList"
-    //
-    //   break;
-    //   case "finished":
-    //   // haveReadList
-    //   listKeyLabel = "haveReadList"
-    //
-    //   break;
-    //   default:
-    //     console.log("sumpfin dun gon wrong in da basicList.js switch");
-    // }
-    //
-    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in componentWillReceiveProps in basicList.js'); //returns empty array
-    // // let listKey = `${this.props.selectedListKey}`
-    // // if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
-    // //   this.setSelectedListKey(listKeyLabel, this.props.selectList)
-    // // }
-    //
-    //
-    //
-    // // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js');
-    // console.log(listKeyLabel, 'was listKeyLabel before the second conditional');
-    // if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
-    //   this.setSelectedListKey(listKeyLabel, this.props.selectList)
-    // } else if(this.props.selectedListKey[0]!==listKeyLabel) { //this probably catches more labels than it needs to?
-    //   console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in the second conditional');
-    //   console.log(listKeyLabel, 'was listKeyLabel in the second conditional');
-    //   this.setSelectedListKey(listKeyLabel, this.props.selectList)
-    // } else {
-    //   console.log('too many else if');
+    console.log(this.props, 'was this.props in componentWillReceiveProps in basicList.js');
+    console.log(nextProps, 'was nextProps in componentWillReceiveProps in basicList.js');
+    // if((this.props!==nextProps)) {
+    //   this.updateListFn(this.props.user.user, this.props.selectedListKey[0], this.props.updateList, this.props.listTranslate)
     // }
 
   }
@@ -139,7 +85,7 @@ export default class BasicList extends React.Component {
     console.log('/////////');
 
     let listKeyLabel = window.location.pathname.split("/")[1]
-    console.log(listKeyLabel, 'was listKeyLabel in componentWillReceiveProps in basicList.js'); //returns array ["", "basicList"], where basicList is the /route_name_here
+    console.log(listKeyLabel, 'was listKeyLabel in render in basicList.js'); //returns array ["", "basicList"], where basicList is the /route_name_here
 
     //NOTE needed the switch here rather than in the function, since the URL and store values will never match ===>> this is probably bad design, but we're living with it.
     switch (listKeyLabel.toLowerCase()) {
@@ -170,15 +116,11 @@ export default class BasicList extends React.Component {
         console.log("sumpfin dun gon wrong in da basicList.js switch");
     }
 
-    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in componentWillReceiveProps in basicList.js'); //returns empty array
-    // let listKey = `${this.props.selectedListKey}`
-    // if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
-    //   this.setSelectedListKey(listKeyLabel, this.props.selectList)
-    // }
 
 
 
-    console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js');
+
+    // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in basicList.js');
     console.log(listKeyLabel, 'was listKeyLabel before the second conditional');
     console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] before the second conditional');
     // console.log(this.props.getList, 'was this.props.getList before conditionals in basicList.js');
@@ -195,10 +137,18 @@ export default class BasicList extends React.Component {
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
       this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
       this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
+    // } //else if (this.props.selectedListKey[0]===listKeyLabel){
+    //   console.log('<><><><><><><><><><><><>');
+    //   console.log(`${this.props.selectedListKey[0]} is equal to ${listKeyLabel} in the second conditional`);
+    //   console.log('<><><><><><><><><><><><>');
+    //   this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+    //   // this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     } else {
-      console.log(`${this.props.selectedListKey[0]} is equal to ${listKeyLabel}`);
+      console.log('========================');
+      console.log(`the else case in second conditional in basicList.js`);
+      console.log('========================');
       this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
-      this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
+      // this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     }
     // this.props.getList(listKeyLabel, this.props.getList, this.props.user.user.id)
 
@@ -206,7 +156,7 @@ export default class BasicList extends React.Component {
       <div
         id= {this.props.selectedListKey+"Container"}
         >
-        {this.props.selectedListKey} this should be the selected list key
+
         <ListView
           {...this.props}
           />

@@ -91,6 +91,23 @@ function user(state=[], action) {
     // my stuff
       console.log('UPDATE_USER_EMAIL case');
       console.log(state, 'was state in this case');
+      console.log(action, 'was action in same');
+      return state;
+    case 'UPDATE_USER_INFO':
+    // return{...state, user:{...state.user, email:action.payload.email}};
+    // my stuff
+      console.log('UPDATE_USER_INFO case');
+      console.log(state, 'was state in this case');
+      console.log(action, 'was action in same');
+      
+      return state;
+    case 'UPDATE_USER_PASSWORD':
+    // return{...state, user:{...state.user, email:action.payload.email}};
+    // my stuff
+      console.log('UPDATE_USER_PASSWORD case');
+      console.log(state, 'was state in this case');
+      console.log(action, 'was action in same');
+
       return state;
     case 'LOGOUT_USER':
     // return {...state, user:null, status:'logout', error:null, loading: false};

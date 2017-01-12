@@ -13,7 +13,7 @@ export default class SingleBook extends React.Component {
           // author
           // genre
   render(){
-    console.log(this.props, 'this.props in singleBook.js');
+    // console.log(this.props, 'this.props in singleBook.js');
     // console.log(this.props.pickedList,'this.props.pickedList in singleBook.js');
 
 
