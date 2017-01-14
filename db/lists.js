@@ -225,6 +225,213 @@ module.exports.addToList = ( req, res, next ) => {
   //maybe something like INSERT INTO $2 (user_id, book_id) values ($3, (SELECT * FROM books WHERE isbn13=$1) )
 }
 
+// module.exports.removeFromList = ( req, res, next ) => {
+//   console.log('removeFromList in db/lists.js was called');
+//   console.log(req.params,'was req.params in removeFromList in db/lists.js ');
+//   //returns
+//   // {
+//   //   lID: '2',
+//   //   uID: '3',
+//   //   bISBN13: '9780765309402'
+//   // } //these were the list number, user id, and isbn13 values used in test case
+//   console.log(req.body, 'was req.body in same');
+//   console.log(req.body.payload.list, 'was req.body.payload.list in same');
+//   console.log(req.body.payload.listTranslate[req.body.payload.list].listSQLname, 'was req.body.payload.listTranslate[req.body.payload.list].listSQLname in same');
+//   let listSQLname = req.body.payload.listTranslate[req.body.payload.list].listSQLname; //so that the SQL query below is readable
+//
+//   // let selectBookISBN;
+//   // let deleteBook;
+//   // let selectBook_id = db.one('SELECT * FROM books WHERE id = $1;', [book_id])
+//   function selectBook_id(book_id) {
+//     db.one('SELECT * FROM books WHERE id = $1;', [book_id])
+//       .then( (data) =>{
+//         console.log(data, 'was data in selectBook_id .then of removeFromList in db/lists.js');
+//         // removedInfo = data;
+//         // console.log(removedInfo, 'was removedInfo in third .then of removeFromList in db/lists.js');
+//         res.rows = data;
+//         // console.log(res.rows, 'was res.rows in third .then of removeFromList in db/lists.js');
+//         // return data
+//         next();
+//       })
+//       .catch( (error) =>{
+//         console.log(error, 'was error in third .then of removeFromList in db/lists.js');
+//         next();
+//       })
+//     next();
+//   }
+//
+//   function deleteBookFromList(listSQLname, book_id, user_id) {
+//     db.any('DELETE FROM $1~ WHERE book_id = $2 AND user_id = $3 ;', [listSQLname, book_id, user_id])//i think RETURNING only is able to return data from the table that has the deletion? using below select statement instead
+//       .then( (data) => {
+//         console.log(data, 'was data in deleteBook .then of removeFromList in db/lists.js');
+//         return new Promise( (resolve, reject) => {
+//           selectBook_id(book_id)
+//         }  )
+//
+//       })
+//       .catch( (error) => {
+//         console.log(error, 'was error in second .then of removeFromList in db/lists.js');
+//         next();
+//       })
+//
+//       next();
+//   }
+//
+//   // console.log(req.data, 'was req.data in same');
+//   function selectBookISBN(isbn13) {
+//     db.one('SELECT * FROM books WHERE isbn13 = $1', [isbn13])
+//       .then( (data) =>{
+//         console.log(data, 'data in selectBookISBN .then of removeFromList in db/lists.js'); //returns
+//         // {
+//         //   id: 1,
+//         //   isbn13: '9780765309402',
+//         //   title: 'Old man\'s war',
+//         //   publisher: 'Tor',
+//         //   author: 'No author creditted - notice courtesy of bookList team'
+//         // }
+//         // let book_id = data.id;
+//         // let removedInfo;
+//         return new Promise( (resolve, reject) => {
+//           deleteBookFromList(listSQLname, data.id, req.params.uID)
+//         })
+//       })
+//       .catch( (error) =>{
+//         console.log(error, 'error in first .catch of removeFromList in db/lists.js');
+//         next();
+//       })
+//
+//     next();
+//   }
+//   // db.one('SELECT * FROM books WHERE isbn13 = $1', [req.params.bISBN13])
+//   //   .then( (data) =>{
+//   //     console.log(data, 'data in first .then of removeFromList in db/lists.js'); //returns
+//   //     // {
+//   //     //   id: 1,
+//   //     //   isbn13: '9780765309402',
+//   //     //   title: 'Old man\'s war',
+//   //     //   publisher: 'Tor',
+//   //     //   author: 'No author creditted - notice courtesy of bookList team'
+//   //     // }
+//   //     let book_id = data.id;
+//   //     let removedInfo;
+//   //     // select * from haveread where user_id = 3 AND book_id = 2; //selects
+//   //     // db.any('DELETE FROM $1~ WHERE book_id = $2 AND user_id = $3 ;', [listSQLname, book_id, req.params.uID])//i think RETURNING only is able to return data from the table that has the deletion? using below select statement instead
+//   //     //   .then( (data) => {
+//   //     //     console.log(data, 'was data in second .then of removeFromList in db/lists.js');
+//   //     //     // db.one('SELECT * FROM books WHERE id = $1;', [book_id])
+//   //     //     //   .then( (data) =>{
+//   //     //     //     console.log(data, 'was data in third .then of removeFromList in db/lists.js');
+//   //     //     //     // removedInfo = data;
+//   //     //     //     // console.log(removedInfo, 'was removedInfo in third .then of removeFromList in db/lists.js');
+//   //     //     //     res.rows = data;
+//   //     //     //     console.log(res.rows, 'was res.rows in third .then of removeFromList in db/lists.js');
+//   //     //     //     next();
+//   //     //     //   })
+//   //     //     //   .catch( (error) =>{
+//   //     //     //     console.log(error, 'was error in third .then of removeFromList in db/lists.js');
+//   //     //     //     next();
+//   //     //     //   })
+//   //     //     // next();
+//   //     //   })
+//   //     //   .catch( (error) => {
+//   //     //     console.log(error, 'was error in second .then of removeFromList in db/lists.js');
+//   //     //     next();
+//   //     //   })
+//   //     //   console.log(removedInfo, 'was removedInfo before second to last next() in then of removeFromList in db/lists.js'); //returns undefined, does not work like i want it to, unsurprisingly
+//   //     //   // res.rows = removedInfo
+//   //     //   next();
+//   //   })
+//   //   .catch( (error) =>{
+//   //     console.log(error, 'error in first .catch of removeFromList in db/lists.js');
+//   //     next();
+//   //   })
+//   // // db.any('') //don't forget to formulate a RETURNING phrase
+//   // next();
+//   selectBookISBN(req.params.bISBN13)
+// }
+//
+// ;
 module.exports.removeFromList = ( req, res, next ) => {
+  let payload = {};
+  let listSQLname = req.body.payload.listTranslate[req.body.payload.list].listSQLname; //so that the SQL query below is readable
+  console.log(req.params, 'was req.params');
+  let loadBookBy_id = function (book_id) {
+    return db.one('SELECT * FROM books WHERE id = $1;', [book_id])
+      .then( (bookInfoBy_id) =>{
+        console.log(bookInfoBy_id, 'was bookInfoBy_id in selectBook_id .then of removeFromList in db/lists.js');
+        // removedInfo = data;
+        // console.log(removedInfo, 'was removedInfo in third .then of removeFromList in db/lists.js');
+        // res.rows = data;
+        // console.log(res.rows, 'was res.rows in third .then of removeFromList in db/lists.js');
+        payload.bookInfoBy_id = bookInfoBy_id;
+        return bookInfoBy_id
+        next();
+      })
+      .catch( (error) =>{
+        console.log(error, 'was error in third .then of removeFromList in db/lists.js');
+        next();
+      })
+    next();
+  }
+  let deleteBookFromList = function (listSQLname, book_id, user_id) {
+    console.log(listSQLname, 'was listSQLname before db. of removeFromList in db/lists.js ');
+    console.log(book_id, 'was book_id before db. of removeFromList in db/lists.js ');
+    console.log(user_id, 'was user_id before db. of removeFromList in db/lists.js ');
+    return db.any('DELETE FROM $1~ WHERE book_id = $2 AND user_id = $3 ;', [listSQLname, book_id, user_id])//i think RETURNING only is able to return data from the table that has the deletion? using below select statement instead
+      .then( (removedListInfo) => {
+        console.log(removedListInfo, 'was removedListInfo in deleteBook .then of removeFromList in db/lists.js');
+        // return new Promise( (resolve, reject) => {
+        //   selectBook_id(book_id)
+        // }  )
+        // payload.removedListInfo = data
+        payload.removedListInfo = removedListInfo;
+        return removedListInfo
+        next()
 
+      })
+      .catch( (error) => {
+        console.log(error, 'was error in second .then of removeFromList in db/lists.js');
+        next();
+      })
+
+      next();
+  }
+  let selectBookISBN = function (isbn13) {
+    return db.one('SELECT * FROM books WHERE isbn13 = $1', [isbn13])
+      .then( (bookInfoByISBN) =>{
+        console.log(bookInfoByISBN, 'bookInfoByISBN in selectBookISBN .then of removeFromList in db/lists.js'); //returns
+        // {
+        //   id: 1,
+        //   isbn13: '9780765309402',
+        //   title: 'Old man\'s war',
+        //   publisher: 'Tor',
+        //   author: 'No author creditted - notice courtesy of bookList team'
+        // }
+        // let book_id = data.id;
+        // let removedInfo;
+        // return deleteBookFromList(listSQLname, data.id, req.params.uID)
+        payload.bookInfoByISBN = bookInfoByISBN;
+        return bookInfoByISBN
+        next() //this is probably not needed when return statement is non-commented
+      })
+      .catch( (error) =>{
+        console.log(error, 'error in first .catch of removeFromList in db/lists.js');
+        next();
+      })
+
+    next();
+  }
+  selectBookISBN(req.params.bISBN13)
+    // .then(deleteBookFromList(listSQLname, payload.bookInfoByISBN.id, req.params.uID))
+    .then( (data) => {
+      console.log(data, 'was data after the selectBookISBN(req.params.bISBN13) call');
+      console.log(payload, 'was payload after the selectBookISBN(req.params.bISBN13) call');
+      deleteBookFromList(listSQLname, payload.bookInfoByISBN.id, req.params.uID)
+        .then( (removedListInfo)=>{
+          console.log(removedListInfo, 'was removedListInfo in .then of deleteBookFromList(listSQLname, payload.bookInfoByISBN.id, req.params.uID) in the selectBookISBN(req.params.bISBN13) call');
+          console.log(payload, 'was payload in .then of deleteBookFromList(listSQLname, payload.bookInfoByISBN.id, req.params.uID) in the selectBookISBN(req.params.bISBN13) call');
+        } )
+      next()
+    })
+  res.rows = payload;
 }

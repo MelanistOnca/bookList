@@ -173,26 +173,41 @@ export default class EditOptions extends React.Component {
     // NOTE need function here to update store from DB to show new list entry there. could i put this in the list component? will it update appropriately? in order to do so, it would probably have to update when the list component loads/receives props
 
   }
-  removeFromList(list, bookId, rmvFn, e) {
+  removeFromList(list, book_isbn13, rmvFn, user, listTranslate, e) {
     e.preventDefault();
+    if( (user.user.id==='') ) {
+      window.alert('Please log in before removing a book from a list')
+      return
+    }
     // console.log('removeFromList called');
     console.log(e, 'was e in removeFromList components/editOptions.js');
     console.log(list, 'was list in removeFromList components/editOptions.js');
-    console.log(bookId, 'was bookId in removeFromList components/editOptions.js');
-    console.log(rmvFn, 'was rmvFn in addToList components/editOptions.js');
+    console.log(book_isbn13, 'was book_isbn13 in removeFromList components/editOptions.js');
+    console.log(rmvFn, 'was rmvFn in removeFromList components/editOptions.js');
+    console.log(user, 'was user in removeFromList components/editOptions.js');
+    console.log(listTranslate, 'was listTranslate in removeFromList components/editOptions.js');
+    let fnArg = {
+      list,
+      book_isbn13,
+      user,
+      listTranslate
+    }
+    console.log(fnArg, 'was fnArg in removeFromList components/editOptions.js');
+    rmvFn(fnArg)
+    //pass more functions here? to split up promise chain?
   }
 
   render(){
     // console.log(this.props, 'was this.props in components/editOptions.js render()');
     let listButton;
-    let event = window.event;
+    // let event = window.event; //using 'this' rather than 'event' in the bind seems to work everywhere
     switch(this.props.addOrRemoveButton) {
 
       case 'add' :
       // console.log(event, 'was event',this.props.selectedListKey, 'was this.props.selectedListKey', this.props.isbn13, 'was this.props.isbn13', this.props.addToList, 'was this.props.addToList');
           listButton =
           <button
-          onClick={this.addToList.bind(event, this.props.selectedListKey, this.props.matchedISBN, this.props.user, this.props.addToList, this.props.updateList)}
+          onClick={this.addToList.bind(this, this.props.selectedListKey, this.props.matchedISBN, this.props.user, this.props.addToList, this.props.updateList)}
             >
             Add to list
           </button>;
@@ -202,7 +217,8 @@ export default class EditOptions extends React.Component {
 
           listButton =
           <button
-            onClick={this.removeFromList.bind(event, this.props.selectedListKey, this.props.matchedISBN, this.props.user )}
+            onClick={this.removeFromList.bind(this, this.props.selectedListKey[0], this.props.isbn13, this.props.removeFromList, this.props.user,
+            this.props.listTranslate )}
             >
             Remove from list
           </button>

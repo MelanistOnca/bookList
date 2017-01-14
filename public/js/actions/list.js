@@ -29,7 +29,8 @@ export function getList(fnArg) { //using arg so that when i get the console logs
 
 //update a list
 export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
-  console.log('before thunk return in updateList in actions/list.js');
+  // console.log('before thunk return in updateList in actions/list.js');
+  console.log('be careful when calling this function "passively". since it updates props, it can loop easily if there is not a conditional check of some kind before call');
   return (dispatch, getState) => {
     dispatch({
       type: 'UPDATE_LIST_STARTED'
@@ -132,10 +133,40 @@ export function addToList(list, bookId) {
   }
 }
 
-export function removeFromList(list, bookId) {
+export function removeFromList(fnArg) {
+  console.log(fnArg, 'was fnArg in removeFromList in actions/list.js');
+  // console.log(list, 'was list in removeFromList in actions/list.js');
+  console.log(fnArg.list, 'was fnArg.list in actions/list'); //returned toBeReadList in test
+  console.log(fnArg.book_isbn13, 'was fnArg.book_isbn13 in actions/list');
+  console.log(fnArg.user, 'was fnArg.user in actions/list');
+  console.log(fnArg.listTranslate, 'was fnArg.listTranslate in actions/list');
+  console.log(fnArg.listTranslate[fnArg.list].listNumber, 'was fnArg.listTranslate[fnArg.list].listNumber');
+  console.log(fnArg.listTranslate[fnArg.list].listNumber, `was ${fnArg.listTranslate[fnArg.list].listNumber}`);
+  // axios.delete(`/api/lists/:lID/users/:uID/books/:bID`)
+  // axios.delete(`/api/lists/:lID/users/:uID/books/:bID`)
+  // axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`, fnArg)//delete's second param is config, not data, so this won't work, try request with config instead
+  // .request({
+  // url: '/Storage/Delete',
+  // method: 'delete',
+  // data: { storage: storage }
+  // })
+  axios.request({
+    url: `/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`,
+    method: 'delete',
+    data: { payload: fnArg }
+  })
+  // axios.post(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`, fnArg)
+    .then( (data) => {
+      console.log(data, 'was data in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');
+    })
+    .catch( (error) => {
+      console.log(error, 'was error in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');
+    })
   return {
     type: 'REMOVE_FROM_LIST',
-    list,
-    bookId //returning book id so there can be an "undo" button that calls addToList. wonder if i'll need more than bookId to properly feed info to addToList
+    // list,
+    // bookId //returning book id so there can be an "undo" button that calls addToList. wonder if i'll need more than bookId to properly feed info to addToList
+    removingBookInfo: fnArg
+
   }
 }

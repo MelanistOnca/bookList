@@ -12,7 +12,7 @@ const book_fns = require('../../db/books');
 const notImplement = (req,res) => {
   console.log('notImplement was triggered');
 
-  res.send( req.method + ' this method is not yet implemented for book routes')
+  res.send( req.method + ' this method is not yet implemented for list routes')
 }
 
 // :3003/api/lists
@@ -54,6 +54,20 @@ router
     res.json( res.rows )
   }
 )
+
+// :3003/api/lists/:lID/users/:uID/books/:bID
+router
+  // .delete('/:lID/users/:uID/books/:bID', notImplement)
+  .delete('/:lID/users/:uID/books/:bISBN13', list_fns.removeFromList, (req,res) => {
+    console.log('list_fns.removeFromList fired from ... api/lists/:lID/users/:uID/books/:bISBN13 route');
+    // res.send('list_fns.bookDataFromList fired from ... api/lists/:lID/users/:uID/books/ route. this is the res.send placeholder')
+    res.json( res.rows )
+  }) // no longer using a delete route to delete. need to pass an object and delete seems to not allow req.body
+  // .post('/:lID/users/:uID/books/:bISBN13', list_fns.removeFromList, (req,res) => {
+  //   console.log('list_fns.removeFromList fired from ... api/lists/:lID/users/:uID/books/:bISBN13 route');
+  //   // res.send('list_fns.bookDataFromList fired from ... api/lists/:lID/users/:uID/books/ route. this is the res.send placeholder')
+  //   res.json( res.rows )
+  // }) // no longer using a delete route to delete. need to pass an object and delete seems to not allow req.body
 
 
 

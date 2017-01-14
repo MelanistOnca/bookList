@@ -89,8 +89,11 @@ export default class ListView extends React.Component {
     if(listTitle){
       for(let i = 0; i < listLength; i++){
         // console.log(listShow[listShowKeys], 'was listShow[listShowKeys]');
+        // console.log(listShowKeys[i], 'was listShowKeys[i] in components/listView loop');
         // console.log(listShow[listShowKeys[i]], 'was listShow[listShowKeys[i]]');
+        // console.log(listShow, 'was listShow in components/listView loop');
         let thisBook = listShow[listShowKeys[i]]
+        thisBook.isbn13 = listShowKeys[i];
         let stamp = new Date().getTime();
         let uniqueStamp = `${i}${stamp}`;
         // console.log(thisBook, 'was thisBook in components/listView');
@@ -102,6 +105,7 @@ export default class ListView extends React.Component {
             title={thisBook.title}
             author={thisBook.author}
             publisher={thisBook.publisher}
+            isbn13={thisBook.isbn13}
             />
         )
 

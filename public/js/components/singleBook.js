@@ -16,7 +16,7 @@ export default class SingleBook extends React.Component {
     // console.log(this.props, 'this.props in singleBook.js');
     // console.log(this.props.pickedList,'this.props.pickedList in singleBook.js');
 
-
+    let buttonType = this.props.addOrRemoveButton||'remove'; //addorRemoveButton should probably be stateful? TODO: make this work soley on state
     //map the key array to get a list of names, then use that to list the values of those keys too. probably in same map function
     return(
       <div
@@ -29,6 +29,7 @@ export default class SingleBook extends React.Component {
         <p>Publisher : {this.props.publisher}</p>
         <EditOptions
           {...this.props}
+          addOrRemoveButton= {buttonType}
           />
 
       </div>

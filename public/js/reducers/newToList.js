@@ -204,8 +204,9 @@ function newToList(state=[], action) { //this was my original syntax
 
       return state;
     case 'REMOVE_FROM_LIST' :
-      console.log();
 
+      console.log(state, 'was state in REMOVE_FROM_LIST case in reducers/newToList');
+      console.log(action, 'was action in REMOVE_FROM_LIST case in reducers/newToList')
       return state;
     case 'GET_LIST' :
     console.log('getgetgetgetget');

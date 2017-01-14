@@ -35,6 +35,7 @@ class LogIn extends React.Component {
     // console.log(logInFn, 'was logInFn passed to submitInfo');
     // console.log(logInSuccessFn, 'was logInSuccessFn passed to submitInfo');
     // console.log(logInFormData, 'was form data passed to submitInfo');
+    // TODO: call getList function to populate list data for each list once the user has logged in
     e.preventDefault();
     const request = axios.post('api/users/login',logInFormData)
     //NOTE use axios from logInUser in actions/user.js to access the request .then data.data to update the user store
@@ -62,7 +63,7 @@ class LogIn extends React.Component {
           })
       })
 
-    
+
   }
   updateUsername(updateUsernameField, e){
     // console.log('updateUsername in component/user/logIn.js fired');
@@ -80,7 +81,7 @@ class LogIn extends React.Component {
     // console.log(this.props, 'was this.props in components/login/logIn.js');
     // console.log(this.props.logInForm, 'was this.props.logInForm in components/login/logIn.js');
 
-    let event = window.event; //needed for firefox //binding 'this' in the bind call seemed to work. investigate further, hopefully will bypass this let definition in FF? will test with clickSignUp to see if functionality differs
+    // let event = window.event; //needed for firefox //binding 'this' in the bind call seemed to work. investigate further, hopefully will bypass this let definition in FF? will test with clickSignUp to see if functionality differs //using 'this' instead seems to solve problem
     // console.log(this.getList, 'was this.getList in logIn.js');
     // const logInReduxForm = (props) => {
     //   const { handleSubmit, handleChange } = props;
@@ -171,7 +172,7 @@ class LogIn extends React.Component {
 
           </ul>
           <button
-            onClick={this.logIn.bind(event, this.props.logInUser,
+            onClick={this.logIn.bind(this, this.props.logInUser,
             this.props.logInUserSuccess,  this.props.logInForm)}
             >
             Log In
