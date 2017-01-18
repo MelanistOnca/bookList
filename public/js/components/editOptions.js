@@ -195,7 +195,21 @@ export default class EditOptions extends React.Component {
     console.log(fnArg, 'was fnArg in removeFromList components/editOptions.js');
     rmvFn(fnArg)
     //pass more functions here? to split up promise chain?
+
+    //NOTE:need to call getList once this has completed. maybe do a "will receive props " and put a check in there to prevent looping?
   }
+
+  componentWillReceiveProps(nextProps){
+    console.log(this.props, 'was this.props in componentWillReceiveProps in editOptions');
+    console.log(nextProps, 'was nextProps in componentWillReceiveProps in editOptions');
+    // if( this.props.listCollection !== nextProps.listCollection ) {
+    //   nextProps.
+    // }
+  }
+  componentWillMount(){
+    console.log(this.props, 'was this.props in componentWillMount in editOptions');
+  }
+
 
   render(){
     // console.log(this.props, 'was this.props in components/editOptions.js render()');

@@ -10,7 +10,7 @@ export default class ListView extends React.Component {
     //   listKey,
     //   user_id
     // }
-    console.log(this.props, 'was this.props in componentWillReceiveProps in components/selected.js');
+    // console.log(this.props, 'was this.props in componentWillReceiveProps in components/listView.js');
     // let fnArg = {
     //   nextProps.selectedListKey[0],
     //   nextProps.user.user.id
@@ -20,12 +20,13 @@ export default class ListView extends React.Component {
       // let uID = this.props.user.user.id;
       let getFnArg = {
         listKey: nextProps.selectedListKey[0],
-        user_id: nextProps.user.user.id
+        user_id: nextProps.user.user.id,
+        listNumber: nextProps.listTranslate[nextProps.selectedListKey[0]].listNumber
       }
-      console.log('before getList in componentWillReceiveProps in components/selected.js');
-      console.log('kind of expecting this to loop?');
+      // console.log('before getList in componentWillReceiveProps in components/listView.js');
+      // console.log('kind of expecting this to loop?');
       nextProps.getList(getFnArg)
-      console.log('after getList in componentWillReceiveProps in components/selected.js');
+      // console.log('after getList in componentWillReceiveProps in components/listView.js');
       // this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
       // let fnArg = {
       //   user_id: userData.id,
@@ -35,10 +36,10 @@ export default class ListView extends React.Component {
       // console.log('just before the updateListFn call in getListFn in in basicList.js');
       // updateListFn(fnArg);
       // console.log('just after the updateListFn call in getListFn in in basicList.js');
-      console.log(nextProps.listTranslate, 'was nextProps.listTranslate');
-      console.log(nextProps.selectedListKey[0], 'was nextProps.listTranslate');
+      // console.log(nextProps.listTranslate, 'was nextProps.listTranslate');
+      // console.log(nextProps.selectedListKey[0], 'was nextProps.listTranslate');
       // console.log(this.props.listTranslate[this.props.selectedListKey[0]].listNumber, 'was this.props.listTranslate[this.props.selectedListKey[0]].listNumber');
-      console.log(nextProps.listTranslate[nextProps.selectedListKey[0]].listNumber, 'was nextProps.listTranslate[this.props.selectedListKey[0]].listNumber');
+      // console.log(nextProps.listTranslate[nextProps.selectedListKey[0]].listNumber, 'was nextProps.listTranslate[this.props.selectedListKey[0]].listNumber');
       let updateFnArg = {
         user_id: nextProps.user.user.id,
         listName: nextProps.selectedListKey[0],
@@ -46,9 +47,9 @@ export default class ListView extends React.Component {
       }
 
       if((this.props.selectedListKey[0]!==nextProps.selectedListKey[0])) {
-        console.log('just before the updateListFn call in getListFn in in basicList.js');
+        // console.log('just before the updateListFn call in getListFn in in basicList.js');
         nextProps.updateList(updateFnArg);
-        console.log('just after the updateListFn call in getListFn in in basicList.js');
+        // console.log('just after the updateListFn call in getListFn in in basicList.js');
       }
 
     }

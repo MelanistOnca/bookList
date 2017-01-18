@@ -44,11 +44,11 @@ export default class InnerResultList extends React.Component {
   }
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
-    console.log(this.props, 'was this.props in components/innerResultList in render()');
+    // console.log(this.props, 'was this.props in components/innerResultList in render()');
     // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
     // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');
-    console.log(this.props.addToList, 'was this.props.addToList in components/innerResultList in render()');
+    // console.log(this.props.addToList, 'was this.props.addToList in components/innerResultList in render()');
     let readableArray = [];
     let stamp = new Date().getTime();
 
@@ -56,7 +56,7 @@ export default class InnerResultList extends React.Component {
     // console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor in components/innerResultList'); //NOTE: no isbn13 in this data
     if(this.props.matchedAuthor){
       //start of matchedAuthor if statement
-      console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor inside if(this.props.matchedAuthor) in components/innerResultList');
+      // console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor inside if(this.props.matchedAuthor) in components/innerResultList');
       let booksPerAuthor = this.props.matchedAuthor.book_ids ? this.props.matchedAuthor.book_ids.length : 0 ;
       // console.log(booksPerAuthor, 'was booksPerAuthor in components/innerResultList');
 
@@ -112,7 +112,7 @@ export default class InnerResultList extends React.Component {
     // console.log(this.props.matchedISBN, 'was this.props.matchedISBN in components/innerResultList');
 
     if(this.props.matchedISBN){
-      console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISBN) in components/innerResultList');
+      // console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISBN) in components/innerResultList');
       //start of matchedISBN if statement
       // (
       //   (this.props.matchedISBN !== 'p' )
@@ -149,7 +149,7 @@ export default class InnerResultList extends React.Component {
                 <li>Publisher: {this.props.matchedISBN.publisher_name}</li>
                 <li>ISBN: {this.props.matchedISBN.isbn13}</li>
               </ul>
-              
+
               <EditOptions
                 {...this.props}
                 addOrRemoveButton={'add'}

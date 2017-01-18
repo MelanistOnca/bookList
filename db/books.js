@@ -95,7 +95,7 @@ module.exports.bookDataFromList = (req, res, next) => {
   // console.log(listBookData, 'was listBookData');
   let listBookData = [];
   async.map( req.body.list, (el, callback, res) => {
-    console.log(el.book_id, 'was el.book_id in map of bookDataFromList in db/books.js');
+    // console.log(el.book_id, 'was el.book_id in map of bookDataFromList in db/books.js');
     // console.log(el, 'was el in forEach of bookDataFromList in db/books.js');
     // console.log(listBookData, 'was listBookDatain forEach of bookDataFromList in db/books.js before db.query');
     db.one("SELECT * FROM books WHERE id = $1;", [el.book_id])
@@ -119,13 +119,23 @@ module.exports.bookDataFromList = (req, res, next) => {
   (err, results) => {
     // console.log(res, 'was res in async.map');
     console.log(err, 'was err in async.map');
-    // console.log(results, 'was results in async.map');
+    console.log(results, 'was results in async.map');
     console.log(results[0], 'was results[0] in async.map');
     // console.log(listBookData, 'was listBookData after results in async.map');
     // console.log(listBookData[0], 'was listBookData[0] after results in async.map');
     // console.log(listBookData[50], 'was listBookData[0] after results in async.map');
     // listBookData = results;
+    // let uniqueBookList = {}
+    // results.forEach( (el) => {
+    //   uniqueBookList[el.isbn13] = {
+    //     "title": el.title,
+    //     "author": el.author,
+    //     "publisher": el.publisher
+    //   }
+    // })
+    // console.log(uniqueBookList, 'was uniqueBookList in async.map');
     res.rows = results;
+    // console.log(res.rows, 'was res.rows in async.map');
     console.log(res.rows[1], 'was res.rows[1] in async.map');
     next()
   } )

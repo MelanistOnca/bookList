@@ -54,6 +54,21 @@ export default class Selected extends React.Component {
   // componentWillMount(){
   //   this.props.getList()
   // }
+  componentWillReceiveProps(nextProps){
+    console.log(this.props, 'was this.props in componentWillReceiveProps in selected');
+    console.log(nextProps, 'was nextProps in componentWillReceiveProps in selected');
+    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
+    if( nextProps.user.status === "authenticated" ){
+      if( this.props.listCollection !== nextProps.listCollection ) {
+        let fnArg = {
+          listKey: this.props.selectedListKey[0],
+          user_id: this.props.user.user.id
+        }
+        nextProps.getList( fnArg )
+      }
+    }
+
+  }
   render(){
 
 
@@ -61,8 +76,8 @@ export default class Selected extends React.Component {
 
     // let listTitle = (this.props.listCollection[key] ? this.props.listCollection[key].title : undefined);
 
-    console.log(key, 'was key in selected.js');
-    console.log(this.props.listTranslate[key].listFrontTitle, 'was this.props.listTranslate[key].listFrontTitle in selected.js');
+    // console.log(key, 'was key in selected.js');
+    // console.log(this.props.listTranslate[key].listFrontTitle, 'was this.props.listTranslate[key].listFrontTitle in selected.js');
     let listTitle= this.props.listCollection[key] ? this.props.listTranslate[key].listFrontTitle : undefined;
 
     // let listTitle = (this.props.listCollection[key] ? this.props.listCollection[key].title : undefined);

@@ -351,6 +351,8 @@ module.exports.addToList = ( req, res, next ) => {
 // }
 //
 // ;
+
+//promise chaining/resolving solution based on guidelines found at http://solutionoptimist.com/2013/12/27/javascript-promise-chains-2/
 module.exports.removeFromList = ( req, res, next ) => {
   let payload = {};
   let listSQLname = req.body.payload.listTranslate[req.body.payload.list].listSQLname; //so that the SQL query below is readable
@@ -377,13 +379,14 @@ module.exports.removeFromList = ( req, res, next ) => {
     console.log(listSQLname, 'was listSQLname before db. of removeFromList in db/lists.js ');
     console.log(book_id, 'was book_id before db. of removeFromList in db/lists.js ');
     console.log(user_id, 'was user_id before db. of removeFromList in db/lists.js ');
-    return db.any('DELETE FROM $1~ WHERE book_id = $2 AND user_id = $3 ;', [listSQLname, book_id, user_id])//i think RETURNING only is able to return data from the table that has the deletion? using below select statement instead
+    return db.any('DELETE FROM $1~ WHERE book_id = $2 AND user_id = $3 RETURNING *;', [listSQLname, book_id, user_id])//i think RETURNING only is able to return data from the table that has the deletion? using below select statement instead
       .then( (removedListInfo) => {
         console.log(removedListInfo, 'was removedListInfo in deleteBook .then of removeFromList in db/lists.js');
         // return new Promise( (resolve, reject) => {
         //   selectBook_id(book_id)
         // }  )
         // payload.removedListInfo = data
+        console.log('the above seems like it should be returning info, but is not. deletion IS taking place though');
         payload.removedListInfo = removedListInfo;
         return removedListInfo
         next()
@@ -430,6 +433,7 @@ module.exports.removeFromList = ( req, res, next ) => {
         .then( (removedListInfo)=>{
           console.log(removedListInfo, 'was removedListInfo in .then of deleteBookFromList(listSQLname, payload.bookInfoByISBN.id, req.params.uID) in the selectBookISBN(req.params.bISBN13) call');
           console.log(payload, 'was payload in .then of deleteBookFromList(listSQLname, payload.bookInfoByISBN.id, req.params.uID) in the selectBookISBN(req.params.bISBN13) call');
+
         } )
       next()
     })

@@ -6,8 +6,8 @@ function newToList(state=[], action) { //this was my original syntax
   switch(action.type){
     case 'ADD_TO_LIST' : //may need to make cases for each list?
     //i THINK the info i want will com in as action.list and action.isbn or action.book. may be state.___ instead? will need to see
-      console.log(state, 'was state in ADD_TO_LIST case in reducers/newToList'); //this shows the list keys. //as empty objects??
-      console.log(action, 'was action in ADD_TO_LIST case in reducers/newToList'); //this shows the list object, which has keys 'list' and 'book'. //i am not sure where the list object wrap over list/book is coming from.
+      // console.log(state, 'was state in ADD_TO_LIST case in reducers/newToList'); //this shows the list keys. //as empty objects??
+      // console.log(action, 'was action in ADD_TO_LIST case in reducers/newToList'); //this shows the list object, which has keys 'list' and 'book'. //i am not sure where the list object wrap over list/book is coming from.
       // let selectedListKey = action.list.list;
       // console.log(selectedListKey, 'was selectedListKey in ADD_TO_LIST case in reducers/newToList');
       // console.log(action.list.list, 'was action.list.list in same');
@@ -203,18 +203,48 @@ function newToList(state=[], action) { //this was my original syntax
 
 
       return state;
-    case 'REMOVE_FROM_LIST' :
-
-      console.log(state, 'was state in REMOVE_FROM_LIST case in reducers/newToList');
-      console.log(action, 'was action in REMOVE_FROM_LIST case in reducers/newToList')
-      return state;
+    // case 'REMOVE_FROM_LIST' :
+    //
+    //   console.log(state, 'was state in REMOVE_FROM_LIST case in reducers/newToList');
+    //   //returns object of format
+    //   // {
+    //   //   currentlyReadingList,
+    //   //   haveReadList,
+    //   //   toBeReadList
+    //   // } //though each appears empty here?
+    //   console.log(action, 'was action in REMOVE_FROM_LIST case in reducers/newToList')
+    //   // returns object of format
+    //   {
+    //     book_isbn13: "9780765309402",
+    //     list: "toBeReadList",
+    //     listTranlate, //object from store
+    //     user, //object from store
+    //   }
+    //   // NOTE NOTE start of NOTE
+    //   // this is the add to list from above, for reference when removing
+    //   // return {
+    //   //   ...state,
+    //   //
+    //   //     [action.list.list]/*frontend list name*/: {
+    //   //       [action.list.book.isbn13]/*book's isbn13*/: {
+    //   //           "author": action.list.book.author_data[0].name,
+    //   //           "title": action.list.book.title,
+    //   //           "publisher": action.list.book.publisher_name
+    //   //       }
+    //   //     }
+    //   // } //this allows a single book to be added to each of the lists, but does not allow for new .isbn13 values to create new keys
+    //   return state;
+    //   // return {
+    //   //   ...state,
+    //   //   delete state.
+    //   // }
     case 'GET_LIST' :
-    console.log('getgetgetgetget');
+    // console.log('getgetgetgetget');
     console.log(state, 'was state in GET_LIST case in reducers/newToList');
     console.log(action, 'was action in GET_LIST case in reducers/newToList');
-    console.log('getting list from DB and setting store list to it');
-    console.log('getgetgetgetget');
-    console.log(' i may want to be using the listColletion reducer instead of this, the newToList reducer');
+    // console.log('getting list from DB and setting store list to it');
+    // console.log('getgetgetgetget');
+    // console.log(' i may want to be using the listColletion reducer instead of this, the newToList reducer');
 
       return state;
       // return {

@@ -13,11 +13,39 @@ export function getList(fnArg) { //using arg so that when i get the console logs
   console.log(fnArg, 'was fnArg in getList in actionCreators');
   console.log(fnArg.listKey, 'was fnArg.listKey in getList in actionCreators');
   console.log(fnArg.user_id, 'was fnArg.user_id in getList in actionCreators');
+  console.log(fnArg.listNumber, 'was fnArg.listNumber in getList in actionCreators');
+  // axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`)
+  //   .then( (gotList) => {
+  //     console.log(gotList, 'was gotList in actions/list.js getList axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`)');
+  //     axios.post(`/api/lists/${fnArg.listNumber}/users/${fnArg.user_id}/books/`, gotList.data.data)
+  //       .then( (something) =>{
+  //         console.log(something, 'was something in axios.post(`/api/lists/${fnArg.listNumber}/users/${fnArg.user_id}/books/` actions/list.js getList second .then');
+  //         let uniqueBookList = {};
+  //         something.data.forEach( (el) =>{
+  //           uniqueBookList[el.isbn13] = {
+  //             "title": el.title,
+  //             "author": el.author,
+  //             "publisher": el.publisher
+  //           }
+  //         })
+  //       })
+  //       .catch( (error) =>{
+  //         console.log(error, 'was error in axios.post(`/api/lists/${fnArg.listNumber}/users/${fnArg.user_id}/books/` actions/list.js getList second .then');
+  //       })
+  //   })
+  //   .catch( (error) => {
+  //     console.log(error, 'was error in actions/list.js getList axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`)');
+  //   })
   return {
     type: 'GET_LIST',
     listKey : fnArg.listKey, //dunno if i need this?
-    user_id: fnArg.user_id
+    user_id: fnArg.user_id,
+    listNumber: fnArg.listNumber
   }
+  // return (dispatch, getState) => {
+  //   type: 'GET_LIST' //,
+  //   // gotlist
+  // }
 }
 // export function getHaveReadList(/* param */) { //probably going to generalize this to be a getList() function. not sure that i need a parameter?
 //
@@ -30,7 +58,7 @@ export function getList(fnArg) { //using arg so that when i get the console logs
 //update a list
 export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
   // console.log('before thunk return in updateList in actions/list.js');
-  console.log('be careful when calling this function "passively". since it updates props, it can loop easily if there is not a conditional check of some kind before call');
+  // console.log('be careful when calling this function "passively". since it updates props, it can loop easily if there is not a conditional check of some kind before call');
   return (dispatch, getState) => {
     dispatch({
       type: 'UPDATE_LIST_STARTED'
@@ -43,7 +71,7 @@ export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
     //NOTE need a placeholder value for fnArg.user_id in case user is not logged in. gives bad routes otherwise, 'api/users//list/...' should be something like 'api/users/PLACEHOLDER/list/...'
     axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`) //this route calls the getList backend function. //this route feels janky afffffffffff. so let's call it clever?
       .then( (list) => {
-        console.log('before dispatch in the .then of the axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`) in updateList in actions/list.js');
+        // console.log('before dispatch in the .then of the axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`) in updateList in actions/list.js');
         dispatch({
           type: 'UPDATE_LIST_STEP1_SUCCEEDED'
         })
@@ -88,9 +116,9 @@ export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
             // console.log(fnArg, 'was fnArg in same');
             // fnArg.uniqueBookList = uniqueBookList;
             // console.log(fnArg, 'was fnArg after adding uniqueBookList key to it');
-            console.log('$$$$$$$$&&&&&&&$$$$$$$');
-            console.log('just before return in actions/list.js for updateList function');
-            console.log('$$$$$$$$&&&&&&&$$$$$$$');
+            // console.log('$$$$$$$$&&&&&&&$$$$$$$');
+            // console.log('just before return in actions/list.js for updateList function');
+            // console.log('$$$$$$$$&&&&&&&$$$$$$$');
             // return{
             //   type: 'UPDATE_LIST',
             //   listInfo: fnArg
@@ -134,14 +162,14 @@ export function addToList(list, bookId) {
 }
 
 export function removeFromList(fnArg) {
-  console.log(fnArg, 'was fnArg in removeFromList in actions/list.js');
+  // console.log(fnArg, 'was fnArg in removeFromList in actions/list.js');
   // console.log(list, 'was list in removeFromList in actions/list.js');
-  console.log(fnArg.list, 'was fnArg.list in actions/list'); //returned toBeReadList in test
-  console.log(fnArg.book_isbn13, 'was fnArg.book_isbn13 in actions/list');
-  console.log(fnArg.user, 'was fnArg.user in actions/list');
-  console.log(fnArg.listTranslate, 'was fnArg.listTranslate in actions/list');
-  console.log(fnArg.listTranslate[fnArg.list].listNumber, 'was fnArg.listTranslate[fnArg.list].listNumber');
-  console.log(fnArg.listTranslate[fnArg.list].listNumber, `was ${fnArg.listTranslate[fnArg.list].listNumber}`);
+  // console.log(fnArg.list, 'was fnArg.list in actions/list'); //returned toBeReadList in test
+  // console.log(fnArg.book_isbn13, 'was fnArg.book_isbn13 in actions/list');
+  // console.log(fnArg.user, 'was fnArg.user in actions/list');
+  // console.log(fnArg.listTranslate, 'was fnArg.listTranslate in actions/list');
+  // console.log(fnArg.listTranslate[fnArg.list].listNumber, 'was fnArg.listTranslate[fnArg.list].listNumber');
+  // console.log(fnArg.listTranslate[fnArg.list].listNumber, `was ${fnArg.listTranslate[fnArg.list].listNumber}`);
   // axios.delete(`/api/lists/:lID/users/:uID/books/:bID`)
   // axios.delete(`/api/lists/:lID/users/:uID/books/:bID`)
   // axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`, fnArg)//delete's second param is config, not data, so this won't work, try request with config instead
@@ -150,6 +178,7 @@ export function removeFromList(fnArg) {
   // method: 'delete',
   // data: { storage: storage }
   // })
+  // NOTE NOTE NOTE disabled for state testing
   axios.request({
     url: `/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`,
     method: 'delete',
@@ -162,6 +191,8 @@ export function removeFromList(fnArg) {
     .catch( (error) => {
       console.log(error, 'was error in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');
     })
+  // NOTE NOTE NOTE enable able when done with state testing
+  console.log('since the book card is removed now by frontend function, i need to give some kind of method of re-sending the delete request to backend if there is a problem reaching/at the DB');
   return {
     type: 'REMOVE_FROM_LIST',
     // list,
