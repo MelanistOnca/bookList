@@ -14,7 +14,7 @@ export default class SearchButton extends React.Component {
     console.log('seachClicked ran in components/searchButton.js ');
     e.preventDefault();
 
-    console.log(props, 'props in searchClicked() in components/searchButton');
+    // console.log(props, 'props in searchClicked() in components/searchButton');
     // props.updateSearchType(props.selectedSearchType[0])
 
     // need to start a reqest here to hit the ISBNdb api of MINE, which will then hit the action ISBNDB api, to get the data here without revealing my ISBNDB api key.
@@ -37,8 +37,27 @@ export default class SearchButton extends React.Component {
     //end of NOTE
 
     let searchType = props.selectedSearchType[0].toLowerCase();
-    // console.log(searchType, 'was searchType in searchClicked() in components/searchButton');
     let searchTerm = props.searchTerm[0];
+    // console.log(searchType, 'was searchType in searchClicked() in components/searchButton');
+    // let forcedSearchType = props.forceSelectedSearchType  ;
+    if(props.forceSelectedSearchType) {
+      if(props.selectedSearchType[0]!==props.forceSelectedSearchType){
+        //NOTE pass and use function here to change search type to get it to display results properly?
+        console.log(props.newSearchTerm, 'was props.newSearchTerm in second conidtional in searchButton');
+        props.updateSearchType(props.forceSelectedSearchType) //this works for switching the selector, but the rest of the code go bjorked because its giving me author results when i'm trying to search for the book. i've clicked on. NOTE: should i create a store for "nested author book searches" or something? no->just updating searchTerm and searchType is easier
+        // props.updateSearchTerm(props.searchTerm) //this doesn't work because the search term is remaining the author's name, need to locate the book title and insert that here
+
+        // let searchType = props.forceSelectedSearchType.toLowerCase();
+        // let searchTerm = [props.newSearchTerm];
+
+        props.updateSearchTerm(props.newSearchTerm)
+        props.resultSearchClicked(props)
+        return
+      }
+    }
+
+    // searchType = (forcedSearchType||searchType)//NOTE or maybe use that function here instead?
+
     console.log(searchType, 'was searchType in searchClicked() before switch in same');
     switch(searchType) {
       case 'isbn' :
@@ -52,7 +71,7 @@ export default class SearchButton extends React.Component {
       default:
         console.log(searchType, 'was searchType in default case of searchType switch');
     }
-    console.log(searchType, 'was searchType in searchClicked() after switch in same');
+    // console.log(searchType, 'was searchType in searchClicked() after switch in same');
     // console.log(searchTerm, 'was searchTerm in searchClicked() after switch in same');
 
     // let options = {
@@ -96,13 +115,17 @@ export default class SearchButton extends React.Component {
       })
       .then( (data) => {
         console.log(data,'was data in the .then from the axios.post in searchClicked fn in components/searchButton.js');
-
-        console.log(typeof data, 'was typeof in same');
-
-        console.log(data.data,'was data.data in the .then from the axios.post in searchClicked fn in components/searchButton.js');
-        console.log(typeof data.data, 'was typeof in same');
-        props.receiveResults(data)
-        console.log('props.receiveResults(data) invoked above this line');
+        //
+        // console.log(typeof data, 'was typeof in same');
+        //
+        // console.log(data.data,'was data.data in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+        // console.log(typeof data.data, 'was typeof in same');
+        console.log(data.data.result,'was data.data.result in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+        //NOTE NOTE TODO: i should probably clean up here so i can remove some of the nesting from the received results?
+        // props.receiveResults(data)
+        // console.log('props.receiveResults(data) invoked above this line');
+        props.receiveResults(data.data.result)
+        console.log('props.receiveResults(data.data.result) invoked above this line');
       })
     // the rp section is moved to db/isbndb.js
     // rp(options[searchType])
@@ -120,6 +143,49 @@ export default class SearchButton extends React.Component {
     // isbndb_fns.getResultsFromSearch(options)
       // console.log('searchClicked reached end of function');
   }
+  resultSearchClicked(props){
+    // let searchType = props.selectedSearchType[0].toLowerCase();
+    let searchType = props.forceSelectedSearchType.toLowerCase();
+    let searchTerm = [props.newSearchTerm];
+    // let searchTerm = props.searchTerm[0];
+    // let searchTerm = props.searchTerm[0];
+    // let searchTerm = props.newSearchTerm;
+    console.log(searchType, 'was searchType in resultSearchClicked() before switch in same');
+    console.log(searchTerm, 'was searchTerm');
+    switch(searchType) {
+      case 'isbn' :
+        searchType = 'book';
+        // console.log(searchType, 'was searchType in searchClicked() in same');
+        break;
+      //may need a case to re-define for 'title'
+      case 'title' :
+        searchType = 'book';
+        break;
+      default:
+        console.log(searchType, 'was searchType in default case of searchType switch');
+    }
+
+    let options = {
+      searchTerm,
+      searchType
+    }
+    console.log(options, 'was options in resultSearchClicked');
+    console.log('axios.post runs here');
+    const request = axios.post('api/isbndb', options) //may need to make the accompanying fields part of a form
+    request
+      .catch( (err) => {
+        console.log(err,'was err in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+      })
+      .then( (data) => {
+        console.log(data,'was data in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+
+        console.log(data.data.result,'was data.data.result in the .then from the axios.post in searchClicked fn in components/searchButton.js');
+
+        props.receiveResults(data.data.result)
+        console.log('props.receiveResults(data.data.result) invoked above this line');
+      })
+
+  }
   componentWillMount(){
     // this.props.updateSearchType(this.props.selectedSearchType[0])
     // console.log('theoretically, search type should have updated to ISBN here');
@@ -128,14 +194,18 @@ export default class SearchButton extends React.Component {
 
   render(){
     // console.log(this.props, 'was this.props in components/searchButton render');
+    console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/searchButton render');
 
 
     let searchClickedProps = {
       "selectedSearchType" : this.props.selectedSearchType,
+      "forceSelectedSearchType" : this.props.forceSelectedSearchType,
       "searchTerm" : [this.props.searchTerm],
       "receiveResults" : this.props.receiveResults,
       "updateSearchType" : this.props.updateSearchType,
-      "updateSearchTerm" : this.props.updateSearchTerm
+      "updateSearchTerm" : this.props.updateSearchTerm,
+      "resultSearchClicked": this.resultSearchClicked,
+      "newSearchTerm": this.props.newSearchTerm
 
     }
 

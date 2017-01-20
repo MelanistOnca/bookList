@@ -71,128 +71,200 @@ export default class Result extends React.Component {
         // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
         // let identicalURIforTitleOrISBN = 'ISBN' || 'Title';
         //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
-        switch(this.props.selectedSearchType[0]) {
-          case 'Authors':
-          // console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
-          for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
-            console.log(this.props.searchResults.data[i], 'was this.props.searchResults.data[i] and maybe is the author object?');
-            console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in components/result.js');
-            let uniqueStamp = `${i}${stamp}`;
-            let authorsBookTitleArray = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].book_ids : [] ; // ehhhhh
-            let authorsFirstName = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].first_name : '' ; // ehhhhh
-            let authorsLastName = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].last_name : '' ; // ehhhhh
-            // console.log(spLength, 'spLength in for loop in components/result.js');
-            resultsView.push(
+        // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
+        console.log(this.props.searchResults.results, 'was this.props.searchResults.results in components/result.js');
+        // console.log(this.props.searchResults.results.author_name, 'was this.props.searchResults.results.author_name in components/result.js');
+        // console.log(this.props.searchResults.results.book_ids, 'was this.props.searchResults.results.book_ids in components/result.js');
+        // console.log(this.props.searchResults.results, 'was this.props.searchResults.results.author_name in components/result.js');
+        switch (this.props.searchResults.results.index_searched){
+          case 'book_id':
 
-              <div
-                key={uniqueStamp}
-                id={uniqueStamp}
-                className="searchResultSingle"
-                style={{"border":"solid 1px"}}
-                >
-                <p>{authorsFirstName} {authorsLastName}</p>
-                <p>(use the Title selection to search for a book and add to your list)</p>
-
-              <InnerResultList
-                {...this.props}
-                matchedISBN={this.props.searchResults.data.data.result.data[i]}
-                />
-
-              </div>
-            )
-            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Authors" case in  components/result.js');
-            // <InnerResultList
-            //
-            //   matchedAuthor={this.props.searchResults.data.data.result.data[i]}
-            //   searchResult={this.props.searchResults.data.data.result.data}
-            //   receiveResults={this.props.receiveResults}
-            //   updateSearchType={this.props.updateSearchType}
-            //   selectedListKey={this.props.selectedListKey}
-            //   updateSearchTerm={this.props.updateSearchTerm}
-            //   addToList={this.props.addToList}
-            //   removeFromList={this.props.removeFromList}
-            //   />
-          } //end of for-loop in 'Authors' case
-          console.log(resultsView, 'was resultsView before break; in Authors case');
           break;
-          case 'Title' :
-          // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
-          // let i = 0;
-          // let uniqueStamp = `${i}${stamp}`;
-          console.log(this.props.searchResults.data.data.result,' was this.props.searchResults.data.data.result copied from authors, in title');
-          console.log(this.props.searchResults.data.data.result.data,' was this.props.searchResults.data.data.result.data copied from authors, in title');
-          console.log(this.props.searchResults.data.data.result.data[0],' was this.props.searchResults.data.data.result.data[0] copied from authors, in title');
-          console.log(this.props.searchResults.data.data.result.data[0].length,' was this.props.searchResults.data.data.result.data[0].length copied from authors, in title');
-          // console.log(this.props.searchResults.data.data.result.data[0], 'was this.props.searchResults.data.data.result.data[0] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
-          // console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
-          for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
-            let uniqueStamp = `${i}${stamp}`;
-            resultsView.push(
-              <div
-                key={uniqueStamp}
-                id={uniqueStamp}
-                className="searchResultSingle"
-                style={{"border":"solid 1px"}}
-                >
-              <InnerResultList
-                {...this.props}
-                matchedISBN={this.props.searchResults.data.data.result.data[i]}
-                />
+          case 'author_name':
 
-              </div>
-            )
-            console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
-            // <InnerResultList
-            //   matchedISBN={this.props.searchResults.data.data.result.data[i]}
-            //   searchResults={this.props.searchResults}
-            //   receiveResults={this.props.receiveResults}
-            //   updateSearchType={this.props.updateSearchType}
-            //   selectedListKey={this.props.selectedListKey}
-            //   updateSearchTerm={this.props.updateSearchTerm}
-            //   addToList={this.props.addToList}
-            //   removeFromList={this.props.removeFromList}
-            //   />
-          } //end of loop in "Title" case
-          console.log(resultsView, 'was resultsView before break; in Title case');
-          break; //derp
-          case 'ISBN' :
-          // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
-          // let i = 0;
-          // let uniqueStamp = `${i}${stamp}`;
-          for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
-            let uniqueStamp = `${i}${stamp}`;
-            resultsView.push(
-              <div
-                key={uniqueStamp}
-                id={uniqueStamp}
-                className="searchResultSingle"
-                style={{"border":"solid 1px"}}
-                >
+          break;
+          case 'isbn':
+
+          break;
+          // case 'book_id':
+          //
+          // break;
+          default:
+            console.log('no recognized this.props.searchResults.results.index_searched case found');
+            console.log(this.props.searchResults.results.index_searched, 'was this.props.searchResults.results.index_searched');
+
+        }
+        switch(this.props.selectedSearchType[0]) {
+          case 'Authors': {
+            // console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
+            console.log(this.props.searchResults, 'was this.props.searchResults in authors case in in components/result.js');
+            // for(let i = 0; i < this.props.searchResults.results.book_ids.length ; i++){
+
+              // console.log(this.props.searchResults.results.book_ids[i], 'was this.props.searchResults.results.book_ids[i] in components/result.js');
+              let uniqueStamp = `${stamp}`;
+              // let authorsBookTitleArray = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].book_ids : [] ; // ehhhhh
+              // let authorsFirstName = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].first_name : '' ; // ehhhhh
+              // let authorsLastName = this.props.searchResults.data.data.result.data[i] ? this.props.searchResults.data.data.result.data[i].last_name : '' ; // ehhhhh
+              // console.log(spLength, 'spLength in for loop in components/result.js');
+              // let authorsBookTitleArray = [];
+              // let authorName = '';
+
+              resultsView.push(
+
+                <div
+                  key={uniqueStamp}
+                  id={uniqueStamp}
+                  className="searchResultSingle"
+                  style={{"border":"solid 1px"}}
+                  >
+                  <p>{this.props.searchResults.results.author_name} </p>
+
                 <InnerResultList
                   {...this.props}
-                  matchedISBN={this.props.searchResults.data.data.result.data[i]}
+
+                  matchedAuthor={this.props.searchResults.results}
                   />
 
-
-              </div>
-            )
-            // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
-            // <InnerResultList
-            //   matchedISBN={this.props.searchResults.data.data.result.data[i]}
-            //   searchResults={this.props.searchResults}
-            //   receiveResults={this.props.receiveResults}
-            //   updateSearchType={this.props.updateSearchType}
-            //   selectedListKey={this.props.selectedListKey}
-            //   updateSearchTerm={this.props.updateSearchTerm}
-            //   addToList={this.props.addToList}
-            //   removeFromList={this.props.removeFromList}
-            //   />
+                </div>
+              )
+              //authorBookList={this.props.searchResults.results.book_ids[i]}
+              // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Authors" case in  components/result.js');
+              // <InnerResultList
+              //
+              //   matchedAuthor={this.props.searchResults.data.data.result.data[i]}
+              //   searchResult={this.props.searchResults.data.data.result.data}
+              //   receiveResults={this.props.receiveResults}
+              //   updateSearchType={this.props.updateSearchType}
+              //   selectedListKey={this.props.selectedListKey}
+              //   updateSearchTerm={this.props.updateSearchTerm}
+              //   addToList={this.props.addToList}
+              //   removeFromList={this.props.removeFromList}
+              //   />
+            // } //end of for-loop in 'Authors' case
+            console.log(resultsView, 'was resultsView before break; in Authors case');
           }
 
-          console.log(resultsView, 'was resultsView before break; in ISBN case');
           break;
-          case '' : //trying an or case above, which is ugly but effective here? hopefully. it did not work, only triggered on A when ( A || B ). duplicated code for 2 cases. SO BAAAAD
+
+
+          case 'Title' : {
+
+            // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
+            // let i = 0;
+            // let uniqueStamp = `${i}${stamp}`;
+            // console.log(this.props.searchResults.data.data.result,' was this.props.searchResults.data.data.result copied from authors, in title');
+            // console.log(this.props.searchResults.data.data.result.data,' was this.props.searchResults.data.data.result.data copied from authors, in title');
+            // console.log(this.props.searchResults.data.data.result.data.length,' was this.props.searchResults.data.data.result.data.length copied from authors, in title');
+            // console.log(this.props.searchResults.data.data.result.data[0],' was this.props.searchResults.data.data.result.data[0] copied from authors, in title');
+            // console.log(this.props.searchResults.data.data.result.data[0].length,' was this.props.searchResults.data.data.result.data[0].length copied from authors, in title');
+            // console.log(this.props.searchResults.data.data.result.data[0], 'was this.props.searchResults.data.data.result.data[0] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
+            // console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
+
+            console.log(this.props.searchResults.results, 'was this.props.searchResults.results in title case in components/result.js');
+            console.log(this.props.searchResults.results.data, 'was this.props.searchResults.result.data in title case in components/result.js');
+            // console.log(this.props.searchResults.result.data.length, 'was this.props.searchResults.result.data in title case in components/result.js');
+            // console.log(this.props.searchResults.result.data, 'was this.props.searchResults.result.data.length in title case in components/result.js');
+            // for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
+            //   let uniqueStamp = `${i}${stamp}`;
+            //   resultsView.push(
+            //     <div
+            //       key={uniqueStamp}
+            //       id={uniqueStamp}
+            //       className="searchResultSingle"
+            //       style={{"border":"solid 1px"}}
+            //       >
+            //     <InnerResultList
+            //       {...this.props}
+            //       matchedISBN={this.props.searchResults.data.data.result.data[i]}
+            //       />
+            //
+            //     </div>
+            //   )
+            //   console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "Title" case in components/result.js');
+            //   // <InnerResultList
+            //   //   matchedISBN={this.props.searchResults.data.data.result.data[i]}
+            //   //   searchResults={this.props.searchResults}
+            //   //   receiveResults={this.props.receiveResults}
+            //   //   updateSearchType={this.props.updateSearchType}
+            //   //   selectedListKey={this.props.selectedListKey}
+            //   //   updateSearchTerm={this.props.updateSearchTerm}
+            //   //   addToList={this.props.addToList}
+            //   //   removeFromList={this.props.removeFromList}
+            //   //   />
+            // } //end of loop in "Title" case
+            //
+            /////////
+            //use below while results only return one book.
+            // let i = 0;
+            // let uniqueStamp = `${i}${stamp}`;
+            console.log(this.props.searchResults.results, 'was this.props.searchResults.results');
+            // for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
+              // let uniqueStamp = `${i}${stamp}`;
+              let uniqueStamp = `${stamp}`;
+              resultsView.push(
+                <div
+                  key={uniqueStamp}
+                  id={uniqueStamp}
+                  className="searchResultSingle"
+                  style={{"border":"solid 1px"}}
+                  >
+                  <InnerResultList
+                    {...this.props}
+                    matchedISBN={this.props.searchResults.results}
+                    />
+
+
+                </div>
+              )
+
+            console.log(resultsView, 'was resultsView before break; in Title case');
+          }
+          break; //derp
+
+
+          case 'ISBN' : {
+            // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
+            // let i = 0;
+            // let uniqueStamp = `${i}${stamp}`;
+            console.log(this.props.searchResults.results, 'was this.props.searchResults.results');
+            // for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
+              let uniqueStamp = `${stamp}`;
+              resultsView.push(
+                <div
+                  key={uniqueStamp}
+                  id={uniqueStamp}
+                  className="searchResultSingle"
+                  style={{"border":"solid 1px"}}
+                  >
+                  <InnerResultList
+                    {...this.props}
+                    matchedISBN={this.props.searchResults.results}
+                    />
+
+
+                </div>
+              )
+              // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in "ISBN" case in components/result.js');
+              // <InnerResultList
+              //   matchedISBN={this.props.searchResults.data.data.result.data[i]}
+              //   searchResults={this.props.searchResults}
+              //   receiveResults={this.props.receiveResults}
+              //   updateSearchType={this.props.updateSearchType}
+              //   selectedListKey={this.props.selectedListKey}
+              //   updateSearchTerm={this.props.updateSearchTerm}
+              //   addToList={this.props.addToList}
+              //   removeFromList={this.props.removeFromList}
+              //   />
+            // }
+
+            console.log(resultsView, 'was resultsView before break; in ISBN case');
+          }
+
+          break;
+          case '' : { //trying an or case above, which is ugly but effective here? hopefully. it did not work, only triggered on A when ( A || B ). duplicated code for 2 cases. SO BAAAAD
           // console.log(this.props.selectedSearchType, 'should be an empty string in "" case in components/result.js');
+
+          }
 
           break;
           default:

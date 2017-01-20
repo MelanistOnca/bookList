@@ -1,7 +1,7 @@
 
 function searchResults(state=[],action) {
-  // console.log(state, 'was state in reducers/searchResults');
-  // console.log(action, 'was action in reducers/searchResults');
+  console.log(state, 'was state in reducers/searchResults');
+  console.log(action, 'was action in reducers/searchResults');
   switch(action.type){
     case 'RECEIVE_RESULTS':
 
@@ -10,9 +10,14 @@ function searchResults(state=[],action) {
       //   action.results //this works when using the "authors" api call, may need to adjust depending on other call results
       //
       // ]
+      // return {
+      //   ...state,
+      //   data: action.results //this works when using the "authors" api call, may need to adjust depending on other call results
+      //
+      // }
       return {
         ...state,
-        data: action.results //this works when using the "authors" api call, may need to adjust depending on other call results
+        results: action.results //this works when using the "authors" api call, may need to adjust depending on other call results
 
       }
 

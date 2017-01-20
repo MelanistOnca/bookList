@@ -99,7 +99,7 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
     // whatever ISBNdb wants me to do to get a result by ISBN
     // pgp(searchType). //this should be subsituting for the db. in, for example, users.
     // pgp(options[searchOptions.searchType])
-    console.log(next, 'was next in reqCB in db/isbndb.js');
+    // console.log(next, 'was next in reqCB in db/isbndb.js');
     rp(options[searchOptions.searchType])
       .catch( (err) => {
         console.log(err, 'was err in db/isbndb getResultsFromSearch fn');
@@ -107,27 +107,51 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
         next()
       })
       .then( (data) => {
-        // console.log(data, 'was data in db/isbndb getResultsFromSearch fn');
-        // console.log(data.data, 'was data.data in db/isbndb getResultsFromSearch fn');
-        // console.log(data.data[0].author_data, 'was data.data.author_data in db/isbndb getResultsFromSearch fn');
-        console.log(data.data[0].author_data[0].name, 'was data.data[0].author_data[0].name in db/isbndb getResultsFromSearch fn'); //this returns the author's name. isbndb formats it as Last, First
-        // console.log(data.data.author_data[0], 'was data.data.author_data in db/isbndb getResultsFromSearch fn');
-        // console.log(typeof data, 'was typeof data in db/isbndb getResultsFromSearch fn');
-        // console.log(data.author_data, 'was data.author_data in db/isbndb getResultsFromSearch fn');
-        res.rows = data;
-        console.log(res.rows, 'was res.rows in db/isbndb getResultsFromSearch fn');
-        if (data.data[0].author_data[0]===undefined){
-          // res.rows = data;
-          // console.log(res.rows, 'was res.rows before author_data shennanigans');
-          res.rows.data[0].author_data[0] =
-            {
-              "name": 'No author creditted - notice courtesy of bookList team'
-            }
 
-          // console.log(res.rows, 'was res.rows after shennanigans');
-        } /*else {
-          res.rows = data;
-        }*/
+        console.log(data, 'was data in db/isbndb getResultsFromSearch fn');
+        console.log(typeof data, 'was typeof data in same'); //NOTE i feel like this should be returning more than one book for most searches. there is probably a query option to get more than one result?
+        if (data.index_searched==='book_id') {
+          res.rows = {
+            isbn13: data.data[0].isbn13,
+            title: data.data[0].title,
+            publisher: data.data[0].publisher_name,
+            author: data.data[0].author_data[0].name,
+            index_searched: data.index_searched
+          };
+          if (data.data[0].author_data[0]===undefined){
+            // res.rows = data;
+            // console.log(res.rows, 'was res.rows before author_data shennanigans');
+            res.rows.author =
+              {
+                "name": 'No author creditted - notice courtesy of bookList team'
+              }
+
+            // console.log(res.rows, 'was res.rows after shennanigans');
+          } /*else {
+            res.rows = data;
+          }*/
+        } else if (data.index_searched==='author_name') {
+          console.log(data.data[0], 'was data[0] in author_name index_searched');
+          console.log(data.data[0].book_ids, 'was data[0].book_ids in author_name index_searched');
+          res.rows = {
+            name: data.data[0].name,
+            book_count: data.data[0].book_count,
+            book_ids: data.data[0].book_ids,
+            index_searched: data.index_searched
+          }
+        } else if (data.index_searched==='isbn') {
+          console.log(data.data[0], 'was data[0] in isbn index_searched');
+          res.rows = {
+            isbn13: data.data[0].isbn13,
+            title: data.data[0].title,
+            publisher: data.data[0].publisher_name,
+            author: data.data[0].author_data[0].name,
+            index_searched: data.index_searched
+          };
+        }
+
+        // console.log(res.rows, 'was res.rows in db/isbndb getResultsFromSearch fn');
+
 
         console.log(res.rows, 'was res.rows in same');
         // console.log(res.rows.data, 'was res.rows.data in same');
@@ -142,3 +166,26 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
 
 
 //other module.exports.FUNCTIONnAMES to match the options on the components/searchButton.js function
+
+//the below follows
+// rp(options[searchOptions.searchType])
+//   .catch( (err) => {
+//     console.log(err, 'was err in db/isbndb getResultsFromSearch fn');
+//     console.log(options, 'was options in .catch in same');
+//     next()
+//   })
+//   .then ...
+/////
+// above
+/////
+// console.log(data.data, 'was data.data in db/isbndb getResultsFromSearch fn');
+// console.log(data.data[0], 'was data.data[0] in db/isbndb getResultsFromSearch fn'); //returns book info
+//i'm only really looking for isbn13, title, publisher, and author. these are found at .isbn13, .title, .publisher_name
+// console.log(data.data[0].isbn13, 'was data.data[0].isbn13 in db/isbndb getResultsFromSearch fn'); //returns isbn13
+// console.log(data.data[0].title, 'was data.data[0].title in db/isbndb getResultsFromSearch fn'); //returns human readable title
+// console.log(data.data[0].publisher_name, 'was data.data[0] in db/isbndb getResultsFromSearch fn'); //returns human readable publisher
+// console.log(data.data[0].author_data, 'was data.data.author_data in db/isbndb getResultsFromSearch fn');
+// console.log(data.data[0].author_data[0].name, 'was data.data[0].author_data[0].name in db/isbndb getResultsFromSearch fn'); //this returns the author's name. isbndb formats it as Last, First
+// console.log(data.data.author_data[0], 'was data.data.author_data in db/isbndb getResultsFromSearch fn');
+// console.log(typeof data, 'was typeof data in db/isbndb getResultsFromSearch fn');
+// console.log(data.author_data, 'was data.author_data in db/isbndb getResultsFromSearch fn');

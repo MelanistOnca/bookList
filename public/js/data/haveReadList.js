@@ -2,19 +2,11 @@
 //   "history list":"old man's WARRRRR"
 // }
 const haveReadList = {
-  // "title":"Have Read List",
-  // "list": {
-    "HRLbook1IdHere": {
-      "title":"old man's WARRRRR",
-      "author":"J Scalzi",
-      "genre":"mil sci fi"
-    },
-    "HRLbook2IdHere": {
-      "title":"second book",
-      "author":"second author",
-      "genre":"random genre"
-    }
-  // }
+  "please log in": {
+    "title":"log in",
+    "author":"to get",
+    "publisher":"this list"
+  }
 
 }
 
