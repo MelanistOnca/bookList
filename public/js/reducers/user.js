@@ -99,7 +99,7 @@ function user(state=[], action) {
       console.log('UPDATE_USER_INFO case');
       console.log(state, 'was state in this case');
       console.log(action, 'was action in same');
-      
+
       return state;
     case 'UPDATE_USER_PASSWORD':
     // return{...state, user:{...state.user, email:action.payload.email}};
@@ -114,7 +114,21 @@ function user(state=[], action) {
     // my stuff
       console.log('LOGOUT_USER case');
       console.log(state, 'was state in this case');
-      return state;
+      console.log(action, 'was action in this case');
+      // return state;
+      return {
+        ...state,
+        user: {
+          'id': '',
+          'admin': false,
+          'email': '',
+          'first_name': '',
+          'middle_name': '',
+          'last_name': '',
+          'username': ''
+        },
+        status: 'logged out'
+      }
     case 'RESET_USER':
     // reset authenticated user to initial state
     // return { ...state, user: null, status:null, error:null, loading: false};

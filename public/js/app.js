@@ -61,6 +61,8 @@ render(
             component={SignUp}/>
           <Route path="/login"
             component={LogIn}/>
+          <Route path="/logout"
+            component={LogIn}/>
           <Route path="/updateuserinfo"
             component={UpdateUserInfo}/>
           {/*

@@ -69,6 +69,7 @@ export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
     // console.log(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`, 'was the address used by the axios.get in actions/list');
     // console.log('###################');
     //NOTE need a placeholder value for fnArg.user_id in case user is not logged in. gives bad routes otherwise, 'api/users//list/...' should be something like 'api/users/PLACEHOLDER/list/...'
+
     axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`) //this route calls the getList backend function. //this route feels janky afffffffffff. so let's call it clever?
       .then( (list) => {
         // console.log('before dispatch in the .then of the axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`) in updateList in actions/list.js');
@@ -187,6 +188,7 @@ export function removeFromList(fnArg) {
   // axios.post(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`, fnArg)
     .then( (data) => {
       console.log(data, 'was data in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');
+      fnArg.bufferDeletedBook(data.data.bookInfoByISBN)
     })
     .catch( (error) => {
       console.log(error, 'was error in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');

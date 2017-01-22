@@ -135,7 +135,7 @@ class LogIn extends React.Component {
     // console.log(statusVar, 'was statusVar');
     let loadStatusContainer =
       <div id="loadStatusContainer">
-        testy test
+        
         <h1>
           {`${statusVar}`}
 

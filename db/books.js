@@ -119,8 +119,8 @@ module.exports.bookDataFromList = (req, res, next) => {
   (err, results) => {
     // console.log(res, 'was res in async.map');
     console.log(err, 'was err in async.map');
-    console.log(results, 'was results in async.map');
-    console.log(results[0], 'was results[0] in async.map');
+    // console.log(results, 'was results in async.map');
+    // console.log(results[0], 'was results[0] in async.map');
     // console.log(listBookData, 'was listBookData after results in async.map');
     // console.log(listBookData[0], 'was listBookData[0] after results in async.map');
     // console.log(listBookData[50], 'was listBookData[0] after results in async.map');

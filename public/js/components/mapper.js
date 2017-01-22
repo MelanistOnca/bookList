@@ -23,7 +23,8 @@ function mapStateToProps(state){
     newToList: state.newToList,
     user: state.user,
     logInForm: state.logInForm,
-    userFormData: state.userFormData
+    userFormData: state.userFormData,
+    deletedBook: state.deletedBook
   }
 }
 

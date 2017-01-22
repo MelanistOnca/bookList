@@ -14,7 +14,7 @@ export default class BasicList extends React.Component {
 
 
   }
-  getListFn(listKey, getList, user_id) {
+  getListFn(listKey, getList, user_id, user_status) {
     // console.log(listKey, 'was listKey in getListFn in basicList.js');
     // console.log(user_id, 'was user_id in getListFn in basicList.js');
     // console.log(getList, 'was getList in getListFn in basicList.js');
@@ -27,6 +27,10 @@ export default class BasicList extends React.Component {
     // console.log('???????????????????');
     //
     // console.log('just before the getList call in getListFn in in basicList.js');
+    if(user_status !== "authenticated"){
+      window.alert("Your list will be available on this page once you have logged in!")
+      return
+    }
     getList( fnArg );
     // console.log('just after the getList call in getListFn in in basicList.js');
 
@@ -64,7 +68,7 @@ export default class BasicList extends React.Component {
     // this.props.getList(`${listKeyLabel}List`)
     if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
-      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id, this.props.user.status)
       this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     }
 
@@ -128,14 +132,14 @@ export default class BasicList extends React.Component {
     if(this.props.selectedListKey.length===0){ //so this should only run if the selectedListKey is an empty array
       console.log('this.props.selectedListKey.length===0');
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
-      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id, this.props.user.status)
       this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     } else if(this.props.selectedListKey[0]!==listKeyLabel) { //this probably catches more labels than it needs to?
       console.log('this.props.selectedListKey[0]!==listKeyLabel');
       console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in the second conditional');
       console.log(listKeyLabel, 'was listKeyLabel in the second conditional');
       this.setSelectedListKey(listKeyLabel, this.props.selectList )
-      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id, this.props.user.status)
       this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     // } //else if (this.props.selectedListKey[0]===listKeyLabel){
     //   console.log('<><><><><><><><><><><><>');
@@ -147,7 +151,7 @@ export default class BasicList extends React.Component {
       console.log('========================');
       console.log(`the else case in second conditional in basicList.js`);
       console.log('========================');
-      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id)
+      this.getListFn(listKeyLabel, this.props.getList, this.props.user.user.id, this.props.user.status)
       // this.updateListFn(this.props.user.user, listKeyLabel, this.props.updateList, this.props.listTranslate)
     }
     // this.props.getList(listKeyLabel, this.props.getList, this.props.user.user.id)

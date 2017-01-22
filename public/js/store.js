@@ -23,6 +23,7 @@ import newToList from './data/newToList';
 import user from './data/user';
 import logInForm from './data/logInForm';
 import userFormData from './data/userFormData';
+import deletedBook from './data/deletedBook';
 
 // console.log(userFormData, 'was userFormData in store.js');
 
@@ -38,7 +39,8 @@ const defaultState = {
   newToList,
   user,
   logInForm,
-  userFormData
+  userFormData,
+  deletedBook
   // currentISBN
 }
 

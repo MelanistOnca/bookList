@@ -185,10 +185,11 @@ module.exports.addToList = ( req, res, next ) => {
   //need to write several functions outside of this one, then invoke them here
   //check that book is in book db.
   // if no, add to book db
-  // console.log(req.body, 'was req.body');
-  console.log(req.body.book.author_data, 'was req.body.author_data'); //returns [ { name: 'Leckie, Ann', id: 'leckie_ann' } ]
+  console.log(req.body, 'was req.body');
+  // console.log(req.body.book.author, 'was req.body.author'); //returns [ { name: 'Leckie, Ann', id: 'leckie_ann' } ]
   // console.log(req.body.book.author_data[0], 'was req.body.author_data[0]'); //returns
-  console.log(req.body.book.author_data[0].name, 'was req.body.author_data[0].name'); //returns Leckie, Ann
+  // console.log(req.body.book.author_data[0].name, 'was req.body.author_data[0].name'); //returns Leckie, Ann
+  console.log(req.body.book.author, 'was req.body.author'); //returns Leckie, Ann
   // NOTE need to add user.id at LEAST to the data sent here, and pass it along to the insertToJoin function
   //NOTE NOTE NOTE NOTE NOTE NOTE
   // req.body.book.isbn13 is book's isbn13 from isbndb
@@ -198,12 +199,12 @@ module.exports.addToList = ( req, res, next ) => {
   console.log(isbnString, 'was isbnString'); // logs 9780765309402 was isbn
   let title = req.body.book.title
   console.log(title, 'was title'); //logs Old man's war was title
-  let publisher = req.body.book.publisher_name
+  let publisher = req.body.book.publisher;
   console.log(publisher, 'was publisher'); //logs Tor was publisher
   let user = req.body.user
   console.log(user, 'was user');
   // let authorName= req.body.author_data[0].name
-  let authorName= req.body.book.author_data[0].name
+  let authorName= req.body.book.author
   console.log(authorName, 'was authorName');
   let book = {
     isbnString,
@@ -287,7 +288,7 @@ module.exports.addToList = ( req, res, next ) => {
 //         //   isbn13: '9780765309402',
 //         //   title: 'Old man\'s war',
 //         //   publisher: 'Tor',
-//         //   author: 'No author creditted - notice courtesy of bookList team'
+//         //   author: 'No author creditted ()- notice courtesy of bookList team'
 //         // }
 //         // let book_id = data.id;
 //         // let removedInfo;
@@ -310,7 +311,7 @@ module.exports.addToList = ( req, res, next ) => {
 //   //     //   isbn13: '9780765309402',
 //   //     //   title: 'Old man\'s war',
 //   //     //   publisher: 'Tor',
-//   //     //   author: 'No author creditted - notice courtesy of bookList team'
+//   //     //   author: 'No author creditted ()- notice courtesy of bookList team'
 //   //     // }
 //   //     let book_id = data.id;
 //   //     let removedInfo;
@@ -408,7 +409,7 @@ module.exports.removeFromList = ( req, res, next ) => {
         //   isbn13: '9780765309402',
         //   title: 'Old man\'s war',
         //   publisher: 'Tor',
-        //   author: 'No author creditted - notice courtesy of bookList team'
+        //   author: 'No author creditted ()- notice courtesy of bookList team'
         // }
         // let book_id = data.id;
         // let removedInfo;

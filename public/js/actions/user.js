@@ -120,7 +120,7 @@ export function logInUserFailure(error) {
   }
 }
 
-export function logoutUser() {
+export function logOutUser() {
   // ha! tutorial switched over to log vs sign. victory is mine, 6 gold stars!
   console.log('logoutUser in actions/user.js called');
   return {

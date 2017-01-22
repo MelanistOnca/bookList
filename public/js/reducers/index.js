@@ -21,6 +21,7 @@ import newToList from './newToList';
 import user from './user';
 import logInForm from './logInForm_reducer';
 import userFormData from './userFormData_reducer';
+import deletedBook from './deletedBook_reducer';
 
 
 const rootReducer = combineReducers(
@@ -37,6 +38,7 @@ const rootReducer = combineReducers(
     user,
     logInForm,
     userFormData,
+    deletedBook,
     routing: routerReducer/*,
     form: formReducer*/
   }

@@ -13,8 +13,35 @@ export default class SearchButton extends React.Component {
   searchClicked(props, e){
     console.log('seachClicked ran in components/searchButton.js ');
     e.preventDefault();
-
-    // console.log(props, 'props in searchClicked() in components/searchButton');
+    console.log(props.selectedSearchType, 'was props.selectedSearchType in searchClicked');
+    console.log(props.selectedSearchType[0], 'was props.selectedSearchType[0] in searchClicked');
+    if(!props.selectedSearchType[0]){
+      window.alert("Please select a search type before pressing the search button");
+      return
+    } else if((props.selectedSearchType[0]==="Select")){
+      window.alert("Please select a search type before pressing the search button");
+      return
+    } else {
+      //nothing
+    }
+    // switch(props.selectedSearchType[0]) {
+    //   case 'Select': {
+    //     window.alert("Please select a search type before searching");
+    //     console.log(props.selectedSearchType[0], 'was props.selectedSearchType[0] in searchClicked Select case');
+    //     return
+    //   }
+    //   break;
+    //   case undefined : {
+    //     console.log(props.selectedSearchType[0], 'was props.selectedSearchType[0] in searchClicked null case');
+    //     window.alert("Please select a search type before searching");
+    //     return
+    //   }
+    //   break;
+    //   default:
+    //   //do nothing
+    // }
+    //
+    // // console.log(props, 'props in searchClicked() in components/searchButton');
     // props.updateSearchType(props.selectedSearchType[0])
 
     // need to start a reqest here to hit the ISBNdb api of MINE, which will then hit the action ISBNDB api, to get the data here without revealing my ISBNDB api key.
@@ -204,8 +231,10 @@ export default class SearchButton extends React.Component {
       "receiveResults" : this.props.receiveResults,
       "updateSearchType" : this.props.updateSearchType,
       "updateSearchTerm" : this.props.updateSearchTerm,
-      "resultSearchClicked": this.resultSearchClicked,
-      "newSearchTerm": this.props.newSearchTerm
+      "resultSearchClicked" : this.resultSearchClicked,
+      "newSearchTerm" : this.props.newSearchTerm
+      // "bufferDeletedBook" : this.props.bufferDeletedBook,
+      // "clearDeletedBook" : this.props.clearDeletedBook
 
     }
 

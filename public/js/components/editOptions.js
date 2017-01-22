@@ -173,7 +173,7 @@ export default class EditOptions extends React.Component {
     // NOTE need function here to update store from DB to show new list entry there. could i put this in the list component? will it update appropriately? in order to do so, it would probably have to update when the list component loads/receives props
 
   }
-  removeFromList(list, book_isbn13, rmvFn, user, listTranslate, e) {
+  removeFromList(list, book_isbn13, rmvFn, user, listTranslate, bufferDeletedBook, e) {
     e.preventDefault();
     if( (user.user.id==='') ) {
       window.alert('Please log in before removing a book from a list')
@@ -186,13 +186,16 @@ export default class EditOptions extends React.Component {
     console.log(rmvFn, 'was rmvFn in removeFromList components/editOptions.js');
     console.log(user, 'was user in removeFromList components/editOptions.js');
     console.log(listTranslate, 'was listTranslate in removeFromList components/editOptions.js');
+    console.log(bufferDeletedBook, 'was bufferDeletedBook in removeFromList components/editOptions.js');
     let fnArg = {
       list,
       book_isbn13,
       user,
-      listTranslate
+      listTranslate,
+      bufferDeletedBook
     }
     console.log(fnArg, 'was fnArg in removeFromList components/editOptions.js');
+    // bufferDeletedBook('test')
     rmvFn(fnArg)
     //pass more functions here? to split up promise chain?
 
@@ -232,7 +235,8 @@ export default class EditOptions extends React.Component {
           listButton =
           <button
             onClick={this.removeFromList.bind(this, this.props.selectedListKey[0], this.props.isbn13, this.props.removeFromList, this.props.user,
-            this.props.listTranslate )}
+            this.props.listTranslate,
+            this.props.bufferDeletedBook)}
             >
             Remove from list
           </button>
