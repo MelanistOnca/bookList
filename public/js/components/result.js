@@ -45,7 +45,7 @@ export default class Result extends React.Component {
         // this.props.searchResults[0] ?
         // console.log(Object.keys(startingPoint[0]), 'was Object.keys(startingPoint[0]) in components/result.js') :
         // console.log('bullshit text');
-        console.log();
+        // console.log();
 
         //when results present on authorS (plural!) search, returns ["author_id", "name", "book_count", "dates", "book_ids", "category_ids", "last_name", "first_name", "subject_ids", "name_latin"] //these are the keys for the author object
 
@@ -71,11 +71,11 @@ export default class Result extends React.Component {
         // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
         // let identicalURIforTitleOrISBN = 'ISBN' || 'Title';
         //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
-        // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
-        console.log(this.props.searchResults.results, 'was this.props.searchResults.results in components/result.js');
+        console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
+        // console.log(this.props.searchResults.results, 'was this.props.searchResults.results in components/result.js');
         // console.log(this.props.searchResults.results.author_name, 'was this.props.searchResults.results.author_name in components/result.js');
         // console.log(this.props.searchResults.results.book_ids, 'was this.props.searchResults.results.book_ids in components/result.js');
-        // console.log(this.props.searchResults.results, 'was this.props.searchResults.results.author_name in components/result.js');
+        console.log(this.props.searchResults.results, 'was this.props.searchResults.results.author_name in components/result.js');
         switch (this.props.searchResults.results.index_searched){
           case 'book_id':
 
@@ -90,14 +90,14 @@ export default class Result extends React.Component {
           //
           // break;
           default:
-            console.log('no recognized this.props.searchResults.results.index_searched case found');
-            console.log(this.props.searchResults.results.index_searched, 'was this.props.searchResults.results.index_searched');
+            // console.log('no recognized this.props.searchResults.results.index_searched case found');
+            // console.log(this.props.searchResults.results.index_searched, 'was this.props.searchResults.results.index_searched');
 
         }
         switch(this.props.selectedSearchType[0]) {
           case 'Authors': {
             // console.log(startingPoint, 'was startingPoint in Authors case in components/result.js');
-            console.log(this.props.searchResults, 'was this.props.searchResults in authors case in in components/result.js');
+            // console.log(this.props.searchResults, 'was this.props.searchResults in authors case in in components/result.js');
             // for(let i = 0; i < this.props.searchResults.results.book_ids.length ; i++){
 
               // console.log(this.props.searchResults.results.book_ids[i], 'was this.props.searchResults.results.book_ids[i] in components/result.js');
@@ -141,7 +141,7 @@ export default class Result extends React.Component {
               //   removeFromList={this.props.removeFromList}
               //   />
             // } //end of for-loop in 'Authors' case
-            console.log(resultsView, 'was resultsView before break; in Authors case');
+            // console.log(resultsView, 'was resultsView before break; in Authors case');
           }
 
           break;
@@ -160,8 +160,8 @@ export default class Result extends React.Component {
             // console.log(this.props.searchResults.data.data.result.data[0], 'was this.props.searchResults.data.data.result.data[0] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
             // console.log(this.props.searchResults.data.data.result.data[i], 'was this.props.searchResults.data.data.result.data[i] in Title case', typeof this.props.searchResults.data.data.result.data[i], 'was typeof of same');
 
-            console.log(this.props.searchResults.results, 'was this.props.searchResults.results in title case in components/result.js');
-            console.log(this.props.searchResults.results.data, 'was this.props.searchResults.result.data in title case in components/result.js');
+            // console.log(this.props.searchResults.results, 'was this.props.searchResults.results in title case in components/result.js');
+            // console.log(this.props.searchResults.results.data, 'was this.props.searchResults.result.data in title case in components/result.js');
             // console.log(this.props.searchResults.result.data.length, 'was this.props.searchResults.result.data in title case in components/result.js');
             // console.log(this.props.searchResults.result.data, 'was this.props.searchResults.result.data.length in title case in components/result.js');
             // for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
@@ -197,7 +197,7 @@ export default class Result extends React.Component {
             //use below while results only return one book.
             // let i = 0;
             // let uniqueStamp = `${i}${stamp}`;
-            console.log(this.props.searchResults.results, 'was this.props.searchResults.results');
+            // console.log(this.props.searchResults.results, 'was this.props.searchResults.results');
             // for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
               // let uniqueStamp = `${i}${stamp}`;
               let uniqueStamp = `${stamp}`;
@@ -217,7 +217,7 @@ export default class Result extends React.Component {
                 </div>
               )
 
-            console.log(resultsView, 'was resultsView before break; in Title case');
+            // console.log(resultsView, 'was resultsView before break; in Title case');
           }
           break; //derp
 
@@ -226,7 +226,7 @@ export default class Result extends React.Component {
             // console.log(startingPoint, 'was startingPoint in ISBN case in components/result.js');
             // let i = 0;
             // let uniqueStamp = `${i}${stamp}`;
-            console.log(this.props.searchResults.results, 'was this.props.searchResults.results');
+            // console.log(this.props.searchResults.results, 'was this.props.searchResults.results');
             // for(let i = 0; i < this.props.searchResults.data.data.result.data.length ; i++){
               let uniqueStamp = `${stamp}`;
               resultsView.push(
@@ -257,7 +257,7 @@ export default class Result extends React.Component {
               //   />
             // }
 
-            console.log(resultsView, 'was resultsView before break; in ISBN case');
+            // console.log(resultsView, 'was resultsView before break; in ISBN case');
           }
 
           break;

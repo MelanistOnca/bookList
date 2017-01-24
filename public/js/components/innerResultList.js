@@ -38,13 +38,26 @@ export default class InnerResultList extends React.Component {
   //     })
   // } //decided against pinging ISBNdb for each book of a given author. user can ping for title if they're interested in adding.
   componentWillReceiveProps(nextProps){
-    // console.log(this.props, 'was this.props in innerResultList componentWillReceiveProps');
-    // console.log(nextProps, 'was nextProps in innerResultList componentWillReceiveProps');
+    console.log(this.props, 'was this.props in innerResultList componentWillReceiveProps');
+    console.log(nextProps, 'was nextProps in innerResultList componentWillReceiveProps');
+    console.log(this.props.searchTerm[0], 'was this.props in innerResultList componentWillReceiveProps');
+    console.log(nextProps.searchTerm[0], 'was nextProps in innerResultList componentWillReceiveProps');
     // this.props=nextProps;
+    if(
+      this.props.searchTerm[0]!==nextProps.searchTerm[0]
+    ) {
+      nextProps.updateSearchTerm(nextProps.searchTerm[0].split('_').join(' '))
+    }
+    console.log(nextProps.searchTerm[0], 'was nextProps in innerResultList componentWillReceiveProps');
+
+
   }
+  // componentWillMount(){
+  //   this.props.updateSearchTerm(this.props.searsearchTerm[0])
+  // }
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
-    console.log(this.props, 'was this.props in components/innerResultList in render()');
+    // console.log(this.props, 'was this.props in components/innerResultList in render()');
     // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
     // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');
@@ -72,7 +85,7 @@ export default class InnerResultList extends React.Component {
           // let isbn13 = this.returnISBN(bookId)
           let humanReadableTitle =
           authorsBooksTitleArray[i].split('_').join(' ');
-          // console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
+          console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
           readableArray.push(
             <div
             className={"bookFromSearchedAuthor"}
@@ -89,13 +102,14 @@ export default class InnerResultList extends React.Component {
               forceSelectedSearchType={"Title"}
 
 
-              newSearchTerm={authorsBooksTitleArray[i]}
+              newSearchTerm={humanReadableTitle}
 
 
               />
             <p>Select "Title" from the above dropdown before clicking this button</p>
             </div>
           )
+          // newSearchTerm={authorsBooksTitleArray[i]}
 
 
         }
@@ -122,7 +136,7 @@ export default class InnerResultList extends React.Component {
     // console.log(this.props.matchedISBN, 'was this.props.matchedISBN in components/innerResultList');
 
     if(this.props.matchedISBN){
-      console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISBN) in components/innerResultList');
+      // console.log(this.props.matchedISBN, 'this.props.matchedISBN inside if(this.props.matchedISBN) in components/innerResultList');
       //start of matchedISBN if statement
       // (
       //   (this.props.matchedISBN !== 'p' )

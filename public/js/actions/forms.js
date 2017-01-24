@@ -3,7 +3,7 @@
 //i'm going to need something here for searchTerm aren't i?
 
 export function updateSearchTerm(searchTerm) {
-  // console.log(searchTerm, 'was searchTerm in actions/actionCreators');
+  console.log(searchTerm, 'was searchTerm in actions/actionCreators');
   return {
     type: 'UPDATE_TERM',
     searchTerm

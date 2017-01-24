@@ -56,9 +56,9 @@ export default class Selected extends React.Component {
   //   this.props.getList()
   // }
   componentWillReceiveProps(nextProps){
-    console.log(this.props, 'was this.props in componentWillReceiveProps in selected');
-    console.log(nextProps, 'was nextProps in componentWillReceiveProps in selected');
-    console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
+    // console.log(this.props, 'was this.props in componentWillReceiveProps in selected');
+    // console.log(nextProps, 'was nextProps in componentWillReceiveProps in selected');
+    // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     if( nextProps.user.status === "authenticated" ){
       if( this.props.listCollection !== nextProps.listCollection ) {
         let fnArg = {
@@ -70,8 +70,8 @@ export default class Selected extends React.Component {
     }
     // console.log(Object.keys(nextProps.newToList.currentlyReadingList), 'was Object.keys(nextProps.newToList.currentlyReadingList) in componentWillReceiveProps in selected');
     // console.log(Object.keys(nextProps.newToList.toBeReadList), 'was Object.keys(nextProps.newToList.currentlyReadingList) in componentWillReceiveProps in selected');
-    console.log(Object.keys(nextProps.newToList.toBeReadList)[0], 'was Object.keys(nextProps.newToList.currentlyReadingList)[0] in componentWillReceiveProps in selected'); //logs the isbn13
-    console.log(this.props.deletedBook.book.isbn13, 'was this.props.deletedBook.book.isbn13 in same');
+    // console.log(Object.keys(nextProps.newToList.toBeReadList)[0], 'was Object.keys(nextProps.newToList.currentlyReadingList)[0] in componentWillReceiveProps in selected'); //logs the isbn13
+    // console.log(this.props.deletedBook.book.isbn13, 'was this.props.deletedBook.book.isbn13 in same');
     if(
       Object.keys(nextProps.newToList.currentlyReadingList)[0]
       ===
@@ -111,7 +111,7 @@ export default class Selected extends React.Component {
     // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in componenets/selected.js');
     let deletedBookHolder;
     let deletedComponent_id = `deletedBookISBN${this.props.deletedBook.book.isbn13}`
-    console.log(this.props.deletedBook, 'was this.props.deletedBook in componenets/selected.js');
+    // console.log(this.props.deletedBook, 'was this.props.deletedBook in componenets/selected.js');
     let deletedMatchedISBN = {
       author: this.props.deletedBook.book.author,
       isbn13: this.props.deletedBook.book.isbn13,

@@ -24,44 +24,9 @@ export default class SearchButton extends React.Component {
     } else {
       //nothing
     }
-    // switch(props.selectedSearchType[0]) {
-    //   case 'Select': {
-    //     window.alert("Please select a search type before searching");
-    //     console.log(props.selectedSearchType[0], 'was props.selectedSearchType[0] in searchClicked Select case');
-    //     return
-    //   }
-    //   break;
-    //   case undefined : {
-    //     console.log(props.selectedSearchType[0], 'was props.selectedSearchType[0] in searchClicked null case');
-    //     window.alert("Please select a search type before searching");
-    //     return
-    //   }
-    //   break;
-    //   default:
-    //   //do nothing
-    // }
-    //
-    // // console.log(props, 'props in searchClicked() in components/searchButton');
-    // props.updateSearchType(props.selectedSearchType[0])
 
-    // need to start a reqest here to hit the ISBNdb api of MINE, which will then hit the action ISBNDB api, to get the data here without revealing my ISBNDB api key.
 
-    // //  *************
-    // console.log(props.searchTerm, 'was props.searchTerm in same');
-    // console.log(props.searchTerm[0], 'was props.searchTerm[0] in same');
-    // console.log(props.updateSearchTerm, 'was props.updateSearchTerm in same');
-    // props.updateSearchTerm(props.searchTerm[0])
 
-    //MEGA NOTE
-    //MEGA NOTE
-    //MEGA NOTE
-     //migrate the ISBNdb api call to the db/isbndb.js file
-    //END OF MEGA NOTE
-    //END OF MEGA NOTE
-    //END OF MEGA NOTE
-    //NOTE: also need to update search term when coming from the author book list button
-    // **************
-    //end of NOTE
 
     let searchType = props.selectedSearchType[0].toLowerCase();
     let searchTerm = props.searchTerm[0];
@@ -86,6 +51,7 @@ export default class SearchButton extends React.Component {
     // searchType = (forcedSearchType||searchType)//NOTE or maybe use that function here instead?
 
     console.log(searchType, 'was searchType in searchClicked() before switch in same');
+    console.log(searchTerm, 'was searchTerm in searchClicked() before switch in same');
     switch(searchType) {
       case 'isbn' :
         searchType = 'book';
@@ -94,6 +60,13 @@ export default class SearchButton extends React.Component {
       //may need a case to re-define for 'title'
       case 'title' :
         searchType = 'book';
+        // let searchTermTestNoSpace = searchTerm[0].split(' ').join('_')
+        // let dropApostrophe = searchTermTestNoSpace.split("'").join('')
+        // let searchTermTest = searchTerm[0].split(' ').join('_').split("'").join('')
+        // searchTerm[0] = searchTerm[0].split(' ').join('_').split("'").join('')
+        // console.log(searchTermTestNoSpace, 'was searchTermTestNoSpace in case title in searchType switch searchClicked');
+        // console.log(dropApostrophe, 'was dropApostrophe in case title in searchType switch searchClicked');
+        // console.log(searchTermTest, 'was searchTermTest in case title in searchType switch searchClicked');
         break;
       default:
         console.log(searchType, 'was searchType in default case of searchType switch');
@@ -130,13 +103,14 @@ export default class SearchButton extends React.Component {
     // console.log(options.searchType, 'was options.searchType in same'); //returns undefined
     // console.log(searchType, 'was search type in searchClicked() componenets/searchButton.js');
     // console.log(options[searchType], 'was options[searchType] in same');
+    console.log(searchTerm, 'was searchTerm in searchClicked() componenets/searchButton.js');
 
     // console.log(options[searchType], 'was options[searchType] before rp() in components/searchFor.js');
     //need to see if i can add in a .something so that if a search fails (author?q=scalzi) it tries a more general search, i.e. authorS?q=scalzi
     ///////////////
     console.log('axios.post runs here');
-    const request = axios.post('api/isbndb', options) //may need to make the accompanying fields part of a form
-    request
+    // const request = axios.post('api/isbndb', options) //may need to make the accompanying fields part of a form
+    axios.post('api/isbndb', options)
       .catch( (err) => {
         console.log(err,'was err in the .then from the axios.post in searchClicked fn in components/searchButton.js');
       })

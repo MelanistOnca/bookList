@@ -70,6 +70,13 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
   console.log(searchOptions, 'was searchOptions in db/isbndb.js');
   console.log(typeof searchOptions, 'was typeof searchOptions in db/isbndb.js');
 
+  if(searchOptions.searchType==='book'){
+    console.log(searchOptions.searchTerm[0].split(' ').join('_').split("'").join(''), 'was searchTermField.split().join().split().join() in searchTermChange in searchFor.js');
+    searchOptions.searchTerm[0] = searchOptions.searchTerm[0].split(' ').join('_').split("'").join('')
+    // let parsedSearchTerm = searchTermField.split(' ').join('_').split("'").join('')
+    // console.log(parsedSearchTerm, 'was parsedSearchTerm in searchTermChange in searchFor.js');
+  }
+
   //possibly need CORS/Access-Control-Allow-Origin  related something in the header here?
   let templateString = `template string`
   // let authorUri = `http://isbndb.com/api/v2/json/${apiKey}/${searchOptions.searchType}`

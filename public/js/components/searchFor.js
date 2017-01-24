@@ -17,7 +17,17 @@ export default class SearchFor extends React.Component {
     let searchTermField = e.target.value;
     e.preventDefault();
     console.log("i need to figure out how to distinguish here between title, author, isbn and if it's title, to convert from human readable (spaces and caps) to book_id format(unscores, lowercase). but ACTUALLY, i need to keep it human readable in the search field, but book_id format ... somehwere? otherwise search results for InnerResultList don't work right. or something breaks. its 9pm and i've been coding on and off all day");
-    updateSearchTerm(searchTermField);
+    console.log(searchTermField, 'was searchTermField in searchTermChange in searchFor.js');
+    // console.log(searchTermField.split(' ').join('_').split("'").join(''), 'was searchTermField.split().join().split().join() in searchTermChange in searchFor.js');
+    // let parsedSearchTerm = searchTermField.split(' ').join('_').split("'").join('')
+    // console.log(parsedSearchTerm, 'was parsedSearchTerm in searchTermChange in searchFor.js');
+    let humanReadableTitle =
+    searchTermField.split('_').join(' ');
+    console.log(humanReadableTitle, 'was humanReadableTitle in searchTermChange in searchFor.js');
+
+    // updateSearchTerm(searchTermField);
+    // updateSearchTerm(parsedSearchTerm);
+    updateSearchTerm(humanReadableTitle);
 
   }
   searchTypeChanged(updateSearchType,e){
@@ -88,7 +98,7 @@ export default class SearchFor extends React.Component {
     // <option value="Authors">Authors  (plural)</option>
     // <option value="Title">Title</option>
     // <option value="ISBN">ISBN</option>
-    let defValue = this.props.selectedSearchType[0]; //needed to refer to [0] to get rid of "scalar value" warning, since i had been passing the array and not the string
+    // let defValue = this.props.selectedSearchType[0]; //needed to refer to [0] to get rid of "scalar value" warning, since i had been passing the array and not the string
 
 
     // console.log(this.props.selectedSearchType, 'was this.props.selectedSearchType in components/searchFor');
@@ -96,7 +106,7 @@ export default class SearchFor extends React.Component {
     // console.log(this.props, 'was this.props in components/searchFor');
 
     // select value below spawns warning.js:44 Warning: The `value` prop supplied to <select> must be a scalar value if `multiple` is false. Check the render method of `SearchFor`
-    let event = window.event; //needed for firefox
+    // let event = window.event; //needed for firefox
     //following was replaced by SearchButton
     // <input type="submit"
     //   value="Search"
@@ -109,8 +119,8 @@ export default class SearchFor extends React.Component {
           <label>Search By:
             <select
 
-              onChange={this.searchTypeChanged.bind(event, this.props.updateSearchType)}
-              value={defValue}
+              onChange={this.searchTypeChanged.bind(this, this.props.updateSearchType)}
+              value={this.props.selectedSearchType[0]}
               >
               <option value={undefined}>Select</option>
               {selectOptions}
@@ -123,7 +133,7 @@ export default class SearchFor extends React.Component {
             type="text"
             value={this.props.searchTerm}
             placeholder="search term here"
-            onChange={this.searchTermChanged.bind(event, this.props.updateSearchTerm)}
+            onChange={this.searchTermChanged.bind(this, this.props.updateSearchTerm)}
 
             />
 

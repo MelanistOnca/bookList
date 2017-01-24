@@ -15,6 +15,7 @@ function searchResults(state=[],action) {
       //   data: action.results //this works when using the "authors" api call, may need to adjust depending on other call results
       //
       // }
+      // console.log(action, 'was action in RECEIVE_RESULTS of reducers/searchResults');
       return {
         ...state,
         results: action.results //this works when using the "authors" api call, may need to adjust depending on other call results

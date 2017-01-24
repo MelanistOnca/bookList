@@ -20,7 +20,7 @@ export default class UserSection extends React.Component {
     //NOTE need conditionals here for when to display login/logout link
     let userStatusCheck;
 
-    console.log(this.props, 'was this.props in components/user/userSection');
+    // console.log(this.props, 'was this.props in components/user/userSection');
     if(this.props.user.status==='authenticated'){
       userStatusCheck =
       <ul>
