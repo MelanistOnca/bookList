@@ -145,7 +145,7 @@ export default class InnerResultList extends React.Component {
       // }
       // // i feel like i could maybe replace the "this.props.matchedISBN.name" with the "no author creditted" string and remove the if/else construct. unless of course matchedISBN.name is not an error
       // NOTE end: this block may need to be reimplemented if matchedISBN.name is a valid case
-
+      //NOTE TODO: i can probably replace the book info below with a SingleBook component now, remove the EditOption element, and pass the SingleBook an addOrRemoveButton={'add'} prop
           readableArray.push(
             <div
               className={"bookFromISBN_Result"}

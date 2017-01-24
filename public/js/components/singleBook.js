@@ -11,9 +11,9 @@ export default class SingleBook extends React.Component {
           // id
           // title
           // author
-          // genre
+          // publisher
   render(){
-    // console.log(this.props, 'this.props in singleBook.js');
+    console.log(this.props, 'this.props in singleBook.js');
     // console.log(this.props.pickedList,'this.props.pickedList in singleBook.js');
 
     let buttonType = this.props.addOrRemoveButton||'remove'; //addorRemoveButton should probably be stateful? TODO: make this work soley on state
@@ -27,6 +27,7 @@ export default class SingleBook extends React.Component {
         <p>Title : {this.props.title}</p>
         <p>Author : {this.props.author}</p>
         <p>Publisher : {this.props.publisher}</p>
+        <p>ISBN : {this.props.isbn13}</p>
         <EditOptions
           {...this.props}
           addOrRemoveButton= {buttonType}

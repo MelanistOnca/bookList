@@ -31,12 +31,20 @@ function deletedBook(state=[], action) {
     case 'CLEAR_BOOK_BUFFER' : {
       console.log(state, 'was state in CLEAR_BOOK_BUFFER case in deletedBook in reducers/deletedBook_reducer');
       console.log(action, 'was action in CLEAR_BOOK_BUFFER case in deletedBook in reducers/deletedBook_reducer');
-      return state;
-      // return {
-      //   ...state,
-      //  // set bookInDeletedBuffer to false
-      //  // clear book info
-      // }
+      // return state;
+      return {
+        ...state,
+       // set bookInDeletedBuffer to false
+       bookInDeletedBuffer : false,
+       // clear book info
+       book: {
+         "title":"log in",
+         "author":"to get",
+         "publisher":"this list",
+         "id": 0,
+         "isbn13": ""
+       }
+      }
     }
     default:
       return state;

@@ -5,7 +5,7 @@ const deletedBook = {
     "author":"to get",
     "publisher":"this list",
     "id": 0,
-    "isbn13": "0123456789123"
+    "isbn13": ""
   }
 }
 
