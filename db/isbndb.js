@@ -154,14 +154,22 @@ module.exports.getResultsFromSearch = (req, res, next) => { //searchType here wi
         } else if (data.index_searched==='isbn') {
           console.log(data.data[0], 'was data[0] in isbn index_searched');
           console.log(data.data[0].author_data[0], 'was data.data[0].author_data[0] in data.index_searched==="isbn" in getResultsFromSearch in db/isbndb.js');
-          console.log(data.data[0].author_data[0].name, 'was data.data[0].author_data[0].name in data.index_searched==="isbn" in getResultsFromSearch in db/isbndb.js');
+          // console.log(data.data[0].author_data, 'was data.data[0].author_data in data.index_searched==="isbn" in getResultsFromSearch in db/isbndb.js');
+          // console.log(data.data[0].author_data[0].name, 'was data.data[0].author_data[0].name in data.index_searched==="isbn" in getResultsFromSearch in db/isbndb.js');
           res.rows = {
             isbn13: data.data[0].isbn13,
             title: data.data[0].title,
             publisher: data.data[0].publisher_name,
-            author: data.data[0].author_data[0].name,
+            // author: data.data[0].author_data[0].name,
             index_searched: data.index_searched
           };
+          if(data.data[0].author_data[0]===undefined){
+            res.rows.author =
+               'No author creditted - notice courtesy of bookList team'
+              
+          } else {
+            res.rows.author = data.data[0].author_data[0].name
+          }
         }
 
         // console.log(res.rows, 'was res.rows in db/isbndb getResultsFromSearch fn');
