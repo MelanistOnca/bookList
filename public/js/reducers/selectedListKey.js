@@ -12,6 +12,7 @@ function selectedListKey(state=[], action) {
   switch(action.type){
     case 'SELECT_LIST' :
       // console.log('Choosing List');
+      console.log('SELECT_LIST case in reducers/selectedListKey.js');
 
       //CHANGE THIS IN STORE FROM ARRAY TO STRING?!?!?!?!?!?!?
       // console.log(state,'state in reducers/selectedListKey'); //returns ["PLACEHOLDER SELECTED LIST"]
@@ -31,6 +32,12 @@ function selectedListKey(state=[], action) {
         // ...state,
         // list: "SELECTION MADE"
       ]
+      // return {
+      //   ...state,
+      //   action.choice
+      // } // does this work for a string?
+
+      // return action.choice //maybe this works for a string?
 
 
     default:

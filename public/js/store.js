@@ -1,6 +1,8 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import thunk from 'redux-thunk';
+
 
 //root reducer
 import rootReducer from './reducers/index';
@@ -11,25 +13,34 @@ import rootReducer from './reducers/index';
 // import toBeReadList from './data/toBeReadList';
 import selectedListKey from './data/selectedListKey';
 import listCollection from './data/listCollection';
-// import listTranslate from './data/listTranslate';
+import listTranslate from './data/listTranslate';
 import searchTerm from './data/searchTerm';
 import searchType from './data/searchType';
 import selectedSearchType from './data/selectedSearchType';
 import searchResults from './data/searchResults';
 // import currentISBN from './data/currentISBN';
 import newToList from './data/newToList';
+import user from './data/user';
+import logInForm from './data/logInForm';
+import userFormData from './data/userFormData';
+import deletedBook from './data/deletedBook';
 
+// console.log(userFormData, 'was userFormData in store.js');
 
 //default state
 const defaultState = {
   selectedListKey,
   listCollection,
-  // listTranslate
+  listTranslate,
   searchTerm,
   searchType,
   selectedSearchType,
   searchResults,
   newToList,
+  user,
+  logInForm,
+  userFormData,
+  deletedBook
   // currentISBN
 }
 
@@ -39,9 +50,11 @@ const enhancers = compose(
 );
 
 //store
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 // export default class const store //look up why class is used for react components
 //this SHOULD work as is, but in case of error, triple check
-const store = createStore(rootReducer, defaultState, enhancers)
+// const store = createStore(rootReducer, defaultState, enhancers, applyMiddleware(thunk))
+const store = createStoreWithMiddleware(rootReducer, defaultState, enhancers)
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

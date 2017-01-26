@@ -2,6 +2,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+// import { reducer as formReducer } from 'redux-form';
+
 //reducers
 // import currentlyReadingList from './currentlyReadingList';
 // // import currentlyReadingList from './currentlyReadingList';
@@ -9,27 +11,36 @@ import { routerReducer } from 'react-router-redux';
 // import toBeReadList from './toBeReadList';
 import selectedListKey from './selectedListKey';
 import listCollection from './listCollection';
-// import listTranslate from './listTranslate';
+import listTranslate from './listTranslate';
 import searchTerm from './searchTerm';
 import searchType from './searchType';
 import selectedSearchType from './selectedSearchType';
 import searchResults from './searchResults';
 // import currentISBN from './currentISBN';
 import newToList from './newToList';
+import user from './user';
+import logInForm from './logInForm_reducer';
+import userFormData from './userFormData_reducer';
+import deletedBook from './deletedBook_reducer';
 
 
 const rootReducer = combineReducers(
   {
     selectedListKey,
     listCollection,
-    // listTranslate,
+    listTranslate,
     searchTerm,
     searchType,
     selectedSearchType,
     searchResults,
     // currentISBN,
     newToList,
-    routing: routerReducer
+    user,
+    logInForm,
+    userFormData,
+    deletedBook,
+    routing: routerReducer/*,
+    form: formReducer*/
   }
 )
 

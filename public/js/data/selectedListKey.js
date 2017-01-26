@@ -1,5 +1,6 @@
 const selectedListKey = [
   // 'PLACEHOLDER SELECTED LIST'
+  'select'
 ]
 
 ;

@@ -25,3 +25,7 @@
 .subContainer {
   border: 2px solid orange;
 }
+
+li {
+  list-style: none;
+}

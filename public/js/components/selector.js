@@ -19,6 +19,7 @@ export default class Selector extends React.Component{
     selectList(chosen);
   }
 
+
   render(){
     //option names copied from listCollection keys. there's gotta be a programmatic way to do this, but this is the band-aid/duct-tape/wd-40 for now.
     // console.log(this.props, 'was this.props in components/selector.js');
@@ -43,10 +44,10 @@ export default class Selector extends React.Component{
             <option value="undefined">Select</option>
             <option value="toBeReadList">
               To Be Read List</option>
-            <option value="haveReadList">
-              Have Read List</option>
             <option value="currentlyReadingList">
               Currently Reading List</option>
+            <option value="haveReadList">
+              Have Read List</option>
           </select>
         </form>
       </div>

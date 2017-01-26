@@ -37,13 +37,31 @@ export default class InnerResultList extends React.Component {
   //       console.log(err, 'was err in returnISBN() components/innerResultList.js');
   //     })
   // } //decided against pinging ISBNdb for each book of a given author. user can ping for title if they're interested in adding.
+  componentWillReceiveProps(nextProps){
+    console.log(this.props, 'was this.props in innerResultList componentWillReceiveProps');
+    console.log(nextProps, 'was nextProps in innerResultList componentWillReceiveProps');
+    console.log(this.props.searchTerm[0], 'was this.props in innerResultList componentWillReceiveProps');
+    console.log(nextProps.searchTerm[0], 'was nextProps in innerResultList componentWillReceiveProps');
+    // this.props=nextProps;
+    if(
+      this.props.searchTerm[0]!==nextProps.searchTerm[0]
+    ) {
+      nextProps.updateSearchTerm(nextProps.searchTerm[0].split('_').join(' '))
+    }
+    console.log(nextProps.searchTerm[0], 'was nextProps in innerResultList componentWillReceiveProps');
 
+
+  }
+  // componentWillMount(){
+  //   this.props.updateSearchTerm(this.props.searsearchTerm[0])
+  // }
   render(){
     //NOTE: the startingPoint and i PROPS are non-stateful and passed from result.js. FIX THISSSS
-    // console.log(this.props, 'was this.props in components/innerResultList');
+    // console.log(this.props, 'was this.props in components/innerResultList in render()');
     // console.log(this.props.selectedListKey, 'was this.props.selectedListKey in same');
     // console.log(this.props.selectedListKey[0], 'was this.props.selectedListKey[0] in same');
     // console.log(this.props.startingPoint, 'was this.props.startingPoint in components/innerResultList');
+    // console.log(this.props.addToList, 'was this.props.addToList in components/innerResultList in render()');
     let readableArray = [];
     let stamp = new Date().getTime();
 
@@ -51,10 +69,12 @@ export default class InnerResultList extends React.Component {
     // console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor in components/innerResultList'); //NOTE: no isbn13 in this data
     if(this.props.matchedAuthor){
       //start of matchedAuthor if statement
+      // console.log(this.props.matchedAuthor, 'was this.props.matchedAuthor inside if(this.props.matchedAuthor) in components/innerResultList');
       let booksPerAuthor = this.props.matchedAuthor.book_ids ? this.props.matchedAuthor.book_ids.length : 0 ;
       // console.log(booksPerAuthor, 'was booksPerAuthor in components/innerResultList');
 
       let authorsBooksTitleArray = this.props.matchedAuthor ? this.props.matchedAuthor.book_ids : [''];
+      console.log(authorsBooksTitleArray, 'was authorsBooksTitleArray in components/innerResultList');
 
       // (booksPerAuthor>0) ? () => {
         for (let i = 0; i < booksPerAuthor ; i++) {
@@ -65,7 +85,7 @@ export default class InnerResultList extends React.Component {
           // let isbn13 = this.returnISBN(bookId)
           let humanReadableTitle =
           authorsBooksTitleArray[i].split('_').join(' ');
-          // console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
+          console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
           readableArray.push(
             <div
             className={"bookFromSearchedAuthor"}
@@ -78,22 +98,32 @@ export default class InnerResultList extends React.Component {
               <li>Title: {humanReadableTitle}</li>
             </ul>
             <SearchButton
-              selectedSearchType={["ISBN"]}
-              searchTerm={authorsBooksTitleArray[i]}
-              receiveResults={this.props.receiveResults}
-              updateSearchType={this.props.updateSearchType}
-              updateSearchTerm={this.props.updateSearchTerm}
-              addToList={this.props.addToList}
-              removeFromList={this.props.removeFromList}
+              {...this.props}
+              forceSelectedSearchType={"Title"}
+
+
+              newSearchTerm={humanReadableTitle}
+
+
               />
+            <p>Select "Title" from the above dropdown before clicking this button</p>
             </div>
           )
+          // newSearchTerm={authorsBooksTitleArray[i]}
 
 
         }
+        // receiveResults={this.props.receiveResults}
+        // selectedSearchType = {this.props.selectedSearchType}
+        //searchTerm={authorsBooksTitleArray[i]}
 
 
         // : console.log('booksPerAuthor did not exist');
+        //these were in searchButton
+        // {/*updateSearchType={this.props.updateSearchType}*/}
+        // {/*updateSearchTerm={this.props.updateSearchTerm}*/}
+        // {/*addToList={this.props.addToList}*/}
+        // {/*removeFromList={this.props.removeFromList}*/}
     } //end of matchedAuthor if statement
 
 
@@ -114,8 +144,22 @@ export default class InnerResultList extends React.Component {
       //   (this.props.matchedISBN !== undefined)
       // )
       //   ? (
-      let authorName =
-      this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : this.props.matchedISBN.name;
+      console.log();
+      let authorName = this.props.matchedISBN.author ? this.props.matchedISBN.author : 'No author creditted'; //this is here to
+
+
+      // let authorName = this.props.matchedISBN.author_data ? (this.props.matchedISBN.author_data[0] ? this.props.matchedISBN.author_data[0].name : 'No author creditted') : 'No author creditted';
+      //NOTE start
+      // let authorName;
+      // if((this.props.matchedISBN.author_data)) {
+      //   authorName = 'No author creditted'
+      // } else{
+      //   authorName = this.props.matchedISBN.author_data ? this.props.matchedISBN.author_data[0].name : this.props.matchedISBN.name;
+      //   //i'm not entirely sure where i get the this.props.matchedISBN.name as a case from? it must have been a valid possibility for some search returns, but it does not appear on the book data i'm currently viewing.
+      // }
+      // // i feel like i could maybe replace the "this.props.matchedISBN.name" with the "no author creditted" string and remove the if/else construct. unless of course matchedISBN.name is not an error
+      // NOTE end: this block may need to be reimplemented if matchedISBN.name is a valid case
+      //NOTE TODO: i can probably replace the book info below with a SingleBook component now, remove the EditOption element, and pass the SingleBook an addOrRemoveButton={'add'} prop
           readableArray.push(
             <div
               className={"bookFromISBN_Result"}
@@ -127,22 +171,28 @@ export default class InnerResultList extends React.Component {
                 <li>Title: {this.props.matchedISBN.title}</li>
                 <li>Author: { authorName
                     }</li>
-                <li>Publisher: {this.props.matchedISBN.publisher_name}</li>
+                  <li>Publisher: {this.props.matchedISBN.publisher_name||this.props.matchedISBN.publisher}</li>
                 <li>ISBN: {this.props.matchedISBN.isbn13}</li>
               </ul>
-              <button>theoretical button to add to list. need to request selected list to make it work.</button>
+
               <EditOptions
+                {...this.props}
                 addOrRemoveButton={'add'}
-                matchedISBN={this.props.matchedISBN}
-                selectedListKey={this.props.selectedListKey}
-                addToList={this.props.addToList}
-                removeFromList={this.props.removeFromList}
                 />
+
 
             </div>
           )
       // )
       // : console.log('matchedISBN did not exist');
+      //testing {...this.props}
+      // <EditOptions
+      //   addOrRemoveButton={'add'}
+      //   matchedISBN={this.props.matchedISBN}
+      //   selectedListKey={this.props.selectedListKey}
+      //   addToList={this.props.addToList}
+      //   removeFromList={this.props.removeFromList}
+      //   />
     } //end of matchedISBN if statement
     // <SearchButton
     //   receiveResults={this.props.receiveResults}
@@ -167,3 +217,54 @@ export default class InnerResultList extends React.Component {
     )
   }
 }
+
+
+// ///////authorBookList stuff/////////
+//
+// if(this.props.authorBookList) {
+//
+//   // let authorName = this.props.matchedISBN.author ? this.props.matchedISBN.author : 'No author creditted';
+//   let booksPerAuthor = this.props.authorBookList.book_ids ? this.props.authorBookList.book_ids.length : 0 ;
+//   // console.log(booksPerAuthor, 'was booksPerAuthor in components/innerResultList');
+//
+//   let authorsBooksTitleArray = this.props.authorBookList ? this.props.authorBookList.book_ids : [''];
+//   console.log(authorsBooksTitleArray, 'was authorsBooksTitleArray in components/innerResultList');
+//
+//   for (let i = 0; i < booksPerAuthor ; i++) {
+//     // console.log(authorsBooksTitleArray[i], 'was booksPerAuthorTitleArray[i] in same');
+//
+//     let uniqueStamp = `${i}${stamp}`;
+//     let bookId = authorsBooksTitleArray[i];
+//     // let isbn13 = this.returnISBN(bookId)
+//     let humanReadableTitle =
+//     authorsBooksTitleArray[i].split('_').join(' ');
+//     console.log(humanReadableTitle, 'was humanReadableTitle in booksPerAuthor loop');
+//     readableArray.push(
+//       <div
+//       className={"bookFromSearchedAuthor"}
+//       key={uniqueStamp}
+//       id={uniqueStamp}
+//       style={{"border":"solid 1px"}}
+//       >
+//
+//       <ul>
+//         <li>Title: {humanReadableTitle}</li>
+//       </ul>
+//       <SearchButton
+//         selectedSearchType={["ISBN"]}
+//         searchTerm={authorsBooksTitleArray[i]}
+//         receiveResults={this.props.receiveResults}
+//
+//         />
+//       <p>Select "Title" from the above dropdown before clicking this button</p>
+//       </div>
+//     )
+//
+//
+//   }
+//
+//
+//
+// }
+//
+// /////end of authorBookList stuff////

@@ -5,14 +5,14 @@ import { Link } from 'react-router';
 //components
 import NavLink from './navLink';
 
-import TestButton from './testButton'
+import UserSection from './user/userSection';
 
 export default class Nav extends React.Component{
 
 
   render(){
 
-
+    // console.log(this.props, 'was this.props in components/navs.js');
     return(
       <div id="navContainer">
         {/* may want a blank/default landing page */}
@@ -32,11 +32,16 @@ export default class Nav extends React.Component{
           <li><NavLink
             to="/updateLists"
             >
-            UpdateLists</NavLink></li>
+            Update Lists</NavLink></li>
+          <li><NavLink
+            to="/updateuserinfo"
+            >
+            Update User Info</NavLink></li>
         </ul>
-        <TestButton
+        <UserSection
+          {...this.props}
           />
-        
+
       </div>
     )
   }
