@@ -15,13 +15,21 @@ const book_fns = require('./books') ;
 
 
 // https://github.com/vitaly-t/pg-promise/wiki/Connection-Syntax#configuration-object
+// const connectionObject = {
+//     host: 'localhost',
+//     port: 5432,
+//     database: 'booklist',
+//     user: 'Cthulu', //may need to check capitalization?
+//     password: 'testpassword'
+// }
 const connectionObject = {
-    host: 'localhost',
-    port: 5432,
-    database: 'booklist',
-    user: 'Cthulu', //may need to check capitalization?
-    password: 'testpassword'
+    host: process.env.DB_HOST,
+    port: process.env.PGDB_PORT,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER, //may need to check capitalization of name in env file?
+    password: process.env.DB_PASS
 }
+
 
 
 

@@ -10,13 +10,41 @@ const pgp    = require('pg-promise')({
 const session = require('express-session');
 
 // https://github.com/vitaly-t/pg-promise/wiki/Connection-Syntax#configuration-object
+// const connectionObject = {
+//     host: 'localhost',
+//     port: 5432,
+//     database: 'booklist',
+//     user: 'Cthulu', //may need to check capitalization?
+//     password: 'testpassword'
+// }
 const connectionObject = {
-    host: 'localhost',
-    port: 5432,
-    database: 'booklist',
-    user: 'Cthulu', //may need to check capitalization?
-    password: 'testpassword'
+    host: process.env.DB_HOST,
+    port: process.env.PGDB_PORT,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER, //may need to check capitalization of name in env file?
+    password: process.env.DB_PASS
 }
+console.log(connectionObject, 'was connectionObject in users.js');
+//logs
+// {
+//   host: 'localhost',
+//   port: '3003',
+//   database: 'booklist',
+//   user: 'Cthulu',
+//   password: 'testpassword'
+// }
+
+// //these two log different values
+// console.log(process.env.HOST, 'was process.env.HOST in same');
+// console.log(process.env.DB_HOST, 'was process.env.DB_HOST in same');
+//
+// //these two log the same values
+// console.log(process.env.DB_USER, 'was process.env.DB_USER in same');
+// console.log(process.env.USER, 'was process.env.USER in same');
+//
+// //these two also log different values
+// console.log(process.env.DB_PASS, 'was process.env.DB_PASS in same');
+// console.log(process.env.PASS, 'was process.env.PASS in same');
 
 const db = pgp(connectionObject);
 
@@ -64,7 +92,7 @@ module.exports.createUser = ( req, res, next ) => {
 // }
 
 module.exports.logInUser = ( req, res, next ) => {
-  console.log(req.body, 'was req.body');
+  console.log(req.body, 'was req.body in logInUser');
   // let email = req.body.email;
   let username = req.body.username;
   let password = req.body.password;
