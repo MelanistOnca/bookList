@@ -13,11 +13,11 @@ export default class SingleBook extends React.Component {
           // author
           // publisher
   render(){
-    console.log(this.props, 'this.props in singleBook.js');
+    // console.log(this.props, 'this.props in singleBook.js');
     // console.log(this.props.pickedList,'this.props.pickedList in singleBook.js');
 
     let buttonType = this.props.addOrRemoveButton||'remove'; //addorRemoveButton should probably be stateful? TODO: make this work soley on state
-    //map the key array to get a list of names, then use that to list the values of those keys too. probably in same map function
+    //map the key array to get a list of names, then use that to list the values of those keys too. probably in same map function //NOTE: i have lost context for the section of this comment previous to note. may be refering to a store object and it's Object.keys(THINGY)?
     return(
       <div
         className="singleBookContainer"

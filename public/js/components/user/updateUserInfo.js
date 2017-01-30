@@ -250,7 +250,7 @@ export default class UpdateUserInfo extends React.Component {
             </ul>
           </li>
           <button
-            onClick={this.submitUpdatedPassword.bind(this. this.updateUserPassword, this.props.userFormData)}
+            onClick={this.submitUpdatedPassword.bind(this, this.updateUserPassword, this.props.userFormData)}
 
             >
             Set New Password</button>

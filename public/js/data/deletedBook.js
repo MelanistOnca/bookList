@@ -1,9 +1,9 @@
 const deletedBook = {
   bookInDeletedBuffer : false,
   book: {
-    "title":"log in",
-    "author":"to get",
-    "publisher":"this list",
+    "title":"",
+    "author":"",
+    "publisher":"",
     "id": 0,
     "isbn13": ""
   }

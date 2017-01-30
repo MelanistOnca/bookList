@@ -68,9 +68,8 @@ render(
           {/*
             catch-all route
           */}
-          {/*
-            <Route path="*" component={Site}></Route>
-          */}
+          <Route path="*" component={Placeholder}></Route>
+
 
         </Route>
 

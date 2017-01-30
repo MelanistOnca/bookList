@@ -8,13 +8,7 @@ const async = require('async'); // asynchronous map function
 
 
 // https://github.com/vitaly-t/pg-promise/wiki/Connection-Syntax#configuration-object
-// const connectionObject = {
-//     host: 'localhost',
-//     port: 5432,
-//     database: 'booklist',
-//     user: 'Cthulu', //may need to check capitalization?
-//     password: 'testpassword'
-// }
+
 const connectionObject = {
     host: process.env.DB_HOST,
     port: process.env.PGDB_PORT,
@@ -28,15 +22,14 @@ const db = pgp(connectionObject);
 // console.log(db, 'was db');
 
 
-module.exports.getBook  = ( req, res, next ) => {
+// module.exports.getBook  = ( req, res, next ) => {
+//
+// }
 
-}
 
-// NOTE // this is temporarily useless as authors don't have their own table in current implementation
-// // localGetBook = (param1) =>{
-// // module.exports.localGetBook = (param1) =>{
 function localGetBook(book_id, res, next){ //start of chain to get book/author info from my DB to send back to client/browser
-  console.log(book_id, 'was book_id before db. call in localGetBook in db/books.js');
+  // console.log(book_id, 'was book_id before db. call in localGetBook in db/books.js');
+  console.log("localGetBook fired in books.js");
 
   db.one("SELECT * FROM books WHERE id = $1;", [book_id])
     .then( (bookData) => {
@@ -86,36 +79,31 @@ function localGetBook(book_id, res, next){ //start of chain to get book/author i
 
 
 module.exports.bookDataFromList = (req, res, next) => {
+  console.log("bookDataFromList fired in books.js");
   // console.log('bookDataFromList fired');
-  // uID === 3 is test account, lID === 3 is haveread. lID === 1 is toberead, but has more entries
   // console.log(req.body, 'was req.body in bookDataFromList db/books.js');
   // console.log(req.body.list, 'was req.body.list in bookDataFromList db/books.js'); //this gives the array of objects that forms the list. each object is as follows: {user_id: #, book_id: #}
   // NOTE // console.log(req.body.list[i].book_id, 'was req.body.list in bookDataFromList db/books.js'); // this would return the book_id for the i-th element in the array
-  // console.log(req.params, 'was req.params in same');
 
   let responseDataPlaceholder = {
     body: req.body,
     params: req.params
   }
-  // let listBookData = [];
-  // console.log(listBookData, 'was listBookData');
   let listBookData = [];
+
+  // http://caolan.github.io/async/
   async.map( req.body.list, (el, callback, res) => {
+    console.log('async.map middle arg/fn fired');
     // console.log(el.book_id, 'was el.book_id in map of bookDataFromList in db/books.js');
     // console.log(el, 'was el in forEach of bookDataFromList in db/books.js');
     // console.log(listBookData, 'was listBookDatain forEach of bookDataFromList in db/books.js before db.query');
     db.one("SELECT * FROM books WHERE id = $1;", [el.book_id])
       .then( (bookData) => {
-        // console.log(el);
-        // listBookData[el] = bookData; //i don't know that an array is the BEST way to store this info, but it seems "simplest" for now
-        // res.rows = bookData; //i don't know that an array is the BEST way to store this info, but it seems "simplest" for now
-        // console.log(bookData, 'was bookData in db.query.then in forEach of bookDataFromList in db/books.js');
-        // console.log(listBookData, 'was listBookData in same');
-        // return bookData
-        // listBookData.push(bookData);
-        // console.log(listBookData[el], 'was listBookData[el] .then in map of bookDataFromList in db/books.js');
+        // console.log(bookData, 'was bookData in db.query.then in async.map of bookDataFromList in db/books.js');
         // console.log(el, 'was el in same');
-        // console.log(listBookData, 'was listBookData');
+
+
+
         callback(null, bookData)
       })
       .catch( (error) => {
@@ -123,26 +111,15 @@ module.exports.bookDataFromList = (req, res, next) => {
       })
   },
   (err, results) => {
+    console.log('async.map third arg/fn fired');
     // console.log(res, 'was res in async.map');
     console.log(err, 'was err in async.map');
     // console.log(results, 'was results in async.map');
-    // console.log(results[0], 'was results[0] in async.map');
-    // console.log(listBookData, 'was listBookData after results in async.map');
-    // console.log(listBookData[0], 'was listBookData[0] after results in async.map');
-    // console.log(listBookData[50], 'was listBookData[0] after results in async.map');
-    // listBookData = results;
-    // let uniqueBookList = {}
-    // results.forEach( (el) => {
-    //   uniqueBookList[el.isbn13] = {
-    //     "title": el.title,
-    //     "author": el.author,
-    //     "publisher": el.publisher
-    //   }
-    // })
-    // console.log(uniqueBookList, 'was uniqueBookList in async.map');
+
+
     res.rows = results;
     // console.log(res.rows, 'was res.rows in async.map');
-    console.log(res.rows[1], 'was res.rows[1] in async.map');
+    // console.log(res.rows[1], 'was res.rows[1] in async.map');
     next()
   } )
 
@@ -150,34 +127,20 @@ module.exports.bookDataFromList = (req, res, next) => {
 
 }
 
-// function iteratee (el) {
-//   console.log(el.book_id, 'was el.book_id in forEach of bookDataFromList in db/books.js');
-//   // console.log(listBookData, 'was listBookDatain forEach of bookDataFromList in db/books.js before db.query');
-//   db.one("SELECT * FROM books WHERE id = $1;", [el.book_id])
-//     .then( (bookData) => {
-//       // console.log(el);
-//       // listBookData[el] = bookData; //i don't know that an array is the BEST way to store this info, but it seems "simplest" for now
-//       res.rows = bookData; //i don't know that an array is the BEST way to store this info, but it seems "simplest" for now
-//       console.log(bookData, 'was bookData in db.query.then in forEach of bookDataFromList in db/books.js');
-//       // console.log(listBookData, 'was listBookData in same');
-//     })
-//     .catch( (error) => {
-//       console.log(error, 'was error in db.query.then in forEach of bookDataFromList in db/books.js');
-//     })
-// })
-// }//)
+
 
 // dont think users will be doing this, but will want to import book info from isbnDB so i dont have to make calls to it constantly to look up book info
 module.exports.addBook  = ( req, res, next ) => {
-
+  // this is currently done as part of the 'addToList' function in list.js, i believe?
+  // TODO: confirm above
 }
 
 //don't think these will be necessary as i dont plan to allow users to alter or remove books
 module.exports.updateBook  = ( req, res, next ) => {
 
 }
+
+// don't plan to remove book entries once they're added for now
 module.exports.removeBook  = ( req, res, next ) => {
 
 }
-
-//

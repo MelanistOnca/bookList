@@ -60,7 +60,7 @@ class SignUp extends React.Component {
   render(){
     //maybe make the inputs a component and pass props for labels? lot of copied code here
     // console.log(this.props, 'this.props in components/user/signUp.js');
-    let event = window.event; //needed for firefox //binding 'this' in the bind call seemed to work. investigate further, hopefully will bypass this let definition in FF? will test with clickSignUp to see if functionality differs
+    // let event = window.event; //needed for firefox //binding 'this' in the bind call seemed to work. investigate further, hopefully will bypass this let definition in FF? will test with clickSignUp to see if functionality differs
     let blockStyle = {
       border: '1px solid black',
       display: 'flex'
@@ -185,7 +185,7 @@ class SignUp extends React.Component {
             </ul>
           </li>
           <button
-            onClick={this.submitInfo.bind(event, this.props.signUpUser, this.props.userFormData)}
+            onClick={this.submitInfo.bind(this, this.props.signUpUser, this.props.userFormData)}
 
             >
             Sign Up</button>

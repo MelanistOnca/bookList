@@ -69,8 +69,8 @@ function userFormData(state=[], action){
         'currentPassword': action.userFormCurrentPassword
       }
     case "LOGGED_IN_USER_DATA":
-      console.log(state, 'was state in LOGGED_IN_USER_DATA case');
-      console.log(action, 'was action in LOGGED_IN_USER_DATA case');
+      // console.log(state, 'was state in LOGGED_IN_USER_DATA case');
+      // console.log(action, 'was action in LOGGED_IN_USER_DATA case');
       return {
         ...state,
         "email": action.payload.email,

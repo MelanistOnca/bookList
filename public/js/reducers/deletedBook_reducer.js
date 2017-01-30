@@ -1,7 +1,7 @@
 function deletedBook(state=[], action) {
   switch(action.type){
     case 'BUFFER_FOR_DELETED_BOOK' : {
-      console.log(state, 'was state in BUFFER_FOR_DELETED_BOOK case in deletedBook in reducers/deletedBook_reducer');//returns object of format:
+      // console.log(state, 'was state in BUFFER_FOR_DELETED_BOOK case in deletedBook in reducers/deletedBook_reducer');//returns object of format:
       // {
       //   book: {
       //     author: "sadg",
@@ -10,8 +10,8 @@ function deletedBook(state=[], action) {
       //   }, // i updated initial value to include id and isbn13 keys
       //   bookInDeletedBuffer: false
       // }
-      console.log(action, 'was action in BUFFER_FOR_DELETED_BOOK case in deletedBook in reducers/deletedBook_reducer');
-      console.log(action.deletedBook, 'was action.deletedBook in BUFFER_FOR_DELETED_BOOK case in deletedBook in reducers/deletedBook_reducer'); //returns object of format
+      // console.log(action, 'was action in BUFFER_FOR_DELETED_BOOK case in deletedBook in reducers/deletedBook_reducer');
+      // console.log(action.deletedBook, 'was action.deletedBook in BUFFER_FOR_DELETED_BOOK case in deletedBook in reducers/deletedBook_reducer'); //returns object of format
       // {
       //   author: "Leckie, Ann",
       //   id: 2,
@@ -29,8 +29,8 @@ function deletedBook(state=[], action) {
       }
     }
     case 'CLEAR_BOOK_BUFFER' : {
-      console.log(state, 'was state in CLEAR_BOOK_BUFFER case in deletedBook in reducers/deletedBook_reducer');
-      console.log(action, 'was action in CLEAR_BOOK_BUFFER case in deletedBook in reducers/deletedBook_reducer');
+      // console.log(state, 'was state in CLEAR_BOOK_BUFFER case in deletedBook in reducers/deletedBook_reducer');
+      // console.log(action, 'was action in CLEAR_BOOK_BUFFER case in deletedBook in reducers/deletedBook_reducer');
       // return state;
       return {
         ...state,
@@ -38,9 +38,9 @@ function deletedBook(state=[], action) {
        bookInDeletedBuffer : false,
        // clear book info
        book: {
-         "title":"log in",
-         "author":"to get",
-         "publisher":"this list",
+         "title":"",
+         "author":"",
+         "publisher":"",
          "id": 0,
          "isbn13": ""
        }

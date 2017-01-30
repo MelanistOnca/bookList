@@ -4,16 +4,10 @@ import { render } from 'react-dom';
 export default class Selector extends React.Component{
 
   selectedListChanged(selectList,e){
-    //props don't live here by default
-    console.log('selection was changed');
-    // console.log(this.props, 'this.props');
-    // // this.props.selectList
-    // console.log(e,' was e');
-    // console.log(e.target, 'was e.target');
-    // console.log(e.target.value, 'was e.target.value in components/updateLists.js');
-    // console.log(selectList, 'selectList passed to changed() in components/updateLists.js');
+    // console.log('selection was changed');
+    // console.log(selectList, 'selectList passed to selectedListChanged() in components/updateLists.js');
     let chosen = e.target.value;
-    // console.log(chosen, 'was chosen in changed() in updateLists');
+    // console.log(chosen, 'was chosen in selectedListChanged() in updateLists');
 
     e.preventDefault();
     selectList(chosen);
@@ -32,14 +26,13 @@ export default class Selector extends React.Component{
     //COUNTER NOTE:repurposing to general selector list
 
     //additional NOTE: need to have select's value based on store //this is done via the selectedList ternary above
-    let event = window.event; //needed for firefox
     return(
       <div id="listSelectorContainer">
         <form>
           <label>Edit List: </label>
           <select id="listSelector"
             value={selectedList}
-            onChange={this.selectedListChanged.bind(event, this.props.selectList)}
+            onChange={this.selectedListChanged.bind(this, this.props.selectList)}
             >
             <option value="undefined">Select</option>
             <option value="toBeReadList">

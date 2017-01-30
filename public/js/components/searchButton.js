@@ -216,7 +216,7 @@ export default class SearchButton extends React.Component {
       <input
         type="submit"
         value="Search"
-        onClick={this.searchClicked.bind(event, searchClickedProps)}
+        onClick={this.searchClicked.bind(this, searchClickedProps)}
         />
     )
   }

@@ -1,9 +1,7 @@
-// look into axios
 // heavily inspired by tutorial https://github.com/rajaraodv/react-redux-blog
 const user = {
   'user': {
     'id': '',
-    // 'id': undefined,
     'admin': false,
     // 'createdAt': '', //not sure if i need this for this scale project?
     'email': '',
@@ -14,7 +12,6 @@ const user = {
     // 'updatedAt': '',
     'username': ''
   },
-  // 'user': null,
   'error': null,
   'loading': false,
   'status': 'initial state'

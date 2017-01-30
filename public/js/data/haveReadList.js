@@ -4,10 +4,9 @@
 const haveReadList = {
   "please log in": {
     "title":"log in",
-    "author":"to get",
-    "publisher":"this list"
+    "author":"to get your",
+    "publisher":"have read list"
   }
-
 }
 
 export default haveReadList;

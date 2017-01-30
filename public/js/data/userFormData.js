@@ -1,5 +1,3 @@
-
-// this is the correct starting value, filling this in to save time on reload when testing
 const userFormData = {
 
   "firstName":'',

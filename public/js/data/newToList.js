@@ -1,4 +1,4 @@
-const newToList = { 
+const newToList = {
   "haveReadList": {
 
   },
@@ -8,11 +8,6 @@ const newToList = {
   "toBeReadList": {
 
   }
-
-
 }
-//newToList is currently a js object.
-
-
 
 export default newToList;

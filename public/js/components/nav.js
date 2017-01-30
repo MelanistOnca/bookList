@@ -15,7 +15,7 @@ export default class Nav extends React.Component{
     // console.log(this.props, 'was this.props in components/navs.js');
     return(
       <div id="navContainer">
-        {/* may want a blank/default landing page */}
+        {/* may want a blank/default landing page TODO make the server serve a 'static' page that says something like "log in to enjoy bookList!"*/}
         <ul>
           <li><NavLink
             to="/reading"

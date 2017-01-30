@@ -14,9 +14,7 @@ function logInForm(state=[], action) {
         ...state,
         'password': action.formPassword
       }
-      // [
-      //   //basically the same as update form username, but with the password field.
-      // ]
+
     default:
       return state;
   }

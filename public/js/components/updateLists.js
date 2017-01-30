@@ -51,6 +51,22 @@ export default class UpdateList extends React.Component {
     // console.log(this.props.selectedSearchType, 'this.props.selectedSearchType in components/updateLists');
     // console.log(this.props.selectedListKey[0], 'this.props.selectedListKey[0] in components/updateLists');//returns toBeReadList
     // const event = window.event;
+    // {/*
+    // <form>
+    //   <label>Edit List: </label>
+    //   <select id="listSelector"
+    //     onChange={this.changed.bind(event, this.props.selectList)}
+    //     >
+    //     <option value="null">Select</option>
+    //     <option value="toBeReadList">
+    //       To Be Read List</option>
+    //     <option value="haveReadList">
+    //       Have Read List</option>
+    //     <option value="currentlyReadingList">
+    //       Currently Reading List</option>
+    //   </select>
+    // </form>
+    // */}
     return(
       <div id="updateListsContainer">
         <Selector
@@ -58,22 +74,7 @@ export default class UpdateList extends React.Component {
           />
 
 
-        {/*
-        <form>
-          <label>Edit List: </label>
-          <select id="listSelector"
-            onChange={this.changed.bind(event, this.props.selectList)}
-            >
-            <option value="null">Select</option>
-            <option value="toBeReadList">
-              To Be Read List</option>
-            <option value="haveReadList">
-              Have Read List</option>
-            <option value="currentlyReadingList">
-              Currently Reading List</option>
-          </select>
-        </form>
-        */}
+
 
         <Selected
           {...this.props}
@@ -83,25 +84,6 @@ export default class UpdateList extends React.Component {
       </div>
     )
 
-    // <Selector
-    //   selectList={this.props.selectList}
-    //   selectedListKey={this.props.selectedListKey}
-    //   />
-
-    ///////
-
-    // <Selected
-    //   selectedListKey={this.props.selectedListKey}
-    //   listCollection={this.props.listCollection}
-    //   searchTerm={this.props.searchTerm}
-    //   updateSearchTerm={this.props.updateSearchTerm}
-    //   searchType={this.props.searchType}
-    //   updateSearchType={this.props.updateSearchType}
-    //   selectedSearchType={this.props.selectedSearchType}
-    //   searchResults={this.props.searchResults}
-    //   receiveResults={this.props.receiveResults}
-    //   addToList={this.props.addToList}
-    //   removeFromList={this.props.removeFromList}
-    //   />
+    
   }
 }

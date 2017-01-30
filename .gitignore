@@ -39,6 +39,7 @@ jspm_packages
 # scratch
 scratch.js
 scratch2.js
+scratch.sql
 
 # environment
 .env
