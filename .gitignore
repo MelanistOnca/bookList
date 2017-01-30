@@ -43,3 +43,6 @@ scratch.sql
 
 # environment
 .env
+
+# bundle
+bundle.js
