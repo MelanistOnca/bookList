@@ -2,8 +2,8 @@
 
 function selectedListKey(state=[], action) {
   // console.log('selectedListKey called');
-  console.log(state, 'state in selectedListKey reducer');
-  console.log(action, 'action in selectedListKey reducer');
+  // console.log(state, 'state in selectedListKey reducer');
+  // console.log(action, 'action in selectedListKey reducer');
   // console.log(action.type, 'action.type in same');
   // console.log(action.choice, 'was action.choice in reducers/selectedListKey.js'); //returns the selected choice
 
