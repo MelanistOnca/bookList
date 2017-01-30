@@ -1,0 +1,31 @@
+
+
+.active {
+  color: teal;
+}
+
+#navContainer {
+  /*display: flex;
+  flex-direction: column;*/
+  /*text-align: center;*/
+  border: 1px solid black;
+}
+
+#navContainer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+
+}
+#navContainer ul a{
+  padding: 3px;
+  /*margin: 1px;*/
+}
+
+.subContainer {
+  border: 2px solid orange;
+}
+
+li {
+  list-style: none;
+}
