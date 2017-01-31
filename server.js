@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config(); //this needs to be commented out for deploy
 
 const express = require('express');
 const morgan = require('morgan');
