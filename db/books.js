@@ -17,6 +17,10 @@ const connectionObject = {
     password: process.env.DB_PASS
 }
 console.log(connectionObject, 'was connectionObject');
+console.log(process.env.host, 'was process.env.host');
+console.log(process.env.Host, 'was process.env.Host');
+console.log(process.env.port, 'was process.env.port');
+console.log(process.env.Port, 'was process.env.Port');
 
 const db = pgp(connectionObject);
 // console.log(db, 'was db');
