@@ -8,7 +8,7 @@ export function currentUserFromToken(tokenInStorage) {
   //review axios to figure out wtf is going on here
   // const request = axios.get(`${ROOT_URL}/me/from/token?token=${tokenFromStorage}`);
   //HAVE YOU REVIEWED AXIOS YET!???!!?!?!?!?!?!?!!?!
-  console.log('currentUserFromToken in actions/user.js called');
+  // console.log('currentUserFromToken in actions/user.js called');
   return {
     type: 'CURRENT_USER_FROM_TOKEN',
     // payload: request
@@ -16,7 +16,7 @@ export function currentUserFromToken(tokenInStorage) {
 }
 
 export function currentUserFromTokenSuccess(user) {
-  console.log('currentUserFromTokenSuccess in actions/user.js called');
+  // console.log('currentUserFromTokenSuccess in actions/user.js called');
   return {
     type: 'CURRENT_USER_FROM_TOKEN_SUCCESS',
     payload: user
@@ -24,7 +24,7 @@ export function currentUserFromTokenSuccess(user) {
 }
 
 export function currentUserFromTokenFailure(error) {
-  console.log('currentUserFromTokenFailure in actions/user.js called');
+  // console.log('currentUserFromTokenFailure in actions/user.js called');
   return {
     type: 'CURRENT_USER_FROM_TOKEN_FAILURE',
     payload: error
@@ -33,7 +33,7 @@ export function currentUserFromTokenFailure(error) {
 
 export function resetToken() {
   // to reset token on logout
-  console.log('resetToken in actions/user.js called');
+  // console.log('resetToken in actions/user.js called');
   return {
     type: 'RESET_TOKEN'
   }
@@ -43,8 +43,8 @@ export function signUpUser(formData) {
   // more axios
   const request = axios.post(`api/users/signup`, formData);
   // WELL?!??! HAVE YOU LOOKED INTO IT YET?
-  console.log('signUpUser in actions/user.js called');
-  console.log(formData, 'was formData in actions/user.js');
+  // console.log('signUpUser in actions/user.js called');
+  // console.log(formData, 'was formData in actions/user.js');
   return {
     type: 'SIGN_UP_USER',
     payload: request
@@ -52,7 +52,7 @@ export function signUpUser(formData) {
 }
 
 export function signUpUserSuccess(user) {
-  console.log('signUpUserSuccess in actions/user.js called');
+  // console.log('signUpUserSuccess in actions/user.js called');
   return {
     type: 'SIGN_UP_USER_SUCCESS',
     payload: user
@@ -60,7 +60,7 @@ export function signUpUserSuccess(user) {
 }
 
 export function signUpUserFailure(error) {
-  console.log('signUpUserFailure in actions/user.js called');
+  // console.log('signUpUserFailure in actions/user.js called');
   return {
     type: 'SIGN_UP_USER_FAILURE',
     payload: error
@@ -69,7 +69,7 @@ export function signUpUserFailure(error) {
 
 export function resetUser() {
   // i'm guessing this is for once signup is complete and maybe to force them to login after signup?
-  console.log('resetUser in actions/user.js called');
+  // console.log('resetUser in actions/user.js called');
   return {
     type: 'RESET_USER'
   }
@@ -81,7 +81,7 @@ export function logInUser(formData) {
   const request = axios.post('api/users/login',formData)
 
 
-  console.log('logInUser in actions/user.js called');
+  // console.log('logInUser in actions/user.js called');
   //
   // console.log(formData, 'was formData in actions/user.js');
   // console.log(formData.username, 'was formData.username in actions/user.js');
@@ -103,8 +103,8 @@ export function logInUser(formData) {
 }
 
 export function logInUserSuccess(user) {
-  console.log('logInUserSuccess in actions/user.js called');
-  console.log(user, 'was user in logInUserSuccess in actions/user.js');
+  // console.log('logInUserSuccess in actions/user.js called');
+  // console.log(user, 'was user in logInUserSuccess in actions/user.js');
   //how do i call this function from the response?
   return {
     type: 'LOG_IN_USER_SUCCESS',
@@ -113,7 +113,7 @@ export function logInUserSuccess(user) {
 }
 
 export function logInUserFailure(error) {
-  console.log('logInUserFailure in actions/user.js called');
+  // console.log('logInUserFailure in actions/user.js called');
   return {
     type: 'LOG_IN_USER_FAILURE',
     payload: error
@@ -122,7 +122,7 @@ export function logInUserFailure(error) {
 
 export function logOutUser() {
   // ha! tutorial switched over to log vs sign. victory is mine, 6 gold stars!
-  console.log('logoutUser in actions/user.js called');
+  // console.log('logoutUser in actions/user.js called');
   return {
     type: 'LOGOUT_USER'
   }
@@ -130,8 +130,8 @@ export function logOutUser() {
 
 export function updateUserInfo(userInfo) {
 
-  console.log('updateUserInfo in actions/user.js called');
-  console.log(userInfo, 'was userInfo in same');
+  // console.log('updateUserInfo in actions/user.js called');
+  // console.log(userInfo, 'was userInfo in same');
   axios.post('api/users/update', userInfo)
   return {
     type: 'UPDATE_USER_INFO',
@@ -140,7 +140,7 @@ export function updateUserInfo(userInfo) {
 }
 export function updateUserPassword(userPassword) {
 
-  console.log('updateUserPassword in actions/user.js called');
+  // console.log('updateUserPassword in actions/user.js called');
 
   return {
     type: 'UPDATE_USER_PASSWORD',
@@ -149,7 +149,7 @@ export function updateUserPassword(userPassword) {
 }
 export function updateUserEmail(userEmail) {
 
-  console.log('updateUserEmail in actions/user.js called');
+  // console.log('updateUserEmail in actions/user.js called');
   return {
     type: 'UPDATE_USER_EMAIL',
     payload: userEmail
@@ -157,8 +157,8 @@ export function updateUserEmail(userEmail) {
 }
 
 export function userInfoToFormData(userInfo) {
-  console.log('userInfoToFormData in actions/user.js called');
-  console.log(userInfo, 'was userInfo in same');
+  // console.log('userInfoToFormData in actions/user.js called');
+  // console.log(userInfo, 'was userInfo in same');
   return {
     type: "LOGGED_IN_USER_DATA",
     payload: userInfo
