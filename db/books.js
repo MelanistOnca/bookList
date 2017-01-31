@@ -16,7 +16,7 @@ const connectionObject = {
     user: process.env.DB_USER, //may need to check capitalization of name in env file?
     password: process.env.DB_PASS
 }
-
+console.log(connectionObject, 'was connectionObject');
 
 const db = pgp(connectionObject);
 // console.log(db, 'was db');
