@@ -16,11 +16,12 @@ const connectionObject = {
     user: process.env.DB_USER, //may need to check capitalization of name in env file?
     password: process.env.DB_PASS
 }
-console.log(connectionObject, 'was connectionObject');
-console.log(process.env.host, 'was process.env.host');
-console.log(process.env.Host, 'was process.env.Host');
-console.log(process.env.port, 'was process.env.port');
-console.log(process.env.Port, 'was process.env.Port');
+// console.log(connectionObject, 'was connectionObject');
+// console.log(process.env.host, 'was process.env.host');
+// console.log(process.env.Host, 'was process.env.Host');
+// console.log(process.env.port, 'was process.env.port');
+// console.log(process.env.Port, 'was process.env.Port');
+console.log(process.env, 'was process.env');
 
 const db = pgp(connectionObject);
 // console.log(db, 'was db');
