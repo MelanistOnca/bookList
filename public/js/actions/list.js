@@ -146,7 +146,7 @@ export function removeFromList(fnArg) {
   })
   // axios.post(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`, fnArg)
     .then( (data) => {
-      console.log(data, 'was data in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');
+      // console.log(data, 'was data in axios.delete(`/api/lists/${fnArg.listTranslate[fnArg.list].listNumber}/users/${fnArg.user.user.id}/books/${fnArg.book_isbn13}`) in actions/list');
       fnArg.bufferDeletedBook(data.data.bookInfoByISBN)
     })
     .catch( (error) => {

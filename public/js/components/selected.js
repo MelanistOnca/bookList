@@ -30,7 +30,7 @@ export default class Selected extends React.Component {
       ===
       this.props.deletedBook.book.isbn13
     ) {
-      nextProps.clearDeletedBook()
+      nextProps.clearDeletedBook() //"edge" case, if you  add a book then delete it right away, this case is true
     } else if(
       Object.keys(nextProps.newToList.haveReadList)[0]
       ===

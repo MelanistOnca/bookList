@@ -7,6 +7,7 @@ import { render } from 'react-dom';
 //components
 
 import Nav from './components/nav';
+import Footer from './components/footer';
 
 // import  from '';
 
@@ -26,7 +27,7 @@ export default class Site extends React.Component{
           />
         {/* {this.props.children} */}
         {React.cloneElement(this.props.children,this.props)}
-
+        <Footer />
       </div>
     )
   }
