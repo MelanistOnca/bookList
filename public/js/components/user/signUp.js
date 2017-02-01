@@ -66,7 +66,7 @@ class SignUp extends React.Component {
       display: 'flex'
     }
     //NOTE: remove the "value={...}" lines once done with testing
-    console.log(this.props, 'was this.props before render return in components/user/signUp.js');
+    // console.log(this.props, 'was this.props before render return in components/user/signUp.js');
 
     return(
       <div

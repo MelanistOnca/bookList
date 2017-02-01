@@ -56,29 +56,27 @@ module.exports.getResultsFromSearch = (req, res, next) => {
       // console.log(typeof data, 'was typeof data in same'); //NOTE i feel like this should be returning more than one book for most searches. there is probably a query option to get more than one result?
       //TODO: check out isbndb query params for the above. probably need to add a key-value-pair(KVP) to adjust the behavior?
       if (data.index_searched==='book_id') {
+        console.log(data.data[0], 'was data.data[0]');
         res.rows = {
           isbn13: data.data[0].isbn13,
           title: data.data[0].title,
           publisher: data.data[0].publisher_name,
-          author: data.data[0].author_data[0].name,
           index_searched: data.index_searched
         };
+        console.log(data.data[0].author_data[0], 'was data.data[0].author_data[0]');
+        console.log(data.data[0].author_data, 'was data.data[0].author_data');
         if (data.data[0].author_data[0]===undefined){
           console.log('data.data[0].author_data[0]===undefined conditional fired in rp.then of getResultsFromSearch in isbndb.js');
-          // res.rows = data;
-          // console.log(res.rows, 'was res.rows before author_data shennanigans');
-          // console.log('///////////////////////////////');
-
-          // console.log(data.data[0].author_data[0], 'was data.data[0].author_data[0] in data.data[0].author_data[0]===undefined in getResultsFromSearch in db/isbndb.js');
-          // console.log(data.data[0].author_data[0].name, 'was data.data[0].author_data[0].name in data.data[0].author_data[0]===undefined in getResultsFromSearch in db/isbndb.js');
-          // console.log(data.data[0], 'was data.data[0] in data.data[0].author_data[0]===undefined in getResultsFromSearch in db/isbndb.js');
           res.rows.author =
-            {
-              "name": 'No author creditted - notice courtesy of bookList team'
-            }
-          // console.log('///////////////////////////////');
-          // console.log(res.rows, 'was res.rows after shennanigans');
-        } /*else {
+            'No author creditted - notice courtesy of bookList team'
+            
+        } else {
+          res.rows.author = data.data[0].author_data[0].name
+        }
+
+        console.log(res.rows, 'was res.rows after second conditional in if (data.index_searched==="book_id")');
+
+         /*else {
           res.rows = data;
         }*/
       } else if (data.index_searched==='author_name') {

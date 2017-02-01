@@ -39,7 +39,7 @@ export default class Result extends React.Component {
 
         // console.log(this.props.selectedSearchType[0], 'was this.props.selectedSearchType[0] right before switch in component/result.js');
         //the followis drenched, not DRY. should probably use if/else instead, but this works for now and i have other shit to do.
-        console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
+        // console.log(this.props.searchResults, 'was this.props.searchResults in components/result.js');
         // console.log(this.props.searchResults.results, 'was this.props.searchResults.results in components/result.js');
         // console.log(this.props.searchResults.results.author_name, 'was this.props.searchResults.results.author_name in components/result.js');
         // console.log(this.props.searchResults.results.book_ids, 'was this.props.searchResults.results.book_ids in components/result.js');

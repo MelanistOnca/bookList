@@ -163,7 +163,7 @@ function checkForBook( user, book, list, next ) {
     .then( (bookData) => { // this means book was found
       // console.log(bookData, 'was bookData in checkForBook'); //bookData picks up the bookId here
       // res.rows = data;
-      insertToJoin(user, bookData, list)
+      insertToJoin(user, bookData, list) //this inserts to join, but gets no return. TODO:need to look in to/review-my returning promises to get this to work how i want, i think
       next()
     })
 }

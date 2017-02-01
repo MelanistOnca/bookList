@@ -13,26 +13,26 @@ export default class UpdateUserInfo extends React.Component {
 
 //user will need to be logged in.
   userInfoToFormData(userDataFn, userData) {
-    console.log('called userInfoToFormData in components/user/updateUserInfo.js');
+    // console.log('called userInfoToFormData in components/user/updateUserInfo.js');
     //get user info, fill in fields
     // if user is logged in, can just take info from store.user.user.___ and fill in the respective userFormData fields. if user is not logged in, they should not even be able to access this page(really)
     //NOTE: possibly reference the updateField functions here? no. i should probably just have the login data fill out the userFormData
-    console.log(userDataFn, 'was userDataFn in same');
-    console.log(userData, 'was userData in same');
+    // console.log(userDataFn, 'was userDataFn in same');
+    // console.log(userData, 'was userData in same');
     userDataFn(userData)
   }
   updateUserFieldInfo(props, e) {
-    console.log('be the dream of a single function you want to see in the world.');
-    console.log('updateUserFieldInfo called in components/user/updateUserInfo.js');
-    console.log(e.target, 'was e.target');
-    console.log(e.target.id, 'was e.target.id'); //this returns the id of the target field. I should update these fields to be different IDs from the signup form components, but good otherwise. can create a switch case based around this.
+    // console.log('be the dream of a single function you want to see in the world.');
+    // console.log('updateUserFieldInfo called in components/user/updateUserInfo.js');
+    // console.log(e.target, 'was e.target');
+    // console.log(e.target.id, 'was e.target.id'); //this returns the id of the target field. I should update these fields to be different IDs from the signup form components, but good otherwise. can create a switch case based around this.
     //e.target.id possibilities:
     // firstNameInput,
     // middleNameInput,
     // lastNameInput,
     // emailInput,
     // usernameInput,
-    console.log(props, 'was props in components/user/updateUserInfo.js');
+    // console.log(props, 'was props in components/user/updateUserInfo.js');
     switch(e.target.id) {
       case 'firstNameInput':
         props.updateUserFormF_Name(e.target.value)
@@ -56,9 +56,9 @@ export default class UpdateUserInfo extends React.Component {
 
   }
   updatePasswordFieldInfo(props, e){
-    console.log('updatePasswordFieldInfo called in components/user/updateUserInfo.js');
-    console.log(e.target, 'was e.target');
-    console.log(e.target.id, 'was e.target.id'); //provides the element ID of the field being updated. change these to differ from signup form ids
+    // console.log('updatePasswordFieldInfo called in components/user/updateUserInfo.js');
+    // console.log(e.target, 'was e.target');
+    // console.log(e.target.id, 'was e.target.id'); //provides the element ID of the field being updated. change these to differ from signup form ids
     //e.target.id possibilities:
     // currentPasswordInput,
     // passwordInput,
@@ -78,7 +78,7 @@ export default class UpdateUserInfo extends React.Component {
     }
   }
   submitUpdatedInfo(updateFn,userFormData,e) {
-    console.log('submitUpdatedInfo in components/user/updateUserInfo.js called');
+    // console.log('submitUpdatedInfo in components/user/updateUserInfo.js called');
     // console.log(e, 'was e in in components/user/updateUserInfo.js called');
     // console.log(updateFn, 'was updateFn in in components/user/updateUserInfo.js called');
     // console.log(userFormData, 'was userFormData in in components/user/updateUserInfo.js called');
@@ -97,11 +97,11 @@ export default class UpdateUserInfo extends React.Component {
 
   }
   submitUpdatedPassword(updateFn, userFormData, e) {
-    console.log('submitUpdatedPassword in components/user/updateUserInfo.js called');
+    // console.log('submitUpdatedPassword in components/user/updateUserInfo.js called');
 
   }
   componentWillMount(){
-    console.log('componentWillMount in components/user/updateUserInfo.js ran');
+    // console.log('componentWillMount in components/user/updateUserInfo.js ran');
     if(this.props.user.status==="authenticated"){
       this.userInfoToFormData(this.props.userInfoToFormData, this.props.user.user)
     }
@@ -111,17 +111,17 @@ export default class UpdateUserInfo extends React.Component {
     //   onClick={this.userInfoToFormData.bind(this, this.props.userInfoToFormData, this.props.user.user)}
     //   >Click to call userInfoToFormData</button>
   }
-  componentWillReceiveProps(){
-    console.log('componentWillReceiveProps in components/user/updateUserInfo.js ran');
-    // this.getUserInfo()
-    // this.userInfoToFormData()
-    // this.userInfoToFormData(this.props.userInfoToFormData, this.props.user.user)
-  }
+  // componentWillReceiveProps(){
+  //   console.log('componentWillReceiveProps in components/user/updateUserInfo.js ran');
+  //   // this.getUserInfo()
+  //   // this.userInfoToFormData()
+  //   // this.userInfoToFormData(this.props.userInfoToFormData, this.props.user.user)
+  // }
 
   render() {
-    console.log(this.props, 'was this.props in components/user/updateUserInfo.js');
-    console.log(this.props.user.user.id, 'was this.props.user.user.id in components/user/updateUserInfo.js');
-    console.log(typeof this.props.user.user.id, 'was typeof of same');
+    // console.log(this.props, 'was this.props in components/user/updateUserInfo.js');
+    // console.log(this.props.user.user.id, 'was this.props.user.user.id in components/user/updateUserInfo.js');
+    // console.log(typeof this.props.user.user.id, 'was typeof of same');
 
     let blockStyle = {
       border: '1px solid black',

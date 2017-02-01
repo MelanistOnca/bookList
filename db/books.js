@@ -22,6 +22,7 @@ console.log(connectionObject, 'was connectionObject');
 // console.log(process.env.port, 'was process.env.port');
 // console.log(process.env.Port, 'was process.env.Port');
 // console.log(process.env, 'was process.env');
+console.log(process.env.DB_NAME, 'was process.env.DB_NAME');
 
 const db = pgp(connectionObject);
 // console.log(db, 'was db');
