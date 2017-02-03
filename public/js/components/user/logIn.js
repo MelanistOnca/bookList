@@ -60,16 +60,18 @@ class LogIn extends React.Component {
 
 
 
-    //NOTE: i should probably have more loading placeholders while components wait for async responses
+    //NOTE: i should probably have more loading placeholders while components wait for async responses TODO: adjust presentation to make it obvious you're logged in here
     //conditional messages based on load/error status
     let statusVar = this.props.user.loading ? 'Loading Info' :  '' ;
+    let loggedInVar = (this.props.user.status==='authenticated') ? <h2>You are logged in.</h2> : <h2> Please log in.</h2>
+
     let loadStatusContainer =
       <div id="loadStatusContainer">
-
-        <h1>
+        <h3>
           {`${statusVar}`}
 
-        </h1>
+        </h3>
+
 
       </div>
 
@@ -77,8 +79,8 @@ class LogIn extends React.Component {
     return(
       <div
         id="logInContainer">
-        Log in component here
         <form>
+          {loggedInVar}
           {loadStatusContainer}
           <ul>
             <li><input
@@ -101,6 +103,7 @@ class LogIn extends React.Component {
             </input></li>
 
           </ul>
+          <p>you can log in to a test account with test/test</p>
           <button
             onClick={this.logIn.bind(this, this.props.logInUser,
             this.props.logInUserSuccess,  this.props.logInForm)}

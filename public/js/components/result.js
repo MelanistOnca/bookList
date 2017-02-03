@@ -144,6 +144,7 @@ export default class Result extends React.Component {
       <div
         id="resultContainer"
         >
+        <h3>NOTE: we are currently investigating why books that are not in the bookList database require you to press the "add to list" button twice before the book is added. Until this bug is resolved, please press the button again if your list does not update on the first push</h3>
         {resultsView}
       </div>
     )
