@@ -137,16 +137,20 @@ function insertToJoin(user, book, list ) {
 }
 function checkForBook( user, book, list, next ) {
   console.log('checkForBook fired in getList() in  lists.js');
+  let payload = {}; //may need to define functions in here so that they can access this payload var so that i can then set payload.SOMETHING in those defined functions to a thing so that i can access it at this level?
   // console.log(book.isbnString, 'was book.isbnString in checkForBook()');
-  db.one("SELECT * FROM books WHERE isbn13=$1", [book.isbnString])
+  return  db.one("SELECT * FROM books WHERE isbn13=$1", [book.isbnString])
     .catch( (err) => { //this means book was NOT found
       console.log(err, 'was err from checkForBook() in db/lists');
-      //since book not found, need to add to book list
+      //since book not found, need to add to book list/library
       addBookToLibrary(book)
-      //can i do a .then() in here to add the book to the list?
-        .then( (data) => {
-          // console.log(data, 'was data in the interior .then() inside checkForBook() in db/lists');
-          insertToJoin(user, book, list)
+      //can i do a .then() in here to add the book to the list? //need to make addBookToLibrary
+        // .then( (data) => {
+        .then( () => {
+          // console.log(data, 'was data in the addBookToLibrary .then() inside checkForBook() in db/lists');
+          console.log('was the addBookToLibrary .then() inside checkForBook() in db/lists');
+          // insertToJoin(user, book, list) //this should be in a .then of the checkForBook() call
+
           next()
         })
         .catch( (error) => {
@@ -171,13 +175,25 @@ function checkForBook( user, book, list, next ) {
 function addBookToLibrary (book, next) {
   console.log('addBookToLibrary was called from list.js');
   // console.log(book, 'was book in addBookToLibrary fn in db/lists');
-  db.one("INSERT INTO books (isbn13, title, publisher, author) VALUES ($1, $2, $3, $4)", [book.isbnString, book.title, book.publisher, book.authorName])
-    .then( (data) => {
+  return db.any("INSERT INTO books (isbn13, title, publisher, author) VALUES ($1, $2, $3, $4)", [book.isbnString, book.title, book.publisher, book.authorName]) //TODO: want to add a RETURNING value of some kind here
+    .then(
+      // (data) => {
+      () => {
       // console.log(data, 'was data in addBookToLibrary in db/lists.js');//probably want to include a log that i've inserted a row into book table, and with what data, here
+      console.log('.then of sql in addBookToLibrary');
+      return new Promise ( (resolve, reject) => {
+        // resolve( (data) => { console.log(data, 'was data in new Promise resolve in addBookToLibrary');} )
+        console.log(`${book.isbnString} was added to books table`);
+        resolve( book.isbnString )
+        reject( (error) =>{ console.log(error, 'was error in new Promise reject in addBookToLibrary');})
+      })
+      // .catch((err)=>{console.log(err,'was err in .catch of new Promise in addBookToLibrary');})
+      next()
 
     })
     .catch( (err) => {
       console.log(err, 'was err in addBookToLibrary in db/lists.js');
+      next()
     })
 }
 
@@ -218,6 +234,7 @@ module.exports.addToList = ( req, res, next ) => {
   // console.log(list, 'was list'); //logs toBeReadList was list
 
   checkForBook(user, book, list, next);
+  // should have .then( (data) =>{ addToJoin}) and .catch( (err)=> { addBookToLibrary}.then((data)=>{addToJoin}))
 
 
 
