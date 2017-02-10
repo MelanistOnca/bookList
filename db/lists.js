@@ -143,7 +143,7 @@ function checkForBook( user, book, list, next ) {
     .catch( (err) => { //this means book was NOT found
       console.log(err, 'was err from checkForBook() in db/lists');
       //since book not found, need to add to book list/library
-      addBookToLibrary(book)
+      addBookToLibrary(book, next)
       //can i do a .then() in here to add the book to the list? //need to make addBookToLibrary
         // .then( (data) => {
         .then( () => {
