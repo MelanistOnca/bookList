@@ -118,9 +118,9 @@ module.exports.getList = ( req, res, next ) => {
 // }
 function insertToJoin(user, book, list ) {
   console.log('insertToJoin fired in getList() in  lists.js');
-  // console.log(book, 'was book in insertToJoin()', typeof book, 'was typeof for same');
-  // console.log(list, 'was list in insertToJoin()', typeof list, 'was typeof for same');
-  // console.log(user, 'was user in insertToJoin()', typeof user, 'was typeof for same');
+  console.log(book, 'was book in insertToJoin()', typeof book, 'was typeof for same');
+  console.log(list, 'was list in insertToJoin()', typeof list, 'was typeof for same');
+  console.log(user, 'was user in insertToJoin()', typeof user, 'was typeof for same');
 
   // TODO: add existing user validation
   // if( (user.id==='') ) {
@@ -140,16 +140,44 @@ function checkForBook( user, book, list, next ) {
   let payload = {}; //may need to define functions in here so that they can access this payload var so that i can then set payload.SOMETHING in those defined functions to a thing so that i can access it at this level?
   // console.log(book.isbnString, 'was book.isbnString in checkForBook()');
   return  db.one("SELECT * FROM books WHERE isbn13=$1", [book.isbnString])
+    .then( (bookData) => { // this means book was found
+      console.log(bookData, 'was bookData in checkForBook'); //bookData picks up the bookId here
+      // res.rows = data;
+      insertToJoin(user, bookData, list) //this inserts to join, but gets no return. TODO:need to look in to/review-my returning promises to get this to work how i want, i think
+      next()
+    })
     .catch( (err) => { //this means book was NOT found
       console.log(err, 'was err from checkForBook() in db/lists');
       //since book not found, need to add to book list/library
+
+      // console.log(book, 'was book before addBookToLibrary in return db.one of checkForBook');
+
       addBookToLibrary(book, next)
+
       //can i do a .then() in here to add the book to the list? //need to make addBookToLibrary
-        // .then( (data) => {
-        .then( () => {
+
+        // .then( () => {
+        .then( (data) => {
           // console.log(data, 'was data in the addBookToLibrary .then() inside checkForBook() in db/lists');
-          console.log('was the addBookToLibrary .then() inside checkForBook() in db/lists');
-          // insertToJoin(user, book, list) //this should be in a .then of the checkForBook() call
+          // console.log(data[0], 'was data[0] in the addBookToLibrary .then() inside checkForBook() in db/lists');
+    //       data[0] returns object
+    //       {
+            // id: 50,
+            // isbn13: '9780201877885',
+            // title: 'Complex Mathematica',
+            // publisher: 'Addison-Wesley',
+            // author: 'Shaw, William H.'
+          // }
+          // console.log(typeof data, 'was typeof data in same'); //returns object or above return
+          // console.log('was the addBookToLibrary .then() inside checkForBook() in db/lists');
+          console.log(book, 'was book in same');
+          //this needs the id of the book in my database
+          book.id = data[0].id
+          // console.log(book, 'was book in same');
+          // console.log(user, 'was user in same');
+          // console.log(list, 'was list in same');
+
+          insertToJoin(user, book, list) //this should be in a .then of the checkForBook() call
 
           next()
         })
@@ -164,27 +192,23 @@ function checkForBook( user, book, list, next ) {
       // TODO: reinvestigate the above error/warning. maybe has to to with db.___ type?
       next()
     })
-    .then( (bookData) => { // this means book was found
-      // console.log(bookData, 'was bookData in checkForBook'); //bookData picks up the bookId here
-      // res.rows = data;
-      insertToJoin(user, bookData, list) //this inserts to join, but gets no return. TODO:need to look in to/review-my returning promises to get this to work how i want, i think
-      next()
-    })
+
 }
 
 function addBookToLibrary (book, next) {
   console.log('addBookToLibrary was called from list.js');
-  // console.log(book, 'was book in addBookToLibrary fn in db/lists');
-  return db.any("INSERT INTO books (isbn13, title, publisher, author) VALUES ($1, $2, $3, $4)", [book.isbnString, book.title, book.publisher, book.authorName]) //TODO: want to add a RETURNING value of some kind here
+  console.log(book, 'was book in addBookToLibrary fn in db/lists');
+  return db.any("INSERT INTO books (isbn13, title, publisher, author) VALUES ($1, $2, $3, $4) RETURNING *;", [book.isbnString, book.title, book.publisher, book.authorName]) //TODO: want to add a RETURNING value of some kind here need the book_id to be returned, possibly among other things. URGENT.
     .then(
-      // (data) => {
-      () => {
-      // console.log(data, 'was data in addBookToLibrary in db/lists.js');//probably want to include a log that i've inserted a row into book table, and with what data, here
+      (data) => {
+      // () => {
+      console.log(data, 'was data in addBookToLibrary in db/lists.js');//probably want to include a log that i've inserted a row into book table, and with what data, here
       console.log('.then of sql in addBookToLibrary');
       return new Promise ( (resolve, reject) => {
         // resolve( (data) => { console.log(data, 'was data in new Promise resolve in addBookToLibrary');} )
-        console.log(`${book.isbnString} was added to books table`);
-        resolve( book.isbnString )
+        // console.log(`${book.isbnString} was added to books table`);
+        console.log('return new Promise fired in .then of return db. in addBookToLibrary call');
+        resolve( data )
         reject( (error) =>{ console.log(error, 'was error in new Promise reject in addBookToLibrary');})
       })
       // .catch((err)=>{console.log(err,'was err in .catch of new Promise in addBookToLibrary');})
@@ -233,8 +257,18 @@ module.exports.addToList = ( req, res, next ) => {
   let list = req.body.list
   // console.log(list, 'was list'); //logs toBeReadList was list
 
-  checkForBook(user, book, list, next);
+  checkForBook(user, book, list, next)
   // should have .then( (data) =>{ addToJoin}) and .catch( (err)=> { addBookToLibrary}.then((data)=>{addToJoin}))
+    .then( () => {
+      // console.log(data, 'was data in .then after checkForBook call');
+      // console.log('was .then after checkForBook call');
+      // insertToJoin(user, book, list)
+      // console.log('after insertToJoin call in .then after checkForBook call');
+
+    })
+    .catch( (error) => {
+      console.log(error, 'was error in .catch after checkForBook call');
+    })
 
 
 

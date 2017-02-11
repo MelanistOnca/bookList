@@ -106,6 +106,7 @@ export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
             //   error: error
             // })
             console.log(error,'was error in .catch of axios.get(`/api/lists/${fnArg.listNumber}/users/${fnArg.user.id}/books/`');
+            next()
           })
         })
       .catch( (error) => {
@@ -114,6 +115,7 @@ export function updateList(/*listName, user, listBooks, listInfo*/ fnArg) {
         //   error: error
         // })
         console.log(error, 'was error in .catch of axios.get(`/api/users/${fnArg.user_id}/list/${fnArg.listNumber}`)');
+        next()
       })
   }
 }
